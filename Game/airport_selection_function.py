@@ -47,26 +47,10 @@ def airportselection(game_id):
         list_of_airport_dictionaries[i]['distance'] = dist
     #This sorts list of airport dictionaries by the distance from nearest to furthest.
     list_of_airport_dictionaries_sorted_by_distance = sorted(list_of_airport_dictionaries, key=lambda x: x['distance'])
-    #Enumerate adds index to the list and uses it as index "i" while airport calls same dictionary's right value.
-    money = fetch_player_money(game_id)
-    print("Seuraavat lähdöt: (lennon nro, maa, lentokenttä, hinta (€):")
-    for i, airport in enumerate(list_of_airport_dictionaries_sorted_by_distance):
-        print(f"{i + 1:17.0f}. {airport['country']}: {airport['name']}  ({price_multiplier + i  * price_multiplier}) €)")
-    print(f"Sinulla on {money}€. ")
-    next_location = check_player_input(game_id)
-    while money < next_location*price_multiplier:
-        print("Rahasi ei riitä tälle kentälle.")
-        next_location = check_player_input(game_id)
-    next_airport = list_of_airport_dictionaries_sorted_by_distance[next_location-1]["ident"]
-    price = (next_location)*price_multiplier
-    money -= price
-    update_player_money(money, game_id)
-    update_player_location(game_id, next_airport)
-    location_name = fetch_player_location_name(game_id)
-    print(airplane_up)
-    time.sleep(2)
-    print(f"Saavuit lentokentälle {location_name}.")
-    return next_airport
+    for i in range(len(list_of_airport_dictionaries_sorted_by_distance)):
+        list_of_airport_dictionaries_sorted_by_distance[i]['number'] = f"{i + 1}"
+        list_of_airport_dictionaries_sorted_by_distance[i]['price'] = f"{price_multiplier + i * price_multiplier}€"
+    return list_of_airport_dictionaries_sorted_by_distance
 
 def distance(next_place, icao):
     """Check distance of airports one at the time. Returns player's distance to that airport."""
@@ -90,3 +74,29 @@ def current_coordinates(IDENT):
     kursori.execute(sql)
     result = kursori.fetchall()
     return result
+
+
+'''    next_location = check_player_input(game_id)
+    while money < next_location*price_multiplier:
+        print("Rahasi ei riitä tälle kentälle.")
+        next_location = check_player_input(game_id)
+    next_airport = list_of_airport_dictionaries_sorted_by_distance[next_location-1]["ident"]
+    price = (next_location)*price_multiplier
+    money -= price
+    update_player_money(money, game_id)
+    update_player_location(game_id, next_airport)
+    location_name = fetch_player_location_name(game_id)
+    print(airplane_up)
+    time.sleep(2)
+    print(f"Saavuit lentokentälle {location_name}.")
+        #Enumerate adds index to the list and uses it as index "i" while airport calls same dictionary's right value.
+    money = fetch_player_money(game_id)
+    print("Seuraavat lähdöt: (lennon nro, maa, lentokenttä, hinta (€):")
+    airportlist = []
+    for i, airport in enumerate(list_of_airport_dictionaries_sorted_by_distance):
+        dict = {}
+        dict['id'] = i + 1
+        dict['airport'] = airport['country']
+        dict['name'] = airport['name']
+        dict['price']= str(price_multiplier + i  * price_multiplier) + "€"
+'''
