@@ -49,8 +49,11 @@ def airportselection(game_id):
     list_of_airport_dictionaries_sorted_by_distance = sorted(list_of_airport_dictionaries, key=lambda x: x['distance'])
     for i in range(len(list_of_airport_dictionaries_sorted_by_distance)):
         list_of_airport_dictionaries_sorted_by_distance[i]['number'] = f"{i + 1}"
-        list_of_airport_dictionaries_sorted_by_distance[i]['price'] = f"{price_multiplier + i * price_multiplier}€"
-    return list_of_airport_dictionaries_sorted_by_distance
+        list_of_airport_dictionaries_sorted_by_distance[i]['price'] = f"{price_multiplier + i * price_multiplier}"
+    dictionary_of_dictionarys_airport = {}
+    for i in range(len(list_of_airport_dictionaries_sorted_by_distance)):
+        dictionary_of_dictionarys_airport[f'{i+1}'] = list_of_airport_dictionaries_sorted_by_distance[i]
+    return dictionary_of_dictionarys_airport
 
 def distance(next_place, icao):
     """Check distance of airports one at the time. Returns player's distance to that airport."""
@@ -99,4 +102,26 @@ def current_coordinates(IDENT):
         dict['airport'] = airport['country']
         dict['name'] = airport['name']
         dict['price']= str(price_multiplier + i  * price_multiplier) + "€"
+    dictionary_of_dictionarys_airport = {
+    '1': list_of_airport_dictionaries_sorted_by_distance[0],
+    '2':list_of_airport_dictionaries_sorted_by_distance[1],
+    '3': list_of_airport_dictionaries_sorted_by_distance[2],
+    '4': list_of_airport_dictionaries_sorted_by_distance[3],
+    '5': list_of_airport_dictionaries_sorted_by_distance[4],
+    '6': list_of_airport_dictionaries_sorted_by_distance[5],
+    '7': list_of_airport_dictionaries_sorted_by_distance[6],
+    '8': list_of_airport_dictionaries_sorted_by_distance[7],
+    '9': list_of_airport_dictionaries_sorted_by_distance[8],
+    '10': list_of_airport_dictionaries_sorted_by_distance[9],
+    '11': list_of_airport_dictionaries_sorted_by_distance[10],
+    '12': list_of_airport_dictionaries_sorted_by_distance[11],
+    '13': list_of_airport_dictionaries_sorted_by_distance[12],
+    '14': list_of_airport_dictionaries_sorted_by_distance[13],
+    '15': list_of_airport_dictionaries_sorted_by_distance[14],
+    '16': list_of_airport_dictionaries_sorted_by_distance[15],
+    '17': list_of_airport_dictionaries_sorted_by_distance[16],
+    '18': list_of_airport_dictionaries_sorted_by_distance[17],
+    '19': list_of_airport_dictionaries_sorted_by_distance[18],
+    '20': list_of_airport_dictionaries_sorted_by_distance[19]
+    }
 '''
