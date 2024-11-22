@@ -21,7 +21,7 @@ test_button.addEventListener('click', async function () {
     let TestJSON = await response.json();
     console.log(TestJSON);
     console.log(TestJSON['1'])
-    for (let i = 0; i < 19; i++) {
+    for (let i = 0; i <= 19; i++) {
       let article = document.createElement('article');
       let paragraph = document.createElement('p');
       paragraph.textContent = TestJSON[`${i+1}`].name;
