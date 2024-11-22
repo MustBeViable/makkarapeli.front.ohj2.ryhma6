@@ -11,7 +11,7 @@ test_button.textContent = 'query';
 div_test.appendChild(test_button);
 
 test_button.addEventListener('click', async function () {
-  const url = 'http://127.0.0.1:5000/airport/?ide=1';
+  const url = 'http://127.0.0.1:5000/airport/1';
   try {
     let response = await fetch(url);
     console.log(response);

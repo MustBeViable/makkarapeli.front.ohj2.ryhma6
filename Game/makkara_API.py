@@ -5,10 +5,8 @@ from Game.airport_selection_function import airportselection
 
 app = Flask(__name__)
 
-@app.route('/airport/', methods=['GET', 'POST'])
-def flight():
-    args = request.args
-    ide = args.get('ide')
+@app.route('/airport/<ide>')
+def flight(ide):
     vastaus = airportselection(ide)
     return vastaus
 
