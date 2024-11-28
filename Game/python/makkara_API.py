@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from Game.python.airport_selection_function import airportselection
-from Game.python.garbage_can import garbage_can, finnair_personnel
+from Game.python.garbage_can import garbage_can
 
 app = Flask(__name__)
 
@@ -15,12 +15,6 @@ def flight(ide):
 
 def carbage(ide):
     vastaus = garbage_can(ide)
-    return vastaus
-
-@app.route('/finnair/<ide>')
-
-def finnair(ide):
-    vastaus = finnair_personnel(ide)
     return vastaus
 
 

@@ -1,4 +1,4 @@
-from game_texts import yhteys
+from Game.python.game_texts import yhteys
 
 def table_remove(table):
     sql = "DROP TABLE {table} "

@@ -1,9 +1,9 @@
-from Game.Game_ascii_art.casual_garbage_can import ascii_carbage_can
-from Game.airport_selection_function import airportselection
-from Game.game_texts import yes, no, approve, tax_free_question, money_is_zero_str, garbage_can_question, \
+from Game.python.Game_ascii_art.casual_garbage_can import ascii_carbage_can
+from Game.python.airport_selection_function import airportselection
+from Game.python.game_texts import yes, no, approve, tax_free_question, money_is_zero_str, garbage_can_question, \
     airport_selection_question, no_money_for_flight_str
-from Game.garbage_can import garbage_can
-from Game.sql_querys.money_function import fetch_player_money
+from Game.python.garbage_can import garbage_can
+from Game.python.sql_querys.money_function import fetch_player_money
 from Game.python.taxfree import yes_no_taxfree
 
 class Section:

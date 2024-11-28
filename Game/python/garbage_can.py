@@ -2,6 +2,7 @@
 
 import random
 
+from Game.python.Game_ascii_art.finnair_ascii import finnair_ascii
 from Game.python.Game_ascii_art.hole_in_charge_ascii import hole_in_charge_ascii
 from Game.python.Game_ascii_art.money_found_garbage_can import happy_garbage_can
 from Game.python.Game_ascii_art.robber_from_garbage_can import robber_2
@@ -109,6 +110,7 @@ def garbage_can(game_id):
         print(hole_in_charge_ascii)
         hole_in_charge(game_id)
     elif outcome == 'finnair_personnel':
+        print(finnair_ascii)
         print("Terve, olen Finnairin ympäristöedustaja. Meillä on palvelu,\n"
               "jolla voit kompensoida lentopäästöjäsi. Voit lahjoittaa haluamasi\nmäärän rahaa, ja me annamme sinulle "
               "vastineeksi harvinaisen makkaran.")
@@ -118,4 +120,4 @@ def garbage_can(game_id):
     return
 
 
-finnair_personnel(1)
+
