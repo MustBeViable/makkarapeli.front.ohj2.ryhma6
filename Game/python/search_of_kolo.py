@@ -1,7 +1,7 @@
 import random
 
 from Game.sql_querys.money_function import fetch_player_money, update_player_money
-from Game.sql_querys.return_stolen_makkaras import return_player_makkaras
+from Game.python.sql_querys.return_stolen_makkaras import return_player_makkaras
 
 taxi_price = 150
 uber_price = 1
@@ -10,7 +10,7 @@ def kolo_search(game_id):
 
     """What happens when u search kolo"""
 
-    from Game.commands import input_in_section
+    from Game.python.commands import input_in_section
 
     outside_airport = input_in_section(game_id, f"Kirjoita taxi jos haluat ottaa taxin ({taxi_price}€) tai kirjoita uber jos haluat uberin ({uber_price}€).")
     while outside_airport != "taxi" and outside_airport != "uber":

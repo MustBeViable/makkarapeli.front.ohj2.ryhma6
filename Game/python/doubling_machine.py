@@ -1,6 +1,6 @@
 import random
 
-from Game.commands import input_in_section
+from Game.python.commands import input_in_section
 from Game.game_texts import yes, no
 from Game.sql_querys.money_function import fetch_player_money, update_player_money
 

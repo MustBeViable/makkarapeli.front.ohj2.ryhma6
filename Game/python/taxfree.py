@@ -22,7 +22,7 @@ def taxfree(player_money, makkara_id, game_id):
 # Asking do you want to buy makkara from taxfree
 def yes_no_taxfree(game_id):
     """Asks player if he wants to buy airport specific makkara."""
-    from Game.commands import input_in_section
+    from Game.python.commands import input_in_section
     print(f"Sinulla on {fetch_player_money(game_id)}€ rahaa. Taxfreestä löytyi hieno {search_makkara(game_id)}"
           f" ja se maksaa {sausage_price}€.")
     taxfree_answer = input_in_section(game_id, f"Haluatko ostaa makkaran? ({yes}/{no})")

@@ -4,7 +4,7 @@ from Game.game_texts import yes, no, approve, tax_free_question, money_is_zero_s
     airport_selection_question, no_money_for_flight_str
 from Game.garbage_can import garbage_can
 from Game.sql_querys.money_function import fetch_player_money
-from Game.taxfree import yes_no_taxfree
+from Game.python.taxfree import yes_no_taxfree
 
 class Section:
     """Sections of the game. Each section happens max once in one airport."""

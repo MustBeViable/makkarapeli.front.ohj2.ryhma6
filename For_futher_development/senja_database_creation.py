@@ -1,5 +1,5 @@
 from Game.game_creation_lists.iso_country_list import iso_country_list
-from Game.game_creation_lists.makkaras_dictionary import makkaras_dictionary
+from Game.python.game_creation_lists.makkaras_dictionary import makkaras_dictionary
 from Game.game_creation_lists.score_value_makkara import score_value_makkara
 from Game.game_texts import yhteys, start_location
 

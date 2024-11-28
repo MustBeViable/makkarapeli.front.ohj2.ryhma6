@@ -1,7 +1,7 @@
 from Game.actions import give_help, show_profile, show_all_top_lists_name
 from Game.choose_game import create_or_choose_game
-from Game.commands import execute_section
-from Game.section import garbage_can_section, tax_free_section, flight_section
+from Game.python.commands import execute_section
+from Game.python.section import garbage_can_section, tax_free_section, flight_section
 from Game.sign_in_up import ask_sign_in_or_up
 from Game.sql_querys.create_and_end_game import finish_game_in_database
 from Game.sql_querys.fetch_player_makkaras import fetch_player_makkaras

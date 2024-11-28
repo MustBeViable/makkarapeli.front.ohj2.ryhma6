@@ -1,10 +1,5 @@
-import time
-
-from Game.Game_ascii_art.airplane_up import airplane_up
-from Game.commands import input_in_section
-from Game.sql_querys.money_function import fetch_player_money, update_player_money
-from Game.sql_querys.player_location_fetch_and_update_querys import fetch_player_location, update_player_location, \
-    fetch_player_location_name
+from Game.python.commands import input_in_section
+from Game.sql_querys.player_location_fetch_and_update_querys import fetch_player_location
 from game_texts import yhteys, price_multiplier
 
 def check_player_input(game_id):
