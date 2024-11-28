@@ -52,15 +52,21 @@ nav {
     margin: 0.5rem;
     border-radius: 10px;
     border: 1px solid black;
-    width: 40%;
+    width: 50%;
     background-color: blue;
 }
 .div2_1 {
     height: 60%;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 8px;
 }
 .div2_2 {
     height: 10%;
     text-align: center;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 8px;
 }
 .div2_3 {
     height: 30%;
@@ -111,7 +117,7 @@ ul {
 
 li a {
 	background-color:lemonchiffon;
-	color: floralwhite;
+	color: black;
 	text-decoration: none;
 	display: flex;
 	font-size: 1.5em;
@@ -123,8 +129,8 @@ li a {
 
 li a:hover {
     text-decoration: underline;
-    text-underline-color: floralwhite;
-	color: floralwhite;
+    text-underline-color: black;
+	color: black;
 }
 
 .map {
