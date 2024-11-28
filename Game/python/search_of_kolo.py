@@ -1,6 +1,6 @@
 import random
 
-from Game.sql_querys.money_function import fetch_player_money, update_player_money
+from Game.python.sql_querys.money_function import fetch_player_money, update_player_money
 from Game.python.sql_querys.return_stolen_makkaras import return_player_makkaras
 
 taxi_price = 150

@@ -1,4 +1,4 @@
-from Game.game_texts import yhteys
+from Game.python.game_texts import yhteys
 
 def fetch_all_time_top_list(screen_name):
     sql = (f" SELECT screen_name, score"
