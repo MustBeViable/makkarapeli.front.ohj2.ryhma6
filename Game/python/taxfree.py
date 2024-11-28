@@ -1,8 +1,8 @@
-from Game.game_texts import sausage_price, yes, no
-from Game.sql_querys.score_fetch_and_score_update_querys import player_score_fetch, player_score_update
-from sql_querys.makkara_taxfree_sql_update import add_makkara_reached
-from sql_querys.makkara_sql_haku import search_makkara, search_makkara_id, search_makkara_score
-from sql_querys.money_function import update_player_money, fetch_player_money
+from Game.python.game_texts import sausage_price, yes, no
+from Game.python.sql_querys.score_fetch_and_score_update_querys import player_score_fetch, player_score_update
+from Game.python.sql_querys import add_makkara_reached
+from Game.python.sql_querys.makkara_sql_haku import search_makkara, search_makkara_id, search_makkara_score
+from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
 
 def taxfree(player_money, makkara_id, game_id):
     """Taxfree subtracts cost of money from player moneys and adds makkara from the country to

@@ -1,7 +1,7 @@
 import mysql.connector
 
-from Game.game_creation_lists.all_lists_etc import iso_country_list, makkaras_dictionary, score_value_makkara
-from Game.game_texts import start_score, start_money, start_mustamakkara, start_location, yhteys
+from Game.python.game_creation_lists.all_lists_etc import iso_country_list, makkaras_dictionary, score_value_makkara
+from Game.python.game_texts import start_score, start_money, start_mustamakkara, start_location, yhteys
 
 '''yhteys = mysql.connector.connect(
          host='localhost',
