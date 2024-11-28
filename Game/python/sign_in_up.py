@@ -13,8 +13,6 @@ def ask_sign_in_or_up():
         name = ask_sign_in_or_up()
     return name
 
-# Asks the player for a screen name and accepts it, if it has previous games.
-# If the player cancels, they can choose again if they want to sign in or sign up.
 def sign_in_function():
     """Ask the player for a screen name and returns the given name."""
     name = input(give_screen_name_str).lower().strip()
@@ -25,8 +23,6 @@ def sign_in_function():
         name = ask_sign_in_or_up()
     return name
 
-# Asks the player for a screen name and accepts it, if it doesn't have previous games.
-# If the player cancels, they can choose again if they want to sign in or sign up.
 def sign_up_function():
     """Asks the player for a screen name.\n
     Returns the given name."""
