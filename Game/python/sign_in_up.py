@@ -1,7 +1,6 @@
 from Game.python.game_texts import cancel_command, sign_up, sign_in, give_screen_name_str, sign_in_or_up_str
 from Game.python.sql_querys.create_and_end_game import fetch_all_screen_names
 
-# Asks the player if they want to sign in or sign up until they give one of those answers.
 def ask_sign_in_or_up():
     """ Asks the player if they want to sign in or sign up.\n
     Returns the screen name of the player."""
