@@ -2,16 +2,15 @@
 
 import random
 
-from Game.python.Game_ascii_art.finnair_ascii import finnair_ascii
-from Game.Game_ascii_art.hole_in_charge_ascii import hole_in_charge_ascii
-from Game.Game_ascii_art.money_found_garbage_can import happy_garbage_can
-from Game.Game_ascii_art.robber_from_garbage_can import robber_2
-from Game.game_texts import no, yes, yhteys, finnair_makkara, finnair_donation
+from Game.python.Game_ascii_art.hole_in_charge_ascii import hole_in_charge_ascii
+from Game.python.Game_ascii_art.money_found_garbage_can import happy_garbage_can
+from Game.python.Game_ascii_art.robber_from_garbage_can import robber_2
+from Game.python.game_texts import no, yes, yhteys, finnair_makkara, finnair_donation
 from For_futher_development.secret_black_sausage import secret_black_sausage_chance, amount
-from Game.doubling_machine import tuplataanko
-from Game.sql_querys.fetch_player_makkaras import fetch_player_makkaras
-from Game.sql_querys.money_function import update_player_money, fetch_player_money
-from Game.sql_querys.score_fetch_and_score_update_querys import player_score_fetch, player_score_update
+from Game.python.doubling_machine import tuplataanko
+from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras
+from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
+from Game.python.sql_querys.score_fetch_and_score_update_querys import player_score_fetch, player_score_update
 
 
 def robber(id, player_money):
@@ -110,7 +109,6 @@ def garbage_can(game_id):
         print(hole_in_charge_ascii)
         hole_in_charge(game_id)
     elif outcome == 'finnair_personnel':
-        print(finnair_ascii)
         print("Terve, olen Finnairin ympäristöedustaja. Meillä on palvelu,\n"
               "jolla voit kompensoida lentopäästöjäsi. Voit lahjoittaa haluamasi\nmäärän rahaa, ja me annamme sinulle "
               "vastineeksi harvinaisen makkaran.")
@@ -120,4 +118,4 @@ def garbage_can(game_id):
     return
 
 
-
+finnair_personnel(1)

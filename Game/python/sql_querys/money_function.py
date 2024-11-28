@@ -1,5 +1,5 @@
 
-from Game.game_texts import yhteys
+from Game.python.game_texts import yhteys
 
 
 

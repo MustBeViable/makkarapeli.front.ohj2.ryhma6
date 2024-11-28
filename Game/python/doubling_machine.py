@@ -1,8 +1,8 @@
 import random
 
 from Game.python.commands import input_in_section
-from Game.game_texts import yes, no
-from Game.sql_querys.money_function import fetch_player_money, update_player_money
+from Game.python.game_texts import yes, no
+from Game.python.sql_querys.money_function import fetch_player_money, update_player_money
 
 def tuplaus(amount, times_player_have_doubled):
     """This function randomizes a number from 1 to 100 and checks if it's more than 50. If it is player wins.
