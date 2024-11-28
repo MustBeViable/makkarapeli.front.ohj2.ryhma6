@@ -1,19 +1,22 @@
 'use strict'
 async function getData(url){
-  const response = await fetch(url);
-  if(!response.ok) throw new Error('invalid server input')
-  const data = await response.json();
-  return data
-}
-
-async function taxfree() {
   try{
-    const taxfree_data = await getData(`/airport/${1}`)
-    console.log(taxfree_data);
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    return data
   }
   catch (error){
     console.log(error);
+    return error
   }
+
+
+}
+
+async function taxfree() {
+  getData(`/Garbage/${1}`)
+
 
 }
 taxfree()
