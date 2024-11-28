@@ -18,12 +18,14 @@ def robber(id):
     player_money = fetch_player_money(id)
     if player_money > 0:
         if player_money == 1:
-            update_player_money({player_money - 1}, id)
-            value = {'money': f'{player_money - 1}'}
+            new_money = player_money - 1
+            update_player_money(new_money, id)
+            value = {'money': new_money}
             return value
         else:
-            update_player_money({player_money * 0.5}, id)
-            value = {'money': f'{player_money * 0.5}'}
+            new_money = player_money * 0.5
+            update_player_money(new_money, id)
+            value = {'money': new_money}
             return value
 
 
@@ -48,8 +50,8 @@ def hole_in_charge(game_id):
                 f"UPDATE makkara_reached SET stolen = True WHERE id IN (SELECT id FROM makkara_reached WHERE id = {makkara})")
             kursori = yhteys.cursor()
             kursori.execute(sql)
-        result = {'makkaras_lost': {str(len(lost_makkaras))}}
-        return result
+            result = {'makkaras_lost': {str(len(lost_makkaras))}}
+            return result
 
 def finnair_personnel(game_id, answer):
     """Player can donate 500 euros and get rare sausage"""
@@ -76,9 +78,11 @@ def money_from_garbage():
     return value
 
 
-def garbage_can(game_id):
+def garbage_can():
     """This is the main carbage can function, and it is checkng garbages with its all features (money found, robber,
     hole in charge, finnair personnel"""
     outcome = \
-    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[70, 10, 10, 10], k=1)[0]
+    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[0, 10, 0, 0], k=1)[0]
     return outcome
+
+print(garbage_can())

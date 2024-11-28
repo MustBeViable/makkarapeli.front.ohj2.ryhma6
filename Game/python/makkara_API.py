@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from Game.python.airport_selection_function import airportselection
 from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_garbage, robber, hole_in_charge
+from Game.python.sql_querys.player_location_fetch_and_update_querys import update_player_location, fetch_player_location
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def airport(ide):
 @app.route('/garbage/<ide>')
 #when money found works now returns dictionary money as key and value is the random amount
 def garbage(ide):
-    value = garbage_can(ide)
+    value = garbage_can()
     if value == 'found_money':
         result = money_from_garbage()
         return result
@@ -39,6 +40,11 @@ def finnair(ide, answer):
         result = finnair_personnel(ide, answer)
         print(type(answer))
         return result
+
+@app.route('/airport_selected/<ide>/<icao>')
+def airport_selected(ide, icao):
+    update_player_location(ide, icao)
+    result = fetch_player_location(ide)
 
 
 CORS(app)
