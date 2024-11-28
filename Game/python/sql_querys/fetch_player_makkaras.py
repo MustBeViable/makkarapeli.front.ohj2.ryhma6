@@ -1,4 +1,4 @@
-from Game.game_texts import yhteys
+from Game.python.game_texts import yhteys
 
 #Luo listan pelaajan makkaroista joita pelaajalla on. Parametri on pelaajan uniikki id.
 def fetch_player_makkaras(id):

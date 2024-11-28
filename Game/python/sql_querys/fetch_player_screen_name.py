@@ -1,4 +1,4 @@
-from Game.game_texts import yhteys
+from Game.python.game_texts import yhteys
 
 
 def fetch_player_screen_name(game_id):
