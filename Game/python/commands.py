@@ -1,7 +1,7 @@
-from Game.actions import give_help, show_money, show_makkaras, cant_end_now, give_commands, show_score, faulty_command, \
+from Game.python.actions import give_help, show_money, show_makkaras, cant_end_now, give_commands, show_score, faulty_command, \
     show_profile, show_all_top_lists_id
 from Game.python.check_stolen_makkaras import check_if_any_stolen_makkara
-from Game.game_texts import help_command, end_command, makkaras_command, money_command, give_up_command, \
+from Game.python.game_texts import help_command, end_command, makkaras_command, money_command, give_up_command, \
     commands_command, \
     score_command, profile_command, hole_command, top_command
 

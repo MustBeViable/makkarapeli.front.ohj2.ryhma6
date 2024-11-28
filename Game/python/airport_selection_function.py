@@ -1,6 +1,6 @@
 from Game.python.commands import input_in_section
-from Game.sql_querys.player_location_fetch_and_update_querys import fetch_player_location
-from game_texts import yhteys, price_multiplier
+from Game.python.sql_querys.player_location_fetch_and_update_querys import fetch_player_location
+from Game.python.game_texts import yhteys, price_multiplier
 
 def check_player_input(game_id):
     """This function tests if player have given right input."""

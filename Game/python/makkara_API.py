@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
-from Game.airport_selection_function import airportselection
-from Game.garbage_can import garbage_can
+from Game.python.airport_selection_function import airportselection
+from Game.python.garbage_can import garbage_can
 
 app = Flask(__name__)
 
