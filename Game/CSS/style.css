@@ -1,0 +1,43 @@
+.container {
+	object-fit: contain;
+	margin:  auto;
+	width: 100%;
+    color: floralwhite;
+    background-color: lime;
+}
+
+.innerContainer {
+    margin: auto;
+    width: 90%;
+    color: red;
+    background-color: purple;
+}
+
+body {
+	margin: 0;
+	background-color: #181818;
+}
+
+.navi {
+	display: flex;
+	line-height: 4rem;
+	overflow: hidden;
+}
+
+header {
+	background-color: #303030;
+	align-items: center;
+    width: 100%;
+}
+
+.div1 {
+    margin: 1rem;
+    width: 50%;
+    background-color: deepskyblue;
+}
+
+.div2 {
+    margin: 1rem;
+    width: 50%;
+    background-color: blue;
+}
