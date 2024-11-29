@@ -2,7 +2,7 @@ from wsgiref.util import request_uri
 
 from flask import Flask
 from flask_cors import CORS
-from Game.python.airport_selection_function import airportselection
+from Game.python.airport_selection_function import airportselection, current_coordinates
 from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_garbage, robber, hole_in_charge
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
 from Game.python.sql_querys.player_location_fetch_and_update_querys import update_player_location, fetch_player_location
@@ -64,6 +64,14 @@ def airport_selected(ide, airport_num):
 #Return a dictionary like this {'money': '400'}.
 def player_money(ide):
     result = fetch_player_money(ide)
+    return result
+
+@app.route('/player_location/<ide>')
+#Returns player location as lat and long like this {'lattitude': '10', 'longitude': '2'}.
+def player_location(ide):
+    location = fetch_player_location(ide)['player_location']
+    array = current_coordinates(location)
+    result = {'lattitude': array[0][0], 'longitude': array[0][1]}
     return result
 
 CORS(app)
