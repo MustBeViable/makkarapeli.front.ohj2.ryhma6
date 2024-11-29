@@ -49,6 +49,7 @@ def finnair(ide, answer):
 
 @app.route('/hole_search/<ide>/<transportation>')
 #Define variables in search_of_kolo function based on how frontend gives us info about transportation.
+#Returns dictionary like: {'makkara': 'found'}
 def hole_search(ide, transportation):
     result = kolo_search(ide, transportation)
     return result
