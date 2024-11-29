@@ -11,8 +11,8 @@ def sign_in_function(name):
 
 def sign_up_function(name):
     """Asks the player for a screen name.\n
-    Returns the given name."""
+    Returns True if the name is available, returns False if it's not."""
     if name in fetch_all_screen_names():
-        return {name: False}
+        return False
     else:
-        return {name: True}
+        return True
