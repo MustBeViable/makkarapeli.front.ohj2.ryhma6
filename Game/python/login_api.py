@@ -9,14 +9,13 @@ from Game.python.sql_querys.score_fetch_and_score_update_querys import player_sc
 
 app = Flask(__name__)
 
-
 @app.route('/signin/<screen_name>')
 def signin(screen_name):
     name_found = sign_in_function(screen_name)
     if not name_found:
         response = {
             'status': '404',
-            'message': 'Käyttäjätunnusta ei löytynyt.'
+            'message': 'Username not found.'
         }
     else:
         game_id = fetch_unfinished_playthrough(screen_name)
@@ -40,7 +39,7 @@ def signup(screen_name):
     if not name_available:
         response = {
             'status': '404',
-            'message': 'Käyttäjätunnus on jo käytössä.'
+            'message': 'Username is already taken.'
         }
     else:
         response = {
