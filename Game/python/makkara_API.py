@@ -54,11 +54,17 @@ def airport_selected(ide, airport_num):
     result = airports[ide][airport_num]
     ariport_icao = result['ident']
     price = result['price']
-    spend = int(fetch_player_money(1)) - int(price)
+    current_money = fetch_player_money(1)['money']
+    spend = int(current_money) - int(price)
     update_player_money(spend, ide)
     update_player_location(ide, ariport_icao)
     return result
 
+@app.route('/player_money/<ide>')
+#Return a dictionary like this {'money': '400'}.
+def player_money(ide):
+    result = fetch_player_money(ide)
+    return result
 
 CORS(app)
 
