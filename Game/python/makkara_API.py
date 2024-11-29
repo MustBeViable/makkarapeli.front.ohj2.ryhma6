@@ -4,6 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 from Game.python.airport_selection_function import airportselection, current_coordinates
 from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_garbage, robber, hole_in_charge
+from Game.python.search_of_kolo import kolo_search
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
 from Game.python.sql_querys.player_location_fetch_and_update_querys import update_player_location, fetch_player_location
 import json,tempfile
@@ -46,9 +47,15 @@ def finnair(ide, answer):
         result = finnair_personnel(ide, answer)
         return result
 
+@app.route('/hole_search/<ide>/<transportation>')
+#Define variables in search_of_kolo function based on how frontend gives us info about transportation.
+def hole_search(ide, transportation):
+    result = kolo_search(ide, transportation)
+    return result
+
 @app.route('/airport_selected/<ide>/<airport_num>')
 #Get users selected airport (frond end checks if he can afford) and updates player location. Also takes the fee here.
-#User cannot change the values (ie. prices), list is saved here. Returned result is just meant for checking does all go
+#User cannot change the values (i.e. prices), list is saved here. Returned result is just meant for checking does all go
 #as planned
 def airport_selected(ide, airport_num):
     result = airports[ide][airport_num]
@@ -79,11 +86,3 @@ CORS(app)
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
-
-'''    
-    update_player_location(ide, icao)
-    result = fetch_player_location(ide)
-    
-        tfile=result
-    config = {}
-    json.dump(config, tfile)'''
