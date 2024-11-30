@@ -7,10 +7,14 @@ from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_g
 from Game.python.search_of_kolo import kolo_search
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
 from Game.python.sql_querys.player_location_fetch_and_update_querys import update_player_location, fetch_player_location
-import json,tempfile
+from Game.python.doubling_machine import tuplaus
 app = Flask(__name__)
 
 airports = {}
+
+money_to_be_doubled = {}
+
+times_doubled = [0,1]
 
 @app.route('/airport/<ide>')
 #Gives dictionaries within dictionary of 20 randomized airports based on location to user
@@ -19,12 +23,32 @@ def airport(ide):
     airports[ide] = result
     return result
 
+@app.route('/airport_selected/<ide>/<airport_num>')
+#Get users selected airport (frond end checks if he can afford) and updates player location. Also takes the fee here.
+#User cannot change the values (i.e. prices), list is saved here. Returned result is just meant for checking does all go
+#as planned
+def airport_selected(ide, airport_num):
+    result = airports[ide][airport_num]
+    ariport_icao = result['ident']
+    price = result['price']
+    current_money = fetch_player_money(1)['money']
+    spend = int(current_money) - int(price)
+    update_player_money(spend, ide)
+    update_player_location(ide, ariport_icao)
+    return result
+
 @app.route('/garbage/<ide>')
 #when money found works now returns dictionary money as key and value is the random amount
 def garbage(ide):
     value = garbage_can()
     if value == 'found_money':
         result = money_from_garbage()
+        money_to_be_doubled[ide] = result
+        #this check global list to be empty. List range is the logic for the doubling.
+        if len(times_doubled) > 0:
+            for i in range(len(times_doubled)):
+                times_doubled.pop()
+                i += 1
         return result
     elif value == 'hole_in_charge':
         result = hole_in_charge(ide)
@@ -47,25 +71,28 @@ def finnair(ide, answer):
         result = finnair_personnel(ide, answer)
         return result
 
+@app.route('/doubling/<ide>')
+
+def doubling(ide):
+    doubled_money = int(money_to_be_doubled[ide]['money'])
+    print(doubled_money)
+    times = len(times_doubled)
+    print(times)
+    new_money = tuplaus(doubled_money, times)
+    money_to_be_doubled[ide]['money'] = new_money
+    times_doubled.append(1)
+    if new_money == 0:
+        result = {'result': 'Hävisit tuplauksen'}
+        return result
+    else:
+        result = {'result': new_money}
+        return result
+
 @app.route('/hole_search/<ide>/<transportation>')
 #Define variables in search_of_kolo function based on how frontend gives us info about transportation.
 #Returns dictionary like: {'makkara': 'found'}
 def hole_search(ide, transportation):
     result = kolo_search(ide, transportation)
-    return result
-
-@app.route('/airport_selected/<ide>/<airport_num>')
-#Get users selected airport (frond end checks if he can afford) and updates player location. Also takes the fee here.
-#User cannot change the values (i.e. prices), list is saved here. Returned result is just meant for checking does all go
-#as planned
-def airport_selected(ide, airport_num):
-    result = airports[ide][airport_num]
-    ariport_icao = result['ident']
-    price = result['price']
-    current_money = fetch_player_money(1)['money']
-    spend = int(current_money) - int(price)
-    update_player_money(spend, ide)
-    update_player_location(ide, ariport_icao)
     return result
 
 @app.route('/player_money/<ide>')

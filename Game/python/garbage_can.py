@@ -85,5 +85,5 @@ def garbage_can():
     """This is the main carbage can function, and it is checkng garbages with its all features (money found, robber,
     hole in charge, finnair personnel"""
     outcome = \
-    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[70, 10, 10, 10], k=1)[0]
+    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[70, 0, 0, 0], k=1)[0]
     return outcome
