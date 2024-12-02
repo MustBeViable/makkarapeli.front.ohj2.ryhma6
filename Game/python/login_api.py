@@ -66,8 +66,8 @@ def signup(screen_name):
         }
     return response
 
-@app.route('/choose_game/<screen_name>/<new_game>')
-def choose_game(screen_name, new_game):
+@app.route('/start_game/<screen_name>/<new_game>')
+def start_game(screen_name, new_game):
     try:
         if new_game == 'true':
             game_id = create_game_safely(screen_name)
