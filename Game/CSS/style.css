@@ -48,6 +48,7 @@ nav {
 }
 
 
+
 .div2 {
     margin: 0.5rem;
     border-radius: 10px;
@@ -60,7 +61,52 @@ nav {
     width: 100%;
     border: 1px solid black;
     border-radius: 8px;
+    align-content: center;
+    display: flex;
 }
+.div2_box1 {
+    width: 50%;
+    padding: 0.5rem;
+}
+.div2_box2 {
+    width: 50%;
+    padding: 0.5rem;
+}
+.div2_first {
+    margin: 0.5em;
+    height: 50%;
+    background-color: white;
+    border: 1px solid sandybrown;
+    border-radius: 10px;
+    align-content: center;
+}
+.div2_second {
+    margin: 0.5em;
+    height: 50%;
+    background-color: black;
+    border: 1px solid sandybrown;
+    border-radius: 10px;
+    align-content: center;
+}
+.div2_third {
+    margin: 0.5em;
+    height: 50%;
+    background-color: black;
+    border: 1px solid sandybrown;
+    border-radius: 10px;
+    align-content: center;
+}
+.div2_fourth {
+    margin: 0.5em;
+    height: 50%;
+    background-color: white;
+    border: 1px solid sandybrown;
+    border-radius: 10px;
+    align-content: center;
+}
+
+
+
 .div2_2 {
     height: 10%;
     text-align: center;
