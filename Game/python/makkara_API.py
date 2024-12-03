@@ -5,9 +5,11 @@ from flask_cors import CORS
 from Game.python.airport_selection_function import airportselection, current_coordinates
 from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_garbage, robber, hole_in_charge
 from Game.python.search_of_kolo import kolo_search
+from Game.python.sql_querys.makkara_sql_haku import search_makkara
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
 from Game.python.sql_querys.player_location_fetch_and_update_querys import update_player_location, fetch_player_location
 from Game.python.doubling_machine import tuplaus
+from Game.python.game_texts import sausage_price
 app = Flask(__name__)
 
 airports = {}
@@ -87,6 +89,17 @@ def doubling(ide):
     else:
         result = {'result': new_money}
         return result
+
+@app.route('/taxfree/<ide>')
+
+def taxfree(ide):
+    price = sausage_price
+    result = {'value': price}
+    result['name'] = search_makkara(ide)['name']
+    return result
+
+
+
 
 @app.route('/hole_search/<ide>/<transportation>')
 #Define variables in search_of_kolo function based on how frontend gives us info about transportation.

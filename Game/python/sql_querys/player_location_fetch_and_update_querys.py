@@ -30,3 +30,5 @@ def fetch_player_location_name(id):
     result = kursori.fetchall()
     current_location_name = result[0]
     return current_location_name
+
+print(fetch_player_location(1)['player_location'])
