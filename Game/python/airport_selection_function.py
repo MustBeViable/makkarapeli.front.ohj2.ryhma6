@@ -16,7 +16,7 @@ def airportselection(game_id):
     #This for loop goes through all the randomly chosen airports one at the time and adds distance airports
     # to the dictionary
     player_ident = fetch_player_location(game_id)
-    player_current_ident = current_coordinates(player_ident)
+    player_current_ident = current_coordinates(player_ident['player_location'])
     for i in range(len(list_of_airport_dictionaries)):
         dist = distance(list_of_airport_dictionaries[i]['ident'], player_current_ident)
         list_of_airport_dictionaries[i]['distance'] = dist

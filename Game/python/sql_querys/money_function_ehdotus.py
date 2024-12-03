@@ -19,5 +19,3 @@ def use_money( game_id):
     print(player_money)
 
     return
-
-use_money(1)
