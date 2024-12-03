@@ -13,6 +13,7 @@ from Game.python.doubling_machine import tuplaus
 from Game.python.game_texts import sausage_price
 from Game.python.sql_querys.score_fetch_and_score_update_querys import player_score_fetch
 from Game.python.sql_querys.top_5_score_fetch_query import print_all_players_top
+from Game.python.sql_querys.player_top_5_query import print_player_top5_list
 from Game.python.taxfree import tax_free
 app = Flask(__name__)
 
@@ -143,6 +144,9 @@ def player_score(ide):
 def top_5():
     return print_all_players_top()
 
+@app.route('/top_5_player/<ide>')
+def top_5_player(ide):
+    return print_player_top5_list(ide)
 
 CORS(app)
 
