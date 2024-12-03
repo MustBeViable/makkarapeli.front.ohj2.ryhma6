@@ -16,11 +16,11 @@ def update_player_money(amount, game_id):
 
 def fetch_player_money(playthrough_id):
 
-    """Fetches player moneys from database"""
+    """Fetches player moneys from database and returns a dictionary like: {'money': '500'}"""
 
     sql = (f"SELECT money FROM playthrough WHERE id = '{playthrough_id}'")
     kursori = yhteys.cursor(dictionary=True)
     kursori.execute(sql)
     result = kursori.fetchall()
-    player_money = result[0]['money']
+    player_money = result[0]
     return player_money

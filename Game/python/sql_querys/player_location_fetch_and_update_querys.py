@@ -5,12 +5,10 @@ def fetch_player_location(id):
     sql = (f" SELECT player_location"
            f" FROM playthrough"
            f" WHERE id = '{id}'")
-    kursori = yhteys.cursor()
+    kursori = yhteys.cursor(dictionary=True)
     kursori.execute(sql)
     result = kursori.fetchall()
-    current_location = result[0][0]
-
-    return current_location
+    return result[0]
 
 def update_player_location(id, new_location):
     sql = (f" UPDATE playthrough"
@@ -27,8 +25,8 @@ def fetch_player_location_name(id):
            f"   SELECT player_location"
            f"   FROM playthrough"
            f"   WHERE id ='{id}')")
-    kursori = yhteys.cursor()
+    kursori = yhteys.cursor(dictionary=True)
     kursori.execute(sql)
     result = kursori.fetchall()
-    current_location_name = result[0][0]
+    current_location_name = result[0]
     return current_location_name
