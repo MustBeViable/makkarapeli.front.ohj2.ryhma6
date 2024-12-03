@@ -1,5 +1,5 @@
-from flask import Flask
-
+from flask import Flask, Response
+import json
 from Game.python.choose_game import get_unfinished_playthrough, create_game_safely
 from Game.python.sign_in_up import sign_in_function, sign_up_function
 from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras
@@ -11,37 +11,43 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route('/signin/<screen_name>')
 def signin(screen_name):
     try:
         name_found = sign_in_function(screen_name)
         if not name_found:
-            response = {
+            response_text = {
                 'status': '404',
                 'message': 'Username not found.'
             }
+            jsonresponse = json.dumps(response_text)
+            return Response(response=jsonresponse, status=404, mimetype="application/json")
         else:
             game_id = get_unfinished_playthrough(screen_name)
-            response = {
+            response_text = {
                 'status': '200',
                 'screen_name': screen_name,
                 'unfinished_game': {}
             }
             print(game_id)
             if game_id:
-                response['unfinished_game'] = {
+                response_text['unfinished_game'] = {
                     'game_location': fetch_player_location(game_id),
                     'game_makkaras': len(fetch_player_makkaras(game_id)),
                     'game_score': player_score_fetch(game_id),
                     'game_money': fetch_player_money(game_id)
                 }
+            jsonresponse = json.dumps(response_text)
+            return Response(response=jsonresponse, status=200, mimetype="application/json")
 
     except Exception as e:
-        response = {
+        response_text = {
             'status': '500',
             'message': str(e)
         }
-    return response
+        jsonresponse = json.dumps(response_text)
+        return Response(response=jsonresponse, status=500, mimetype="application/json")
 
 
 @app.route('/signup/<screen_name>')
@@ -65,6 +71,7 @@ def signup(screen_name):
             'message': str(e)
         }
     return response
+
 
 @app.route('/start_game/<screen_name>/<new_game>')
 def start_game(screen_name, new_game):
@@ -92,6 +99,7 @@ def start_game(screen_name, new_game):
             'message': str(e)
         }
     return response
+
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
