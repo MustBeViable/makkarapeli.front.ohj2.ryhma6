@@ -1,12 +1,12 @@
-from Game.game_texts import yhteys
-from Game.sql_querys.player_location_fetch_and_update_querys import fetch_player_location
+from Game.python.game_texts import yhteys
+from Game.python.sql_querys.player_location_fetch_and_update_querys import fetch_player_location
 
 
 def search_makkara(game_id):
 
     """Returns the name of the makkara in the location"""
 
-    lokaatio=fetch_player_location(game_id)
+    lokaatio=fetch_player_location(game_id)['player_location']
     sql = (f"SELECT name "
            f"FROM makkara "
            f"WHERE country in("
@@ -17,14 +17,15 @@ def search_makkara(game_id):
     kursori = yhteys.cursor(dictionary=True)
     kursori.execute(sql)
     result = kursori.fetchall()
-    return result[0]["name"]
+    return result[0]
 
 
 def search_makkara_id(game_id):
 
     """returns makkara_id in player location"""
 
-    lokaatio=fetch_player_location(game_id)
+    lokaatio=fetch_player_location(game_id)['player_location']
+    print(lokaatio)
     sql = (f"SELECT id "
            f"FROM makkara "
            f"WHERE country in("
@@ -43,7 +44,9 @@ def search_makkara_score(game_id):
 
     """searches makkaras points from country where player in"""
 
-    lokaatio=fetch_player_location(game_id)
+    dictionary=fetch_player_location(game_id)
+    print(dictionary['player_location'])
+    print(lokaatio)
     sql = (f"SELECT score "
            f"FROM makkara "
            f"WHERE country in("
@@ -54,3 +57,5 @@ def search_makkara_score(game_id):
     kursori.execute(sql)
     result = kursori.fetchall()
     return result[0]["score"]
+
+print(search_makkara(1))
