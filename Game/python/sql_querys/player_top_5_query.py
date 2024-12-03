@@ -22,5 +22,3 @@ def print_player_top5_list(ide):
         for i in range(5):
              top_5[i+1] = result_sorted[i]
         return top_5
-
-print(print_player_top5_list(1))
