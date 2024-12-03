@@ -27,6 +27,9 @@ def robber(id):
             update_player_money(new_money, id)
             value = {'money': new_money}
             return value
+    else:
+        value = {'money': 'Ei ryöstettävää'}
+        return value
 
 
 def hole_in_charge(game_id):
@@ -82,7 +85,5 @@ def garbage_can():
     """This is the main carbage can function, and it is checkng garbages with its all features (money found, robber,
     hole in charge, finnair personnel"""
     outcome = \
-    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[0, 10, 0, 0], k=1)[0]
+    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[70, 0, 0, 0], k=1)[0]
     return outcome
-
-print(garbage_can())
