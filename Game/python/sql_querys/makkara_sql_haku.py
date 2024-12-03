@@ -44,9 +44,7 @@ def search_makkara_score(game_id):
 
     """searches makkaras points from country where player in"""
 
-    dictionary=fetch_player_location(game_id)
-    print(dictionary['player_location'])
-    print(lokaatio)
+    lokaatio=fetch_player_location(game_id)['player_location']
     sql = (f"SELECT score "
            f"FROM makkara "
            f"WHERE country in("
