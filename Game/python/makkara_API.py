@@ -5,6 +5,7 @@ from flask_cors import CORS
 from Game.python.airport_selection_function import airportselection, current_coordinates
 from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_garbage, robber, hole_in_charge
 from Game.python.search_of_kolo import kolo_search
+from Game.python.sql_querys.country_code_for_flag import country_code_for_flag
 from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras
 from Game.python.sql_querys.makkara_sql_haku import search_makkara, search_makkara_id
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
@@ -147,6 +148,10 @@ def top_5():
 @app.route('/top_5_player/<ide>')
 def top_5_player(ide):
     return print_player_top5_list(ide)
+
+@app.route('/player_location_for_flag/<ide>')
+def player_location_for_flag(ide):
+    return country_code_for_flag(ide)
 
 CORS(app)
 
