@@ -1,19 +1,21 @@
 'use strict';
 const target = document.getElementById('target');
+const signInText = 'Kirjaudu';
+const signUpText = 'Luo tunnus';
 
-createLoginPage()
+createLoginPage(signInText);
 
-function createLoginPage() {
-  createNameForm();
-  createSignupButton()
+function createLoginPage(nameFormSubmitValue) {
+  createNameForm(nameFormSubmitValue);
+  createSignupButton();
 }
 
-function createNameForm() {
+function createNameForm(value) {
   const screenNameForm = document.createElement('form');
   screenNameForm.id = 'nameForm';
   screenNameForm.innerHTML =
-      '<input id="nameQuery" name="q" type="text" placeholder="Syötä käyttäjätunnus"> ' +
-      '<input type="submit" value="Kirjaudu">';
+      `<input id="nameQuery" name="q" type="text" placeholder="Käyttäjätunnus">` +
+      `<input type="submit" value=${value}>`;
   target.appendChild(screenNameForm);
   const screenNameInput = document.getElementById('nameQuery');
 
@@ -24,21 +26,26 @@ function createNameForm() {
   });
 }
 
+function createExtraFrom() {
+  const extraForm = document.createElement('input');
+  extraForm.id = 'extraForm';
+  extraForm.placeholder = 'Kengännumero';
+  target.appendChild(extraForm);
+}
+
 function createSignupButton() {
   const signUpButton = document.createElement('button');
   signUpButton.id = 'signUp';
-  signUpButton.textContent = 'Eikö sinulla ole käyttäjätunnusta? Luo uusi tili tästä';
+  signUpButton.textContent = 'Oletko uusi? Luo tili tästä';
+  target.appendChild(signUpButton);
 
   signUpButton.addEventListener('click', (event) => {
-    const extraForm = document.createElement('input');
-    extraForm.id = 'extraForm';
-    extraForm.placeholder = 'Kengännumero';
-    target.appendChild(extraForm);
+    target.innerHTML = '';
+    createNameForm(signUpText);
+    createExtraFrom()
     signUpButton.remove();
   });
-  target.appendChild(signUpButton);
 }
-
 
 async function openProfile(screenName) {
   try {
@@ -58,7 +65,7 @@ async function openProfile(screenName) {
       Pisteet: ${game_score}
       Makkarat: ${game_makkaras}
       Raha: ${game_money}
-      Lentokenttä: ${game_location}`
+      Sijainti: ${game_location}`;
       target.appendChild(oldGameInfo);
       await startOldGameButton(screenName);
     }
@@ -66,10 +73,9 @@ async function openProfile(screenName) {
   } catch (error) {
     console.log(error.message);
     target.innerHTML = `<div>${error.message}</div>`;
-    createNameForm();
+    createLoginPage(signInText);
   }
 }
-
 
 // Creates a button for starting a new game. Button creates and starts a new game when clicked.
 function startNewGameButton(screenName) {
