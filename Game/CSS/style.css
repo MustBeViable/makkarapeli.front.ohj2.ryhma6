@@ -110,13 +110,14 @@ dialog {
     border-radius: 10px;
 }
 dialog button {
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 0.5em;
 }
 
 button {
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 0.5em;
+    font-weight: bolder;
 }
 
 ::backdrop {
