@@ -20,9 +20,9 @@ async function get_money(){
   const url = `http://127.0.0.1:5000/player_money/1`
   try {
     const result = await getData(url)
-    console.log(result)
-    console.log(typeof result)
-    return result
+
+    const value = result.money
+    return value
   }
   catch (error){
 
@@ -63,7 +63,7 @@ async function airport_selection_function(){
         //if money is not enough for flight returns a message that reflects that
 
         const result1 = get_money()
-        console.log(get_money())
+        console.log(result1)
         if (result1 < Number(result[`${i+1}`].price)){
           console.log("not enough money");
           return;
