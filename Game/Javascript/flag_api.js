@@ -1,7 +1,7 @@
 'use strict';
 
 const flag_img = document.createElement('img');
-const body = document.querySelector('body');
+const flag = document.querySelector('#flag')
 let ide = 1 //add here player ide check somehow
 
 async function country(ide) {
@@ -19,6 +19,6 @@ setInterval(async function () {
   const country_code = await country(ide);
   if (country_code) {
     flag_img.src = `https://flagsapi.com/${country_code}/shiny/64.png`;
-    body.appendChild(flag_img)
+    flag.appendChild(flag_img)
   } else {} //vastaa pythonin pass, voi olla turha, mut laitoin varuilta
 }, 1000);
