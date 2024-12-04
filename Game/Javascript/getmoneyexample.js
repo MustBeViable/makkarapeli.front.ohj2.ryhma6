@@ -22,6 +22,10 @@ async function getMoney(){
 
         const value = result.money
 
+        if(value > 0){
+            console.log("insidefunction"+ value)
+        }
+
         return value
 
     }
@@ -32,6 +36,6 @@ async function getMoney(){
 // needs some way to make this return a number
 //it returns
 
+const res = getMoney()
 
-
-console.log(getMoney())
+console.log("outside"+ res)

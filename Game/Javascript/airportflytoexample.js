@@ -50,8 +50,8 @@ async function flyto(airport_num){
 // there can be problems with flyto happening before getAirports
 // so basically flyto uses the table stored in python while getairports does a bigger mysql query so its slower
 // using .then( ) it should work but it doesnt
+// i have to use these inside a async function i thinc that will work
 
 
-getAirports().then( flyto(1))
 
 
