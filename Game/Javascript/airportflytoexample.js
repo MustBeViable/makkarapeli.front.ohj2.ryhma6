@@ -38,7 +38,7 @@ async function flyto(airport_num){
 
         const url = `http://127.0.0.1:5000/airport_selected/1/${airport_num}`
         const result= await getData(url)
-        console.log("flyto runs")
+
         return result;
     }
     catch (error){
