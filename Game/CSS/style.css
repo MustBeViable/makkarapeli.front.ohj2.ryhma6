@@ -74,7 +74,7 @@ nav {
     width: 50%;
     align-content: center;
 }
-.div2_first {
+.sausage_hunt {
     height: 50%;
     background-color: white;
     border: 1px solid sandybrown;
@@ -82,7 +82,7 @@ nav {
     align-content: center;
     text-align: center;
 }
-.div2_second {
+.garbage {
     height: 50%;
     background-color: black;
     border: 1px solid sandybrown;
@@ -90,7 +90,7 @@ nav {
     align-content: center;
     text-align: center;
 }
-.div2_third {
+.tax_free {
     height: 50%;
     background-color: black;
     border: 1px solid sandybrown;
@@ -98,7 +98,7 @@ nav {
     align-content: center;
     text-align: center;
 }
-.div2_fourth {
+.airport {
     height: 50%;
     background-color: white;
     border: 1px solid sandybrown;
@@ -106,6 +106,24 @@ nav {
     align-content: center;
     text-align: center;
 }
+dialog {
+    border-radius: 10px;
+}
+dialog button {
+    border-radius: 10px;
+    padding: 0.5em;
+}
+
+button {
+    border-radius: 10px;
+    padding: 0.5em;
+}
+
+::backdrop {
+    background-image: url("taxfree.png");
+    opacity: 0.8;
+}
+
 
 
 
