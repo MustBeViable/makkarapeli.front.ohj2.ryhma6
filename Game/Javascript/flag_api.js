@@ -2,7 +2,7 @@
 
 const flag_img = document.createElement('img');
 const body = document.querySelector('body');
-let ide = 1
+let ide = 1 //add here player ide check somehow
 
 async function country(ide) {
   try {const response = await fetch(
