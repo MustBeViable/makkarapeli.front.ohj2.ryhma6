@@ -25,38 +25,38 @@ function removeElements(no_search, taxi, yango) {
   });
 }
 
-function addListeners (no_search, taxi, yango) {
+function addListeners(no_search, taxi, yango) {
   no_search.addEventListener('click', (evt) => {
-  dialog.close();
-});
+    dialog.close();
+  });
   taxi.addEventListener('click', async (evt) => {
-  console.log('menid sidden daxilla :--DD');
-  const method = 'taxi';
-  const testi = await hole_searcher(ide, method);
-  console.log(testi);
-});
-  yango.addEventListener('click', async (evt) => {
-  console.log('Yoloooo!!! :----DDD Yango on senjan lembi gulguneuvo :--DD');
-  const img = document.querySelector('#spurdo');
-  img.src = `/Game/images_and_other/tarkee_kuva.png?random=${Date.now()}`;
-  const parag = document.querySelector('#response');
-  parag.textContent = '';
-  const method = 'yango';
-  const result = await hole_searcher(ide, method);
-  console.log(result);
-  if (result.makkara === 'found') {
+    console.log('menid sidden daxilla :--DD');
+    const method = 'taxi';
+    const testi = await hole_searcher(ide, method);
+    const parag = document.querySelector('#response')
     parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
     removeElements(no_search, taxi, yango);
-  } else {
-    //const img = document.querySelector('#spurdo')
-    img.src = `/Game/images_and_other/toinen_tarkea_kuva.png?random=${Date.now()}`;
-    parag.textContent = 'Voi harmi :-D sinud ryösdeddiin :--DD';
-    removeElements(no_search, taxi, yango);
-  }
-});
-
+  });
+  yango.addEventListener('click', async (evt) => {
+    console.log('Yoloooo!!! :----DDD Yango on senjan lembi gulguneuvo :--DD');
+    const img = document.querySelector('#spurdo');
+    img.src = `/Game/images_and_other/tarkee_kuva.png?random=${Date.now()}`;
+    const parag = document.querySelector('#response');
+    parag.textContent = '';
+    const method = 'yango';
+    const result = await hole_searcher(ide, method);
+    console.log(result);
+    if (result.makkara === 'found') {
+      parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
+      removeElements(no_search, taxi, yango);
+    } else {
+      //const img = document.querySelector('#spurdo')
+      img.src = `/Game/images_and_other/toinen_tarkea_kuva.png?random=${Date.now()}`;
+      parag.textContent = 'Voi harmi :-D sinud ryösdeddiin :--DD';
+      removeElements(no_search, taxi, yango);
+    }
+  });
 }
-
 
 const dialog = document.querySelector('#search_hole');
 const button1 = document.querySelector('#hole_search');
@@ -72,5 +72,5 @@ button1.addEventListener('click', (evt) => {
   const taxi = document.querySelector('#search_hole_taxi');
   const yango = document.querySelector('#search_hole_yango');
   const no_search = document.querySelector('#no_search');
-  addListeners(no_search, taxi, yango)
+  addListeners(no_search, taxi, yango);
 });

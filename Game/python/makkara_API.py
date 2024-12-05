@@ -9,6 +9,7 @@ from Game.python.sql_querys.country_code_for_flag import country_code_for_flag
 from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras
 from Game.python.sql_querys.makkara_sql_haku import search_makkara, search_makkara_id
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
+from Game.python.sql_querys.player_current_airport import player_current_airport_sql
 from Game.python.sql_querys.player_location_fetch_and_update_querys import update_player_location, fetch_player_location
 from Game.python.doubling_machine import tuplaus
 from Game.python.game_texts import sausage_price
@@ -16,6 +17,7 @@ from Game.python.sql_querys.score_fetch_and_score_update_querys import player_sc
 from Game.python.sql_querys.top_5_score_fetch_query import print_all_players_top
 from Game.python.sql_querys.player_top_5_query import print_player_top5_list
 from Game.python.taxfree import tax_free
+from Game.python.sql_querys import player_current_airport
 app = Flask(__name__)
 
 airports = {}
@@ -157,6 +159,10 @@ def top_5_player(ide):
 @app.route('/player_location_for_flag/<ide>')
 def player_location_for_flag(ide):
     return country_code_for_flag(ide)
+
+@app.route('/player_current_airport/<ide>')
+def player_current_airport(ide):
+    return player_current_airport_sql(ide)
 
 CORS(app)
 
