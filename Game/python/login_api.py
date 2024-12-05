@@ -18,16 +18,16 @@ def signin(screen_name):
     try:
         name_found = sign_in_function(screen_name)
         if not name_found:
+            status_code = 404
             response_text = {
-                'status': '404',
+                'status': status_code,
                 'message': 'Username not found.'
             }
-            jsonresponse = json.dumps(response_text)
-            return Response(response=jsonresponse, status=404, mimetype="application/json")
         else:
             game_id = get_unfinished_playthrough(screen_name)
+            status_code = 200
             response_text = {
-                'status': '200',
+                'status': status_code,
                 'screen_name': screen_name,
                 'unfinished_game': {}
             }
@@ -39,67 +39,89 @@ def signin(screen_name):
                     'game_score': player_score_fetch(game_id),
                     'game_money': fetch_player_money(game_id)
                 }
-            jsonresponse = json.dumps(response_text)
-            return Response(response=jsonresponse, status=200, mimetype="application/json")
-
     except Exception as e:
+        status_code = 500
         response_text = {
-            'status': '500',
+            'status': status_code,
             'message': str(e)
         }
-        jsonresponse = json.dumps(response_text)
-        return Response(response=jsonresponse, status=500, mimetype="application/json")
+    jsonresponse = json.dumps(response_text)
+    return Response(response=jsonresponse, status=status_code, mimetype="application/json")
 
 
-@app.route('/signup/<screen_name>')
+@app.route('/signup/<screen_name>', methods=['POST'])
 def signup(screen_name):
     try:
         name_available = sign_up_function(screen_name)
+        status_code = 404
         if not name_available:
-            response = {
-                'status': '404',
+            response_text = {
+                'status': status_code,
                 'message': 'Username is already taken.'
             }
         else:
-            response = {
-                'status': '200',
+            status_code = 200
+            response_text = {
+                'status': status_code,
                 'screen_name': screen_name,
                 'unfinished_game': {}
             }
     except Exception as e:
-        response = {
-            'status': '500',
+        status_code = 500
+        response_text = {
+            'status': status_code,
             'message': str(e)
         }
-    return response
+    jsonresponse = json.dumps(response_text)
+    return Response(response=jsonresponse, status=status_code, mimetype="application/json")
 
 
 @app.route('/start_game/<screen_name>/<new_game>')
 def start_game(screen_name, new_game):
+    """
+    Starts the game.
+
+    Parameters
+    ----------
+    screen_name : str
+        The screen_name of the game.
+    new_game : bool
+        The divisor.
+
+    Returns
+    -------
+    float
+        The quotient of the division.
+    """
     try:
         if new_game == 'true':
             game_id = create_game_safely(screen_name)
-            response = {
-                'status': '200',
+            status_code = 200
+            response_text = {
+                'status': status_code,
                 'game_id': game_id
             }
         elif new_game == 'false':
             game_id = get_unfinished_playthrough(screen_name)
-            response = {
-                'status': '200',
+            status_code = 200
+            response_text = {
+                'status': status_code,
                 'game_id': game_id
             }
         else:
-            response = {
-                'status': '404',
+            status_code = 404
+            response_text = {
+                'status': status_code,
                 'message': 'Incorrect input.'
             }
     except Exception as e:
-        response = {
-            'status': '500',
+        status_code = 500
+        response_text = {
+            'status': status_code,
             'message': str(e)
         }
-    return response
+    jsonresponse = json.dumps(response_text)
+    return Response(response=jsonresponse, status=status_code, mimetype="application/json")
 
 
 if __name__ == '__main__':
