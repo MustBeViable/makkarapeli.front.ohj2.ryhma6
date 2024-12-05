@@ -55,5 +55,3 @@ def search_makkara_score(game_id):
     kursori.execute(sql)
     result = kursori.fetchall()
     return result[0]["score"]
-
-print(search_makkara(1))
