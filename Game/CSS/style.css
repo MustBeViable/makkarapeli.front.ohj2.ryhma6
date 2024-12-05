@@ -97,6 +97,8 @@ nav {
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    background-image: url("/Game/images_and_other/taxfree.png");
+    background-position: center;
 }
 .airport {
     height: 50%;
@@ -223,6 +225,8 @@ button {
     width: 40%;
     border: 1px solid black;
     border-radius: 30px;
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 .playerSausage {
     width: 60%;
