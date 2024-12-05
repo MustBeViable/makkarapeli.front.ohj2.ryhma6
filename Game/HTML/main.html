@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <script src="/Game/Javascript/oikea_taxfree.js" defer></script>
+
     <style>
         body {
             font-family: "Trirong", serif;
@@ -65,12 +67,12 @@
                     <div class="div2_box2">
                         <div class="tax_free">
                             <h2>Taxfree-myymälään</h2>
-                            <dialog open>
+                            <dialog id="taxfree">
                                 <h3>Tervetuloa taxfree-myymälään!</h3>
                                 <form method="dialog">
                                     <p>Haluatko ostaa tämän maan makkaran?</p>
                                     <p>(100 €)</p>
-                                    <button>Kyllä kiitos!</button>
+                                    <button id="taxfreee">Kyllä kiitos!</button>
                                     <button class="close" autofocus>Sulje</button>
                                 </form>
                             </dialog>
@@ -111,10 +113,10 @@
                 <div class="side_bar">
                     <dialog open>
                         <h2>Pelin kuvaus ja ohjeistus</h2>
-                                <form method="dialog">
-                                    <button autofocus>Näytä matkakohteet</button>
-                                    <button class="close" autofocus>Sulje</button>
-                                </form>
+                            <form method="dialog">
+                                <button autofocus>Näytä matkakohteet</button>
+                                <button class="close" autofocus>Sulje</button>
+                            </form>
                     </dialog>
                     <button id="instructions">Ohjeet</button>
                     <button class="high_score">Pelin high score</button>
