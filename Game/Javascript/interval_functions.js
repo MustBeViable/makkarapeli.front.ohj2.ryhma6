@@ -73,6 +73,6 @@ setInterval(async function() {
   const player_location = document.querySelector('#player_location')
   const player_info = await player_current_airport_info(ide)
   player_location.innerHTML = `${player_info.name} ${player_info.countrycode}`
-}, 1000);
+}, 3000);
 
 //const player_location = document.querySelector()
