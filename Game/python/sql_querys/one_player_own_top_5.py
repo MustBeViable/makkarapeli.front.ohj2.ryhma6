@@ -1,3 +1,4 @@
+"""from For_futher_development.senja_database_creation import kursori
 from Game.python.game_texts import yhteys
 
 def fetch_all_time_top_list(screen_name):
@@ -13,7 +14,14 @@ def fetch_all_time_top_list(screen_name):
          print(f"{result_sorted[i]['screen_name']}: {result_sorted[i]['score']:6.0f}")
     return
 
-def print_player_top5_list(screen_name):
+def print_player_top5_list(ide):
+    sql1 = (f" SELECT screen_name"
+           f" FROM playthrough"
+           f" WHERE id = {ide}")
+    kursori1 = yhteys.cursor(dictionary=True)
+    kursori1.execute(sql1)
+    result = kursori1.fetchall()
+    screen_name = result['screen_name']
     sql = (f" SELECT screen_name, score"
            f" FROM playthrough"
            f" WHERE screen_name = '{screen_name}'")
@@ -31,7 +39,7 @@ def print_player_top5_list(screen_name):
     return
 
 def fetch_player_top5_list(screen_name):
-    """Returns a list of player's scores."""
+    Returns a list of player's scores.
     sql = (f" SELECT score"
            f" FROM playthrough"
            f" WHERE screen_name = '{screen_name}'"
@@ -41,3 +49,4 @@ def fetch_player_top5_list(screen_name):
     result = kursori.fetchall()
     list_scores = [score[0] for score in result]
     return list_scores
+"""
