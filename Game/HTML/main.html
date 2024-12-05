@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <script src="/Game/Javascript/playthrought_variables_universal.js" defer></script>
+    <script src="/Game/Javascript/interval_functions.js" defer></script>
+
+
     <style>
         body {
             font-family: "Trirong", serif;
@@ -22,51 +26,111 @@
     <main>
     <div class="innerContainer">
             <div class="div1">
-                <div class="map">
+                <div class="map" id="map_here">
                     <p>kartta</p>
                 </div>
                 <div class="flagAndSausage">
-                    <div class="flag">
+                    <div class="flag" id="flag">
                         <p>lippu</p>
                     </div>
-                    <div class="playerSausage">
-                        <p>You have 'this many' sausages</p>
+                    <div class="playerSausageNum">
+                        <p>Sinulla on</p>
+                        <p id="num_of_sausages"></p>
+                        <p>makkaraa!</p>
                     </div>
                 </div>
             </div>
             <div class="div2">
                 <div class="div2_1">
                     <div class="div2_box1">
-                        <div class="div2_first"></div>
-                        <div class="div2_second"></div>
+                        <div class="sausage_hunt" id="playerSausage">
+                            <h2>Kolon etsintä</h2>
+                            <dialog id="search_hole">
+                                <h3>Lähde etsimään koloa ja kadonneita makkaroita!</h3>
+                                <form method="dialog">
+                                    <button  id="search_hole_taxi">Lähde etsimään taxilla (300€)</button>
+                                    <button id="search_hole_yango">Lähde etsimään Yangolla (50€, riskialtis)</button>
+                                    <button class="close" autofocus>Sulje</button>
+                                </form>
+                            </dialog>
+                            <button>Kolon etsintään</button>
+                        </div>
+                        <div class="garbage">
+                            <h2>Pengo roskista</h2>
+                            <dialog id="garbage_can">
+                                <h3>Tervetuloa roskiksen luo!</h3>
+                                <form method="dialog">
+                                    <p>Haluatko penkoa roskista ja koettaa onneasi?</p>
+                                    <button  id="garbage">Kyllä!</button>
+                                    <button class="close" autofocus>Sulje</button>
+                                </form>
+                            </dialog>
+                            <button>Penkomaan</button>
+                        </div>
                     </div>
                     <div class="div2_box2">
-                        <div class="div2_third"></div>
-                        <div class="div2_fourth"></div>
+                        <div class="tax_free">
+                            <h2>Taxfree-myymälään</h2>
+                            <dialog id="taxfree">
+                                <h3>Tervetuloa taxfree-myymälään!</h3>
+                                <form method="dialog">
+                                    <p>Haluatko ostaa tämän maan makkaran?</p>
+                                    <p>(100 €)</p>
+                                    <button id="taxfree_buy_sausage">Kyllä kiitos!</button>
+                                    <button class="close" autofocus>Sulje</button>
+                                </form>
+                            </dialog>
+                            <button id="taxfree_btn">Shoppailemaan</button>
+                        </div>
+                        <div class="airport">
+                            <h2>Lentokenttävalikko</h2>
+                            <dialog id="select_airport">
+                                <h2>Minne haluat lentää seuraavaksi?</h2>
+                                <form method="dialog">
+                                    <button autofocus>Näytä matkakohteet</button>
+                                    <button class="close" autofocus>Sulje</button>
+                                </form>
+                            </dialog>
+                            <button id="airport_selection">Määränpäät</button>
+                        </div>
                     </div>
                 </div>
                 <div class="div2_2">
-                    <h2>Player's info:</h2>
+                    <h2>Pelin tiedot ja eteneminen:</h2>
                 </div>
                 <div class="div2_3">
-                    <button class="div2_3_button1">
-                        Player's money
-                    </button>
-                    <button class="div2_3_button2">
-                        You are at "airport"
-                    </button>
-                    <button class="div2_3_button3">
-                        Player's sausages
-                    </button>
-                    <button class="div2_3_button4">
-                        Player's score
-                    </button>
+                    <div class="div2_3_all_four">
+                        <p>Pelaajan rahat</p>
+                        <p id="player_money"></p>
+                    </div>
+                    <div class="div2_3_all_four">
+                        <p>Olet "lentokentällä"</p>
+                        <p id="player_location"></p>
+                    </div>
+                    <div class="div2_3_all_four">
+                        <p>Kerätyt makkarat</p>
+                        <p id="player_sausages"></p>
+                    </div>
+                    <div class="div2_3_all_four">
+                        <p>Pelaajan score</p>
+                        <p id="player_score"></p>
+                    </div>
                 </div>
             </div>
             <div class="div3">
                 <div class="side_bar">
-                    <button class="instructions">Ohjeet</button>
-                    <button class="high_score">Pelin high score</button>
+                    <div class="instructions_and_high_score" id="instructions">Ohjeet
+                        <dialog>
+                        <h2>Pelin kuvaus ja ohjeistus</h2>
+                            <form method="dialog">
+                                <button autofocus>Näytä matkakohteet</button>
+                                <button class="close" autofocus>Sulje</button>
+                            </form>
+                    </dialog>
+                    </div>
+                    <div class="instructions_and_high_score" id="high_score">
+                        <p>Top 5 high score</p>
+                    </div>
                 </div>
             </div>
     </div>
