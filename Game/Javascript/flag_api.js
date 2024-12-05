@@ -5,7 +5,6 @@ const flag = document.querySelector('#flag')
 
 
 async function country() {
-  let ide = 1 //add here player ide check somehow
   try {const response = await fetch(
         `http://127.0.0.1:5000/player_location_for_flag/${ide}`);
     const country_code_json = await response.json();
@@ -17,7 +16,6 @@ async function country() {
 }
 
 setInterval(async function () {
-  let ide = 1 //add here player ide check somehow
   const country_code = await country(ide);
   if (country_code) {
     flag_img.src = `https://flagsapi.com/${country_code}/shiny/64.png`;
