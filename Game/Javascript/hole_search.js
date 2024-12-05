@@ -12,22 +12,22 @@ async function hole_searcher(ide, method) {
 }
 
 function removeElements(no_search, taxi, yango) {
-  dialog.removeChild(taxi);
-  dialog.removeChild(yango);
-  dialog.removeChild(no_search);
+  dialog_hole_search.removeChild(taxi);
+  dialog_hole_search.removeChild(yango);
+  dialog_hole_search.removeChild(no_search);
   const close = document.createElement('button');
   close.id = 'close';
   close.textContent = 'Däsdä bääsed bois :---D';
-  dialog.appendChild(close);
+  dialog_hole_search.appendChild(close);
   close.addEventListener('click', (evt) => {
-    dialog.close();
+    dialog_hole_search.close();
     console.log(evt + ' gliggasid hiirellä :---D midä sinä däällä deed? :-DDD');
   });
 }
 
 function addListeners(no_search, taxi, yango) {
   no_search.addEventListener('click', (evt) => {
-    dialog.close();
+    dialog_hole_search.close();
   });
   taxi.addEventListener('click', async (evt) => {
     console.log('menid sidden daxilla :--DD');
@@ -58,12 +58,12 @@ function addListeners(no_search, taxi, yango) {
   });
 }
 
-const dialog = document.querySelector('#search_hole');
-const button1 = document.querySelector('#hole_search');
+const dialog_hole_search = document.querySelector('#search_hole');
+const hole_search_button = document.querySelector('#hole_search');
 
-button1.addEventListener('click', (evt) => {
-  dialog.showModal();
-  dialog.innerHTML = `<p>Golon edsindä modal :---DDD</p>
+hole_search_button.addEventListener('click', (evt) => {
+  dialog_hole_search.showModal();
+  dialog_hole_search.innerHTML = `<h3>Lähde etsimään koloa ja kadonneita makkaroita!</h3>
                                 <img id="spurdo" src="/Game/images_and_other/tarkee_kuva.png" alt="Tärkee kuva :-D">
                                 <p id="response">Dämä on Golon edsindä :--D. Jogo mened daxilla :-D (300€) dai odad risgin Yangolla :--DDD (50€)</p>
                                 <button id="search_hole_taxi">Edsi golo :---DDD daxilla</button>
