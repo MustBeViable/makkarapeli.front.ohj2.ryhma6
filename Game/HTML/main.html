@@ -25,15 +25,17 @@
     <main>
     <div class="innerContainer">
             <div class="div1">
-                <div class="map">
+                <div class="map" id="map_here">
                     <p>kartta</p>
                 </div>
                 <div class="flagAndSausage">
                     <div class="flag" id="flag">
                         <p>lippu</p>
                     </div>
-                    <div class="playerSausage">
-                        <p>You have 'this many' sausages</p>
+                    <div class="playerSausageNum">
+                        <p>Sinulla on</p>
+                        <p id="num_of_sausages"></p>
+                        <p>makkaraa!</p>
                     </div>
                 </div>
             </div>
@@ -93,38 +95,41 @@
                     </div>
                 </div>
                 <div class="div2_2">
-                    <h2>Player's info:</h2>
+                    <h2>Pelin tiedot ja eteneminen:</h2>
                 </div>
                 <div class="div2_3">
                     <div class="div2_3_all_four">
-                        <p>Player's money</p>
+                        <p>Pelaajan rahat</p>
                         <p id="player_money"></p>
                     </div>
                     <div class="div2_3_all_four">
-                        <p>You are at "airport"</p>
+                        <p>Olet "lentokentällä"</p>
                         <p id="player_location"></p>
                     </div>
                     <div class="div2_3_all_four">
-                        <p>Player's sausages</p>
+                        <p>Kerätyt makkarat</p>
                         <p id="player_sausages"></p>
                     </div>
                     <div class="div2_3_all_four">
-                        <p>Player's score</p>
+                        <p>Pelaajan score</p>
                         <p id="player_score"></p>
                     </div>
                 </div>
             </div>
             <div class="div3">
                 <div class="side_bar">
-                    <dialog open>
+                    <div class="instructions_and_high_score" id="instructions">Ohjeet
+                        <dialog>
                         <h2>Pelin kuvaus ja ohjeistus</h2>
                             <form method="dialog">
                                 <button autofocus>Näytä matkakohteet</button>
                                 <button class="close" autofocus>Sulje</button>
                             </form>
                     </dialog>
-                    <button id="instructions">Ohjeet</button>
-                    <button class="high_score">Pelin high score</button>
+                    </div>
+                    <div class="instructions_and_high_score" id="high_score">
+                        <p>Top 5 high score</p>
+                    </div>
                 </div>
             </div>
     </div>

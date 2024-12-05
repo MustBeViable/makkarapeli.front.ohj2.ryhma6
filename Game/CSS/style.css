@@ -9,7 +9,7 @@
 .innerContainer {
     margin: auto;
     width: 95%;
-    color: red;
+    color: black;
     background-color: purple;
     display: flex;
     height: 95%;
@@ -84,7 +84,7 @@ nav {
 }
 .garbage {
     height: 50%;
-    background-color: black;
+    background-color: white;
     border: 1px solid sandybrown;
     border-radius: 30px;
     align-content: center;
@@ -92,7 +92,7 @@ nav {
 }
 .tax_free {
     height: 50%;
-    background-color: black;
+    background-color: white;
     border: 1px solid sandybrown;
     border-radius: 30px;
     align-content: center;
@@ -172,7 +172,7 @@ button {
     width: 100%;
     align-content: center;
 }
-.instructions {
+.instructions_and_high_score {
     width: 60%;
     margin: 1rem;
     border: 1px solid black;
@@ -180,14 +180,7 @@ button {
     padding: 0.5em;
     font-weight: bolder;
 }
-.high_score {
-    width: 60%;
-    margin: 1rem;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 0.5em;
-    font-weight: bolder;
-}
+
 
 
 
@@ -209,8 +202,11 @@ button {
     background-size: 100%;
     background-repeat: no-repeat;
 }
-.playerSausage {
+.playerSausageNum {
     width: 60%;
     border: 1px solid black;
     border-radius: 30px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 20px;
 }
