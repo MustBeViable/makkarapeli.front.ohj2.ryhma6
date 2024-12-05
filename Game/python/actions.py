@@ -2,7 +2,6 @@ from Game.python.game_texts import give_help_str, commands_str, not_command_str
 from Game.python.sql_querys.fetch_player_makkaras import player_makkaras_amount
 from Game.python.sql_querys.fetch_player_screen_name import fetch_player_screen_name
 from Game.python.sql_querys.money_function import fetch_player_money
-from Game.python.sql_querys.one_player_own_top_5 import fetch_player_top5_list
 from Game.python.sql_querys.player_location_fetch_and_update_querys import fetch_player_location_name, fetch_player_location
 from Game.python.sql_querys.score_fetch_and_score_update_querys import player_score_fetch
 from Game.python.sql_querys.top_5_score_fetch_query import print_all_players_top
