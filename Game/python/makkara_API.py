@@ -20,6 +20,10 @@ app = Flask(__name__)
 
 airports = {}
 
+def airport_cleaner(airport_dic):
+    airport_dic = {}
+    return airport_dic
+
 money_to_be_doubled = {}
 
 times_doubled = [0,1]
@@ -27,6 +31,7 @@ times_doubled = [0,1]
 @app.route('/airport/<ide>')
 #Gives dictionaries within dictionary of 20 randomized airports based on location to user
 def airport(ide):
+    airport_cleaner(airports)
     result = airportselection(ide)
     airports[ide] = result
     return result
