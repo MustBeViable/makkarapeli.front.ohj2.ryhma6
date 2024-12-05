@@ -109,7 +109,6 @@ nav {
 }
 dialog {
     border-radius: 10px;
-    opacity: 0.75;
 }
 dialog button {
     border-radius: 20px;
@@ -120,12 +119,6 @@ button {
     border-radius: 20px;
     padding: 0.5em;
     font-weight: bolder;
-}
-
-::backdrop {
-    background-image: url("/Game/images_and_other/taxfree.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
 }
 
 

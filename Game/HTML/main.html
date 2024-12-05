@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <script src="/Game/Javascript/playthrought_variables_universal.js" defer></script>
+    <script src="/Game/Javascript/interval_functions.js" defer></script>
     <script src="/Game/Javascript/oikea_taxfree.js" defer></script>
-    <script src="/Game/Javascript/flag_api.js" defer></script>
 
     <style>
         body {
@@ -33,9 +34,8 @@
                         <p>lippu</p>
                     </div>
                     <div class="playerSausageNum">
-                        <p>Sinulla on</p>
+                        <p>Makkarat yheensä:</p>
                         <p id="num_of_sausages"></p>
-                        <p>makkaraa!</p>
                     </div>
                 </div>
             </div>
@@ -46,13 +46,8 @@
                             <h2>Kolon etsintä</h2>
                             <dialog id="search_hole">
                                 <h3>Lähde etsimään koloa ja kadonneita makkaroita!</h3>
-                                <form method="dialog">
-                                    <button  id="search_hole_taxi">Lähde etsimään taxilla (300€)</button>
-                                    <button id="search_hole_yango">Lähde etsimään Yangolla (50€, riskialtis)</button>
-                                    <button class="close" autofocus>Sulje</button>
-                                </form>
                             </dialog>
-                            <button>Kolon etsintään</button>
+                            <button id="hole_search">Kolon etsintään</button>
                         </div>
                         <div class="garbage">
                             <h2>Pengo roskista</h2>
@@ -76,7 +71,7 @@
                                     <p>Haluatko ostaa tämän maan makkaran?</p>
                                     <p>(100 €)</p>
                                     <button id="taxfree_buy_sausage">Kyllä kiitos!</button>
-                                    <button class="close" autofocus>Sulje</button>
+                                    <button id="close_taxfree">Sulje</button>
                                 </form>
                             </dialog>
                             <button id="taxfree_btn">Shoppailemaan</button>
@@ -84,11 +79,11 @@
                         <div class="airport">
                             <h2>Lentokenttävalikko</h2>
                             <dialog id="select_airport">
-                                <h2>Minne haluat lentää seuraavaksi?</h2>
-                                <form method="dialog">
-                                    <button autofocus>Näytä matkakohteet</button>
-                                    <button class="close" autofocus>Sulje</button>
-                                </form>
+                                <h2>Minne haluat lentää?</h2>
+                                <div id="target12">
+
+                                </div>
+                                <button id="colslaw" autofocus>Sulje</button>
                             </dialog>
                             <button id="airport_selection">Määränpäät</button>
                         </div>
