@@ -147,34 +147,15 @@ button {
     border-radius: 10px;
     display: flex;
 }
-.div2_3_button1 {
+.div2_3_all_four {
     width: 25%;
     margin: 0.25rem;
     border: 1px solid black;
     border-radius: 30px;
     font-weight: bolder;
+    text-align: center;
 }
-.div2_3_button2 {
-    width: 25%;
-    margin: 0.25rem;
-    border: 1px solid black;
-    border-radius: 30px;
-    font-weight: bolder;
-}
-.div2_3_button3 {
-    width: 25%;
-    margin: 0.25rem;
-    border: 1px solid black;
-    border-radius: 30px;
-    font-weight: bolder;
-}
-.div2_3_button4 {
-    width: 25%;
-    margin: 0.25rem;
-    border: 1px solid black;
-    border-radius: 30px;
-    font-weight: bolder;
-}
+
 
 
 
