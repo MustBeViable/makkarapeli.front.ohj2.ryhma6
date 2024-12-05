@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
     <script src="/Game/Javascript/playthrought_variables_universal.js" defer></script>
     <script src="/Game/Javascript/interval_functions.js" defer></script>
+    <script src="/Game/Javascript/hole_search.js" defer></script>
 
 
     <style>
@@ -47,13 +48,8 @@
                             <h2>Kolon etsintä</h2>
                             <dialog id="search_hole">
                                 <h3>Lähde etsimään koloa ja kadonneita makkaroita!</h3>
-                                <form method="dialog">
-                                    <button  id="search_hole_taxi">Lähde etsimään taxilla (300€)</button>
-                                    <button id="search_hole_yango">Lähde etsimään Yangolla (50€, riskialtis)</button>
-                                    <button class="close" autofocus>Sulje</button>
-                                </form>
                             </dialog>
-                            <button>Kolon etsintään</button>
+                            <button id="hole_search">Kolon etsintään</button>
                         </div>
                         <div class="garbage">
                             <h2>Pengo roskista</h2>
