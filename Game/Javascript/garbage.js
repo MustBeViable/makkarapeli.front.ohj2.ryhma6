@@ -33,6 +33,7 @@ async function doubling(){
   return data;
 }
 
+
 //send data to python
 async function send_data_python(thing){
   const value=thing
@@ -69,17 +70,29 @@ async function garbage_action() {
     //do you want to double?
     const button_yes=document.querySelector('#button_yes');
     const button_no=document.querySelector('#button_no');
+
+    // Remove previous listeners by replacing the buttons
+    const new_button_yes = button_yes.cloneNode(true);
+    const new_button_no = button_no.cloneNode(true);
+    button_yes.replaceWith(new_button_yes);
+    button_no.replaceWith(new_button_no);
+
     button_yes.addEventListener('click',async function(){
       const doubling_result=await doubling()
       if (typeof doubling_result==='number'){
         document.querySelector('#tulostus2').innerHTML = `Tuplaus onnistui sinulla on nyt${doubling_result}€`;
-      }else {
-        document.querySelector(
-            '#tulostus2').innerHTML = `${amount}`;
+      }else if(doubling_result.result==='string'){
+            document.querySelector('#tulostus2').innerHTML = `${amount}`;
+
+            new_button_yes.disabled = true; // Disables the button
+            new_button_yes.textContent = "tuplaa";
       }
+
     })
     button_no.addEventListener('click',async function(){
       document.querySelector('#tulostus2').innerHTML = `Säästit rahasi!`;
+      new_button_no.disabled = true; // Disables the button
+      new_button_no.textContent = "älä tuplaa";
 
 
     })
@@ -92,6 +105,13 @@ async function garbage_action() {
     document.querySelector('#tulostus2').innerHTML = `${amount}`;
 
   }
+
+
+//returns to normal screen
+async function return_to_game(){
+  button_yes.style.dispay='none';
+  button_no.style.dispay='none';
+}
 
 }
 garbage_action()
