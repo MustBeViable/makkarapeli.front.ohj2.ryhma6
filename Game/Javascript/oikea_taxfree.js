@@ -2,7 +2,7 @@
 
 async function getDataTaxfree (ide, method) {
   try {
-    const response = await fetch(`http://127.0.0.1:5000/taxfree/${ide}/${method}`)
+    const response = await fetch(`http://127.0.0.1:5000/taxfree/${ide}`)
     const json = await response.json();
     return json
   } catch (error) {
@@ -27,8 +27,17 @@ const buy_sausage = document.getElementById('taxfree_buy_sausage')
 
 
 
-button_taxfree.addEventListener('click',  (evt) => {
+button_taxfree.addEventListener('click',  async(evt) => {
   dialog_taxfree.showModal()
+  const json = await getDataTaxfree(ide)
+  console.log(json)
+  dialog_taxfree.innerHTML = `<h3>Tervetuloa taxfree-myymälään!</h3>
+                                <form method="dialog">
+                                    <p id="country_sausage_name">Haluatko ostaa ${json.name}n?</p>
+                                    <p id="sausage_price">(${json.value}€)</p>
+                                    <button id="taxfree_buy_sausage">Kyllä kiitos!</button>
+                                    <button id="close_taxfree">Sulje</button>
+                                </form>`
 })
 
 close_taxfree.addEventListener('click', (evt) => {
