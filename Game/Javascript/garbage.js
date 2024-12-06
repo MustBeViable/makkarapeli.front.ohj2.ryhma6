@@ -33,6 +33,15 @@ async function doubling(){
   return data;
 }
 
+//gets data from finnair
+async function finnair() {
+  const finnair_data = await getData(`http://127.0.0.1:5000/finnair/1`);
+  console.log(finnair_data)
+  const result = finnair_data.answer;
+  console.log(finnair_data.answer);
+  return result;
+}
+
 //uses data from garbage to perform actions
 async function garbage_action() {
   const data=await garbage_content_java();
@@ -40,9 +49,11 @@ async function garbage_action() {
   console.log(Object.keys(data)[0])
   console.log(data.money)
   const action=Object.keys(data)[0]
-  const amount=data.money
+
   //if money found from garbage, doubling actions
+
   if (action==='money'){
+    const amount=data.money
     document.querySelector('#tulostus2').innerHTML = `Löysit roskiksesta ${amount}€`;
     //buttons for doubling
     const button_yes=document.querySelector('#button_yes');
@@ -70,16 +81,35 @@ async function garbage_action() {
 
     })
   //if hole_in_charge comes from garbage
-  }else if (action==='hole_in_charge'){
-    document.querySelector('#tulostus2').innerHTML = `kolovastaava vei sinulta ${amount} makkaraa`;
+  }else if (action==='answer'){
+    const kolo_amount=data.answer
+    document.querySelector('#tulostus2').innerHTML = `kolovastaava vei sinulta ${kolo_amount} makkaraa`;
   //if robber comes from garbage
   }else if (action==='robber'){
-    document.querySelector('#tulostus2').innerHTML = `Rosvo vei sinulta ${amount}€`;
+    const robber_amount=data.robber
+    document.querySelector('#tulostus2').innerHTML = `Rosvo vei sinulta ${robber_amount}€`;
   //if finnair_personel comes from garbage
   }else if(action==='finnair_personel'){
-    document.querySelector('#tulostus2').innerHTML = `${amount}`;
+    const finnairpersonel_speak=await data.finnair_personel
+    document.querySelector('#tulostus2').innerHTML = `${finnairpersonel_speak}`;
+    const finnairpersonel_button_yes=document.querySelector('#button_yes');
+    const finnairpersonel_button_no=document.querySelector('#button_no');
 
-  }
+    finnairpersonel_button_yes.addEventListener('click',async function() {
+      let finnair_result = await finnair()
+      document.querySelector('#tulostus2').innerHTML = ` ${finnair_result}`;
+      // Disables the buttons
+        finnairpersonel_button_yes.disabled = true;
+        finnairpersonel_button_no.disabled = true;
+    })
+
+    }finnairpersonel_button_no.addEventListener('click',async function(){
+      document.querySelector('#tulostus2').innerHTML = ` et ostanut makkaraa`;
+      // Disables the buttons
+      finnairpersonel_button_yes.disabled = true;
+      finnairpersonel_button_no.disabled = true;
+
+  })
 }
 
 //buttons for opening garbage modal and closing and modal actions
