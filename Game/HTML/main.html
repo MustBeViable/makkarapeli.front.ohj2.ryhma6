@@ -11,7 +11,8 @@
     <script src="/Game/Javascript/airport_selection.js" defer></script>
     <script src="/Game/Javascript/interval_functions.js" defer></script>
     <script src="/Game/Javascript/oikea_taxfree.js" defer></script>
-    <script src="/Game/Javascript/game_istructions.js" defer></script>
+    <script src="/Game/Javascript/top_5_chart.js" defer></script>
+    <script src="/Game/Javascript/player_count_of_all_unique_sausages.js" defer></script>
     <style>
         body {
             font-family: "Trirong", serif;
@@ -22,17 +23,18 @@
 <div class="container">
     <div class="navi">
         <header class="pic">
-            <h1>MAKKARAMANIA: Airport Adventure</h1>
+            <h1>MAKKARAMANIA</h1>
         </header>
     </div>
     <main>
-    <div class="innerContainer">
+        <div class="innerContainer">
             <div class="div1">
                 <div class="map" id="map_here">
+                    <p>kartta</p>
                 </div>
                 <div class="flagAndSausage">
                     <div class="flag" id="flag">
-                        <p>Maakohtainen lippu:</p>
+                        <p>lippu</p>
                     </div>
                     <div class="playerSausageNum">
                         <p>Makkarat yheensä:</p>
@@ -56,7 +58,7 @@
                                 <h3>Tervetuloa roskiksen luo!</h3>
                                 <form method="dialog">
                                     <p>Haluatko penkoa roskista ja koettaa onneasi?</p>
-                                    <button  id="garbage">Kyllä!</button>
+                                    <button id="garbage">Kyllä!</button>
                                     <button class="close" autofocus>Sulje</button>
                                 </form>
                             </dialog>
@@ -103,8 +105,9 @@
                         <p id="player_location"></p>
                     </div>
                     <div class="div2_3_all_four">
-                        <p>Kerätyt makkarat</p>
-                        <p id="player_sausages"></p>
+                        <dialog id="player_sausages_and_count">
+                        </dialog>
+                        <button id="player_sausages">Kerätyt makkarat</button>
                     </div>
                     <div class="div2_3_all_four">
                         <p>Pelaajan score</p>
@@ -114,10 +117,13 @@
             </div>
             <div class="div3">
                 <div class="side_bar">
-                    <div class="instructions_and_high_score">
-                        <p id="instructions_btn">Pelin kuvaus ja ojeet</p>
-                        <dialog id="instructions">
-                            <button id="close_instructions" autofocus>Sulje</button>
+                    <div class="instructions_and_high_score" id="instructions">Ohjeet
+                        <dialog>
+                            <h2>Pelin kuvaus ja ohjeistus</h2>
+                            <form method="dialog">
+                                <button autofocus>Näytä matkakohteet</button>
+                                <button class="close" autofocus>Sulje</button>
+                            </form>
                         </dialog>
                     </div>
                     <div class="instructions_and_high_score" id="high_score">
@@ -125,7 +131,7 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
     </main>
 </div>
 </body>
