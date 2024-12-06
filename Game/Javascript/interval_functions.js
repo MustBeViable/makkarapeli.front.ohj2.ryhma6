@@ -61,7 +61,7 @@ setInterval(async function() {
   const country_code = await country(ide);
   if (country_code) {
     flag_img.src = `https://flagsapi.com/${country_code}/shiny/64.png`;
-    flag_img.style = 'scale: 385%; padding-left: 2.4rem; padding-bottom: 0.6rem'
+    flag_img.style = 'scale: 235%; padding-left: 3.4rem; padding-bottom: 1.6rem'
     flag.appendChild(flag_img);
   } else {
   } //vastaa pythonin pass, voi olla turha, mut laitoin varuilta
