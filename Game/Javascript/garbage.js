@@ -33,30 +33,6 @@ async function doubling(){
   return data;
 }
 
-
-//send data to python
-async function send_data_python(thing){
-  const value=thing
-  try {
-      const response = await fetch('/process', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ value })
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      document.getElementById('output').innerHTML = data.result;
-  } catch (error) {
-      console.error('Error:', error);
-  }
-}
-
-
-
 //uses data from garbage to perform actions
 async function garbage_action() {
   const data=await garbage_content_java();
@@ -65,57 +41,62 @@ async function garbage_action() {
   console.log(data.money)
   const action=Object.keys(data)[0]
   const amount=data.money
+  //if money found from garbage, doubling actions
   if (action==='money'){
     document.querySelector('#tulostus2').innerHTML = `Löysit roskiksesta ${amount}€`;
-    //do you want to double?
+    //buttons for doubling
     const button_yes=document.querySelector('#button_yes');
     const button_no=document.querySelector('#button_no');
 
-    // Remove previous listeners by replacing the buttons
-    const new_button_yes = button_yes.cloneNode(true);
-    const new_button_no = button_no.cloneNode(true);
-    button_yes.replaceWith(new_button_yes);
-    button_no.replaceWith(new_button_no);
-
     button_yes.addEventListener('click',async function(){
       const doubling_result=await doubling()
-      if (typeof doubling_result==='number'){
-        document.querySelector('#tulostus2').innerHTML = `Tuplaus onnistui sinulla on nyt${doubling_result}€`;
-      }else if(doubling_result.result==='string'){
-            document.querySelector('#tulostus2').innerHTML = `${amount}`;
-
-            new_button_yes.disabled = true; // Disables the button
-            new_button_yes.textContent = "tuplaa";
+      //if money won
+      if (typeof doubling_result.result==='number'){
+        document.querySelector('#tulostus2').innerHTML = `Tuplaus onnistui sait nyt${doubling_result.result}€`;
+      //if lost
+      }else{
+            document.querySelector('#tulostus2').innerHTML = `${doubling_result.result}`;
+            // Disables the buttons
+            button_yes.disabled = true;
+            button_no.disabled = true;
       }
-
     })
+    //if dont want to double
     button_no.addEventListener('click',async function(){
       document.querySelector('#tulostus2').innerHTML = `Säästit rahasi!`;
-      new_button_no.disabled = true; // Disables the button
-      new_button_no.textContent = "älä tuplaa";
-
+      // Disables the buttons
+      button_no.disabled = true;
+      button_yes.disabled = true;
 
     })
+  //if hole_in_charge comes from garbage
   }else if (action==='hole_in_charge'){
     document.querySelector('#tulostus2').innerHTML = `kolovastaava vei sinulta ${amount} makkaraa`;
+  //if robber comes from garbage
   }else if (action==='robber'){
     document.querySelector('#tulostus2').innerHTML = `Rosvo vei sinulta ${amount}€`;
-
+  //if finnair_personel comes from garbage
   }else if(action==='finnair_personel'){
     document.querySelector('#tulostus2').innerHTML = `${amount}`;
 
   }
-
-
-//returns to normal screen
-async function return_to_game(){
-  button_yes.style.dispay='none';
-  button_no.style.dispay='none';
 }
 
+//buttons for opening garbage modal and closing and modal actions
+const open_garbage_button=document.querySelector('#open_garbage');
+const garbage_modal=document.querySelector('#garbage_modal')
+const close_garbage_modal=document.querySelector('#close_garbage_modal')
+function showmodal(){
+  garbage_modal.style.display='block';
 }
-garbage_action()
-
+function closemodal(){
+    garbage_modal.style.display='none'
+}
+close_garbage_modal.addEventListener('click', closemodal);
+open_garbage_button.addEventListener('click', async function () {
+  showmodal();
+  await garbage_action()
+})
 
 
 
