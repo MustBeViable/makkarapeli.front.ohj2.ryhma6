@@ -1,25 +1,59 @@
 'use strict'
 
-async function getData(url) {
-  const response = await fetch(url);
-  if (!response.ok) throw new Error('Invalid server input!');
-  const data = await response.json();
-  return data
+async function getDataTaxfree (ide, method) {
+  try {
+    const response = await fetch(`http://127.0.0.1:5000/taxfree/${ide}`)
+    const json = await response.json();
+    return json
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-async function getDataMoney() {
-  const money = await getData('http://127.0.0.1:5000/player_money/1')
-  console.log(money)
+async function buySausage (ide) {
+  try {
+    const response = await fetch(`http://127.0.0.1:5000/taxfree_buy/${ide}`)
+    const json = await response.json();
+    return json
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-async function getDataLocation() {
-  const location = await getData('http://127.0.0.1:5000/player_location/1')
-  console.log(location)
-}
+const dialog_taxfree = document.getElementById('taxfree');
+const button_taxfree = document.querySelector('#taxfree_btn');
+const close_taxfree = document.querySelector('#close_taxfree');
+const buy_sausage = document.getElementById('taxfree_buy_sausage')
 
-async function getDataSausage() {
-  const sausage = await getData('http://127.0.0.1:5000/player_location/1')
-}
 
-getDataMoney()
-getDataLocation()
+
+button_taxfree.addEventListener('click',  async(evt) => {
+  dialog_taxfree.showModal()
+  const json = await getDataTaxfree(ide)
+  console.log(json)
+  dialog_taxfree.innerHTML = `<h3>Tervetuloa taxfree-myymälään!</h3>
+                                <form method="dialog">
+                                    <p id="country_sausage_name">Haluatko ostaa ${json.name}n?</p>
+                                    <p id="sausage_price">(${json.value}€)</p>
+                                    <button id="taxfree_buy_sausage">Kyllä kiitos!</button>
+                                    <button id="close_taxfree">Sulje</button>
+                                </form>`
+})
+
+close_taxfree.addEventListener('click', (evt) => {
+  dialog_taxfree.close();
+})
+
+buy_sausage.addEventListener('click', (evt) => {
+  console.log('Tehdään kaupat');
+  const method = 'payment';
+  buySausage(ide)
+})
+
+button_taxfree.addEventListener('click', async(evt) => {
+  console.log('Tervetuloa ostoksille!')
+  const img = document.querySelector('#bagdrop')
+  img.src = `/Game/images_and_other/taxfree.png?random=${Date.now()}`
+  const testi = await hole_searcher(iden)
+  console.log(testi)
+})

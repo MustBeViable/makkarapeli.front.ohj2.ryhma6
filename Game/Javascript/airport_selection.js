@@ -1,24 +1,103 @@
 'use strict';
 
-async function getData(url){
+//event listener add close modal
+//airport selection function has to happen before opening modal
+//so once when the page is opened and after that in every event listener in airport selection buttons
+
+
+async function getData(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data
+    } catch (error) {
+        return error
+    }
+
+}
+
+async function get_money(IDE){
+  //add IDE functionality to all functions when it works
+  const url = `http://127.0.0.1:5000/player_money/${IDE}`
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("invalid server input");
-    const data = await response.json();
-    return data
+    const result = await getData(url)
+
+    const value = result.money
+    return value
   }
   catch (error){
-    console.log(error.message);
+
   }
 }
 
+async function airport_fly_to(airport_number,IDE){
 
+  try{
 
-function airport_selection_function(evt){
-  const url = "http://127.0.0.1:5000/airport/1";
-  const result = getData(url)
-  console.log(result)
+    const url = `http://127.0.0.1:5000/airport_selected/${IDE}/${airport_number}`
+    const result = await getData(url)
+    return;
 
+  }
+  catch (error){
+
+  }
 
 }
-airport_selection_function()
+
+
+async function airport_selection_function(IDE){
+  try {
+    const url = `http://127.0.0.1:5000/airport/${IDE}`;
+    const result = await getData(url)
+    const result1 = await get_money(IDE)
+
+    document.querySelector("#target12").innerHTML = ""
+    for(let i =0;i <= 19;i++){
+      const button = document.createElement("button")
+      button.innerText = `Airport: ${result[`${i+1}`].name} Price: ${result[`${i+1}`].price}`;
+      const buttonid = `airportbutton${i}`
+      button.setAttribute("class","airport_selection_button")
+      button.setAttribute("id", buttonid)
+      button.style.display = "block"
+      button.addEventListener("click",async() =>{
+        //here should be a call to check players money
+        //if money is not enough for flight returns a message that reflects that
+
+
+
+        if (result1 < Number(result[`${i+1}`].price)){
+          console.log("not enough money");
+          return;
+        }
+        // needs a function that calls for some kind of flyto api
+        // so an async function
+        console.log(result[`${i + 1}`]['number'])
+        await airport_fly_to(result[`${i + 1}`]['number'],IDE)
+        document.querySelector("#select_airport").close()
+        await airport_selection_function(IDE)
+
+        console.log(button.id)
+      })
+      document.querySelector("#target12").appendChild(button)
+    }
+
+
+  }
+  catch (error){
+    console.log(error.message)
+  }
+
+}
+
+
+airport_selection_function(ide)
+
+document.querySelector("#airport_selection").addEventListener("click", () =>{
+  document.querySelector("#select_airport").showModal()
+})
+
+document.querySelector("#colslaw").addEventListener("click",()=>{
+  document.querySelector("#select_airport").close()
+})
+//asd
