@@ -88,7 +88,7 @@ def finnair(ide):
     return result
 
 @app.route('/doubling/<ide>')
-
+#returns how much player won
 def doubling(ide):
     doubled_money = money_to_be_doubled[ide]
     times = len(times_doubled)
@@ -96,7 +96,7 @@ def doubling(ide):
     money_to_be_doubled[ide] = new_money
     times_doubled.append(1)
     if new_money == 0:
-        result = {'result': 'Hävisit tuplauksen'}
+        result = {'result': '0'}
         return result
     else:
         result = {'result': new_money}
