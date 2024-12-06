@@ -6,7 +6,7 @@ from Game.python.airport_selection_function import airportselection, current_coo
 from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_garbage, robber, hole_in_charge
 from Game.python.search_of_kolo import kolo_search
 from Game.python.sql_querys.country_code_for_flag import country_code_for_flag
-from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras
+from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras, current_list_of_player_makkaras
 from Game.python.sql_querys.makkara_sql_haku import search_makkara, search_makkara_id
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
 from Game.python.sql_querys.player_current_airport import player_current_airport_sql
@@ -163,6 +163,11 @@ def player_location_for_flag(ide):
 @app.route('/player_current_airport/<ide>')
 def player_current_airport(ide):
     return player_current_airport_sql(ide)
+
+@app.route('/player_current_makkara_list/<ide>')
+#return every player unique sausage and sausage count
+def player_current_makkara_list(ide):
+    return current_list_of_player_makkaras(ide)
 
 CORS(app)
 
