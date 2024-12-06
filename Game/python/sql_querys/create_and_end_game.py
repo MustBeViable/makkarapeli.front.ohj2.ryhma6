@@ -1,4 +1,4 @@
-from Game.game_texts import yhteys
+from Game.python.game_texts import yhteys
 
 def sql_executed(sql_text):
     kursori = yhteys.cursor()
@@ -36,3 +36,5 @@ def fetch_all_screen_names():
     for name in screen_names_list:
         fine_screen_name_list.append(name[0])
     return fine_screen_name_list
+
+create_game('perse')

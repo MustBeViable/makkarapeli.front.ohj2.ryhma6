@@ -1,5 +1,5 @@
 from Game.python.sql_querys.player_location_fetch_and_update_querys import fetch_player_location, update_player_location
-from game_texts import yhteys, price_multiplier
+from Game.python.game_texts import yhteys, price_multiplier
 
 def airportselection(game_id):
     """Fetch 20 random airports, which will be sorted by distance to player"""
