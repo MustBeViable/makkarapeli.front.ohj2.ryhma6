@@ -42,76 +42,88 @@ async function finnair() {
   return result;
 }
 
+function createButton(id, text, parent,onClick){
+  const button=document.createElement('button');
+  button.id=id;
+  button.textContent=text;
+  button.addEventListener('click',onClick);
+  parent.appendChild(button)
+}
+
 //uses data from garbage to perform actions
 async function garbage_action() {
-  const data=await garbage_content_java();
+  const data = await garbage_content_java();
   console.log(data)
   console.log(Object.keys(data)[0])
-  console.log(data.money)
-  const action=Object.keys(data)[0]
+  console.log(data.player_found_money)
+  const action = Object.keys(data)[0]
+  const buttoncontainer = document.querySelector('#garbage_button_container')
+  buttoncontainer.innerHTML = ''
 
   //if money found from garbage, doubling actions
 
-  if (action==='money'){
-    const amount=data.money
-    document.querySelector('#tulostus2').innerHTML = `Löysit roskiksesta ${amount}€`;
-    //buttons for doubling
-    const button_yes=document.querySelector('#button_yes');
-    const button_no=document.querySelector('#button_no');
+  if (action === 'player_found_money') {
+    const amount = data.player_found_money
+    document.querySelector(
+        '#tulostus2').innerHTML = `Löysit roskiksesta ${amount}€`;
 
-    button_yes.addEventListener('click',async function(){
-      const doubling_result=await doubling()
+    //created yes button for doubling
+    createButton('button_yes', 'Tuplaa', buttoncontainer, async function() {
+      const doubling_result = await doubling()
       //if money won
-      if (typeof doubling_result.result==='number'){
-        document.querySelector('#tulostus2').innerHTML = `Tuplaus onnistui sait nyt${doubling_result.result}€`;
-      //if lost
-      }else{
-            document.querySelector('#tulostus2').innerHTML = `${doubling_result.result}`;
-            // Disables the buttons
-            button_yes.disabled = true;
-            button_no.disabled = true;
+      console.log(parseInt(doubling_result.result));
+      console.log('juu');
+      console.log(doubling_result.result);
+      if ((parseInt(doubling_result.result) === 0)) {
+        document.querySelector(
+            '#tulostus2').innerHTML = `Hävisit, parempi tuuri ensikerralla!`;
+        buttoncontainer.innerHTML = ''
+      } else {
+        document.querySelector(
+            '#tulostus2').innerHTML = `Tuplaus onnistui sait nyt${doubling_result.result}€`;
+
       }
-    })
-    //if dont want to double
-    button_no.addEventListener('click',async function(){
+
+    });
+    // no button if dont want to double and what if dont double
+    createButton('button_no', 'älä tuplaa', buttoncontainer, function() {
       document.querySelector('#tulostus2').innerHTML = `Säästit rahasi!`;
       // Disables the buttons
-      button_no.disabled = true;
-      button_yes.disabled = true;
+      buttoncontainer.innerHTML = ''
 
     })
+  }
   //if hole_in_charge comes from garbage
-  }else if (action==='answer'){
-    const kolo_amount=data.answer
-    document.querySelector('#tulostus2').innerHTML = `kolovastaava vei sinulta ${kolo_amount} makkaraa`;
-  //if robber comes from garbage
-  }else if (action==='robber'){
-    const robber_amount=data.robber
-    document.querySelector('#tulostus2').innerHTML = `Rosvo vei sinulta ${robber_amount}€`;
-  //if finnair_personel comes from garbage
-  }else if(action==='finnair_personel'){
-    const finnairpersonel_speak=await data.finnair_personel
-    document.querySelector('#tulostus2').innerHTML = `${finnairpersonel_speak}`;
-    const finnairpersonel_button_yes=document.querySelector('#button_yes');
-    const finnairpersonel_button_no=document.querySelector('#button_no');
+  else if (action === 'answer') {
+    console.log(data.answer)
+    const kolo_amount = data.answer
+    document.querySelector(
+        '#tulostus2').innerHTML = `kolovastaava vei sinulta ${kolo_amount} makkaraa`;
+    //if robber comes from garbage
+  } else if (action === 'robber') {
+    const robber_amount = data.robber
+    document.querySelector(
+        '#tulostus2').innerHTML = `Rosvo vei sinulta ${robber_amount}€`;
+    //if finnair_personel comes from garbage
+  } else if (action === 'value') {
+    document.querySelector(
+        '#tulostus2').innerHTML = `Haluatko lahjoittaa 500€ harvinaiseen makkaraan?`;
+    createButton('finnair_button_yes', 'kyllä', buttoncontainer,
+        async function() {
+          const finnair_result = await finnair()
+          document.querySelector('#tulostus2').innerHTML = ` ${finnair_result}`;
+          // Disables the buttons
+          buttoncontainer.innerHTML = ''
+        });
 
-    finnairpersonel_button_yes.addEventListener('click',async function() {
-      let finnair_result = await finnair()
-      document.querySelector('#tulostus2').innerHTML = ` ${finnair_result}`;
-      // Disables the buttons
-        finnairpersonel_button_yes.disabled = true;
-        finnairpersonel_button_no.disabled = true;
-    })
-
-    }finnairpersonel_button_no.addEventListener('click',async function(){
+    createButton('finnair_button_no', 'ei', buttoncontainer, function() {
       document.querySelector('#tulostus2').innerHTML = ` et ostanut makkaraa`;
       // Disables the buttons
-      finnairpersonel_button_yes.disabled = true;
-      finnairpersonel_button_no.disabled = true;
+      buttoncontainer.innerHTML = ''
 
-  })
+    })
+  }
 }
-
 //buttons for opening garbage modal and closing and modal actions
 const open_garbage_button=document.querySelector('#open_garbage');
 const garbage_modal=document.querySelector('#garbage_modal')
