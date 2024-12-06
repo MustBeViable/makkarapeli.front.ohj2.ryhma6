@@ -53,7 +53,7 @@ buy_sausage.addEventListener('click', (evt) => {
 button_taxfree.addEventListener('click', async(evt) => {
   console.log('Tervetuloa ostoksille!')
   const img = document.querySelector('#bagdrop')
-  img.src = `/Game/images_and_other/taxfree.png?random=${Date.now()}`
-  const testi = await hole_searcher(iden)
+  //img.src = `/Game/images_and_other/taxfree.png?random=${Date.now()}`
+  const testi = await hole_searcher(ide)
   console.log(testi)
 })
