@@ -6,7 +6,7 @@ from Game.python.airport_selection_function import airportselection, current_coo
 from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_garbage, robber, hole_in_charge
 from Game.python.search_of_kolo import kolo_search
 from Game.python.sql_querys.country_code_for_flag import country_code_for_flag
-from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras
+from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras, current_list_of_player_makkaras
 from Game.python.sql_querys.makkara_sql_haku import search_makkara, search_makkara_id
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
 from Game.python.sql_querys.player_current_airport import player_current_airport_sql
@@ -46,7 +46,7 @@ def airport_selected(ide, airport_num):
     result = airports[ide][airport_num]
     ariport_icao = result['ident']
     price = result['price']
-    current_money = fetch_player_money(1)['money']
+    current_money = fetch_player_money(ide)['money']
     spend = int(current_money) - int(price)
     update_player_money(spend, ide)
     update_player_location(ide, ariport_icao)
@@ -55,15 +55,17 @@ def airport_selected(ide, airport_num):
 @app.route('/garbage/<ide>')
 #when money found works now returns dictionary money as key and value is the random amount
 def garbage(ide):
-    value = garbage_can()
+    value = garbage_can(ide)
     if value == 'found_money':
-        result = money_from_garbage()
-        money_to_be_doubled[ide] = result
+        won_money = money_from_garbage()
+        money_to_be_doubled[ide] = won_money
         #this check global list to be empty. List range is the logic for the doubling.
         if len(times_doubled) > 0:
             for i in range(len(times_doubled)):
                 times_doubled.pop()
                 i += 1
+        print(money_to_be_doubled)
+        result = {'player_found_money': won_money}
         return result
     elif value == 'hole_in_charge':
         result = hole_in_charge(ide)
@@ -77,27 +79,24 @@ def garbage(ide):
         return result
 
 
-@app.route('/finnair/<ide>/<answer>')
+@app.route('/finnair/<ide>')
 
-def finnair(ide, answer):
-#Javascript need to check the player input. Only true state will go through (if check)
+def finnair(ide):
+#Javascript need to check the player input.
 #Returns dictionary like this {'answer': 'Ei rahaa'}
-    if answer == 'true':
-        result = finnair_personnel(ide, answer)
-        return result
+    result = finnair_personnel(ide)
+    return result
 
 @app.route('/doubling/<ide>')
-
+#returns how much player won
 def doubling(ide):
-    doubled_money = int(money_to_be_doubled[ide]['money'])
-    print(doubled_money)
+    doubled_money = money_to_be_doubled[ide]
     times = len(times_doubled)
-    print(times)
     new_money = tuplaus(doubled_money, times)
-    money_to_be_doubled[ide]['money'] = new_money
+    money_to_be_doubled[ide] = new_money
     times_doubled.append(1)
     if new_money == 0:
-        result = {'result': 'Hävisit tuplauksen'}
+        result = {'result': '0'}
         return result
     else:
         result = {'result': new_money}
@@ -163,6 +162,11 @@ def player_location_for_flag(ide):
 @app.route('/player_current_airport/<ide>')
 def player_current_airport(ide):
     return player_current_airport_sql(ide)
+
+@app.route('/player_current_makkara_list/<ide>')
+#return every player unique sausage and sausage count
+def player_current_makkara_list(ide):
+    return current_list_of_player_makkaras(ide)
 
 CORS(app)
 
