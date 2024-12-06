@@ -14,15 +14,18 @@ from Game.python.sql_querys.money_function import update_player_money, fetch_pla
 from Game.python.sql_querys.score_fetch_and_score_update_querys import player_score_fetch, player_score_update
 
 
-def robber(id, player_money):
+def robber(id):
     """robber reduces half of the player's money"""
+    player_money = int(fetch_player_money(id)['money'])
     if player_money == 1:
         aft_rob = player_money - 1
-        return aft_rob
+        result = {'answer': f'{aft_rob}'}
+        return result
     else:
         aft_rob = player_money * 0.5
         update_player_money(aft_rob, id)
-    return aft_rob
+        result = {'answer': f'{aft_rob}'}
+        return result
 
 
 def hole_in_charge(game_id):
@@ -30,7 +33,8 @@ def hole_in_charge(game_id):
     own_makkaras = fetch_player_makkaras(game_id)
     print("Törmäsit kolovastaavaan!")
     if len(own_makkaras) == 0:
-        print("Tällä kertaa sinulla ei ollut makkaraa vietävänä.")
+        result = {'answer': '0'}
+        return result
     else:
         # Devided by five (like 20%) and rounded down
         num_to_lose = len(own_makkaras) // 5
@@ -48,40 +52,32 @@ def hole_in_charge(game_id):
                 f"UPDATE makkara_reached SET stolen = True WHERE id IN (SELECT id FROM makkara_reached WHERE id = {makkara})")
             kursori = yhteys.cursor()
             kursori.execute(sql)
-        print(
-            f"Harmi makkaravarastosi kannalta, sillä kolovastaava vei sinulta makkaroita {len(lost_makkaras)} kpl.")
-    return
+        result = {'answer': f'{len(lost_makkaras)}'}
+    return result
 
 
 def finnair_personnel(game_id):
     """Player can donate 500 euros and get rare sausage"""
-    from Game.python.commands import input_in_section
     print(f"Finnairin ympäristöedustaja pyytää lahjoitusta. Sen arvo on {finnair_donation}€.")
-    current_money = fetch_player_money(game_id)
-    answer = input_in_section(game_id, f"Haluatko antaa lahjoituksen? Sinulla on tällä hetkellä {current_money}€. ({yes}/{no}): ").lower()
-
-    while answer not in [yes, no]:
-        answer = input_in_section(game_id, f"Älä änkytä!!! {yes}/{no}")
-
-    if answer == yes:
-        if current_money >= 500:
-            print(
-                f"Onnittelut hyvistä päätöksistä! Pitkäjänteisyytesi ja lahjoitustesi ansiosta olet saanut harvinaisen "
-                f"makkaran, jota Kolovastaavakaan ei voi varastaa.")
-            money = fetch_player_money(game_id)
-            money -= finnair_donation
-            update_player_money(money, game_id)
-            score = player_score_fetch(game_id)
-            score += finnair_makkara
-            player_score_update(score, game_id)
-        else:
-            print("Rahat eivät riitä")
-            return
+    current_money = fetch_player_money(game_id)['money']
+    if int(current_money) >= 500:
+        money = int(fetch_player_money(game_id)['money'])
+        money -= finnair_donation
+        update_player_money(money, game_id)
+        score = player_score_fetch(game_id)
+        score += finnair_makkara
+        player_score_update(score, game_id)
+        result = {'answer': 'makkara ostettu'}
+        return result
+    else:
+        result = {'answer': 'ei rahaa'}
+        return result
 
 
 def money_from_garbage():
     """This randomizes how much money you can get"""
     new_money = random.randint(200, 1000)
+
     return new_money
 
 
@@ -90,22 +86,24 @@ def garbage_can(game_id):
     hole in charge, finnair personnel"""
     from Game.python.commands import input_in_section
     outcome = \
-    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[70, 10, 10, 10], k=1)[0]
+    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[70, 0, 0, 0], k=1)[0]
+    return outcome
+
+
+
+"""
     if outcome == 'found_money':
-        print(happy_garbage_can)
         new_money = money_from_garbage()
-        print(f"Onneksi olkoon, löysit rahaa {new_money}€!")
-        vastaus = input_in_section(game_id,
-            f"Roskiksen keiju tarjoaa mahdollisuuden tuplata tämän rahan! Mitä vastaat?  ({yes}/{no}): ").lower()
         tuplataanko(vastaus, new_money, game_id)  # eliaksen tuplaus funktio
     elif outcome == 'robber':
-        print(robber_2)
-        current_money = fetch_player_money(game_id)
+        current_money = int(fetch_player_money(game_id)['money'])
         if current_money > 0:
-            print(
-                f"Tulit ryöstetyksi! Rosvo vei merkittävän osan rahoistasi ja sinulle jäi {robber(game_id, current_money)} €.")
+            left = robber(game_id, current_money)
+            result = {'money_left': left}
+            return result
         else:
-            print("Rosvo ei löytänyt ryöstettävää.")
+            result = {'answer': 'ei ryöstettävää'}
+            return result
     elif outcome == 'hole_in_charge':
         print(hole_in_charge_ascii)
         hole_in_charge(game_id)
@@ -116,8 +114,4 @@ def garbage_can(game_id):
               "vastineeksi harvinaisen makkaran.")
         finnair_personnel(game_id)
     elif outcome == secret_black_sausage_chance:
-        secret_black_sausage_chance(amount)  # saken mustamakkara funktio
-    return
-
-
-
+        secret_black_sausage_chance(amount)  # saken mustamakkara funktio"""
