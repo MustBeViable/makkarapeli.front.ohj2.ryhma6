@@ -1,12 +1,10 @@
 'use strict';
 
-import {openProfile} from './profile.js';
-
 const target = document.getElementById('target');
 const signInText = 'Kirjaudu';
 const signUpText = 'Luo tunnus';
-const signUpButtonText = 'Oletko uusi? Luo tili tästä'
-const signInButtonText = "Oletko jo käyttäjä? Kirjaudu sisään"
+const signUpButtonText = 'Oletko uusi? Luo käyttäjätili'
+const signInButtonText = "Onko sinulla jo tili? Kirjaudu sisään"
 
 
 /**
@@ -30,12 +28,25 @@ function createNameForm(value, signin) {
   const formHtml = `
     <form id="nameForm">
       <input id="nameQuery" name="q" type="text" placeholder="Käyttäjätunnus">
-      <input type="submit" value="${value}">
     </form>
   `;
-  target.insertAdjacentHTML('beforeend', formHtml);
+  target.innerHTML += formHtml;
 
   const screenNameForm = document.getElementById('nameForm');
+
+  if (!signin) {
+    const input2 = document.createElement('input');
+    input2.type = 'text';
+    input2.name = 'shoeSize';
+    input2.placeholder = 'Kengännumero';
+    screenNameForm.appendChild(input2);
+  }
+    const submitButton = document.createElement('input');
+    submitButton.type = 'submit';
+    submitButton.value = value;
+    screenNameForm.appendChild(submitButton);
+
+
   screenNameForm.addEventListener('submit', async (event) => {
     const screenName = document.getElementById('nameQuery').value;
     event.preventDefault();
@@ -43,20 +54,11 @@ function createNameForm(value, signin) {
   });
 }
 
-/**
- * Creates an extra form for sign up page.
- */
-function createExtraFrom() {
-  const extraForm = document.createElement('input');
-  extraForm.id = 'extraForm';
-  extraForm.placeholder = 'Kengännumero';
-  target.appendChild(extraForm);
-}
 
 /**
- * Creates the sign-in page.
+ * Creates the sign-in page with screen name form and a button that takes user to sign-up page.
  */
-export function createSigninPage() {
+function createSigninPage() {
   createNameForm(signInText, true);
   function goToSignUp() {
     target.innerHTML = ''
@@ -66,14 +68,15 @@ export function createSigninPage() {
 }
 
 /**
- * Creates the sign-up page.
+ * Creates the sign-up page with screen name form, extra form, and a button that takes user to sign-in page.
  */
-export function createSignupPage() {
+function createSignupPage() {
   createNameForm(signUpText, false);
-  createExtraFrom();
   function returnToSignIn(){
     target.innerHTML = ''
     createSigninPage()
   }
   createButton(signInButtonText, ()=> returnToSignIn())
 }
+
+
