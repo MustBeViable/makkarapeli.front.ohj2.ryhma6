@@ -1,6 +1,5 @@
-import {createSigninPage, createSignupPage} from './login_ui.js';
 
-const target = document.getElementById('target');
+
 const newGameText = 'Aloita uusi peli';
 const continueText = 'Jatka vanhaa peliä';
 
@@ -56,7 +55,7 @@ function displayUnfinishedGame(game) {
  * @param {string} screenName User's name
  * @param {boolean} signIn Is this sign-in (true) or sign-up (false)
  */
-export async function openProfile(screenName, signIn) {
+async function openProfile(screenName, signIn) {
   target.innerHTML = '';
   try {
     const profile = signIn
@@ -96,7 +95,7 @@ async function startGame(newGame, screenName) {
     if (!response.ok) throw new Error('Invalid input!');
     const id = await response.json();
     console.log(id);
-    return await id['game_id']
+    saveIde(id['game_id'])
   } catch (error) {
     console.log(error.message);
   }

@@ -1,3 +1,9 @@
 'use strict';
 
-const ide = saveID()
+let ide;
+
+function saveIde(id) {
+  ide = id
+  console.log(ide)
+}
+
