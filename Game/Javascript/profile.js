@@ -1,7 +1,7 @@
-
-
 const newGameText = 'Aloita uusi peli';
 const continueText = 'Jatka vanhaa peliä';
+
+const profile_target = document.getElementById('profile_target')
 
 /**
  * Creates a button and adds an async action to it.
@@ -11,7 +11,7 @@ const continueText = 'Jatka vanhaa peliä';
 async function createFetchButton(text, onClick) {
   const button = document.createElement('button');
   button.textContent = text;
-  target.appendChild(button);
+  profile_target.appendChild(button);
   button.addEventListener('click', onClick);
 }
 
@@ -47,7 +47,7 @@ function displayUnfinishedGame(game) {
       <br>Sijainti: ${game_location}
     </div>
   `;
-  target.innerHTML += gameInfoHtml;
+  profile_target.innerHTML += gameInfoHtml;
 }
 
 /**
@@ -56,18 +56,30 @@ function displayUnfinishedGame(game) {
  * @param {boolean} signIn Is this sign-in (true) or sign-up (false)
  */
 async function openProfile(screenName, signIn) {
-  target.innerHTML = '';
   try {
     const profile = signIn
         ? await fetchProfile(`/signin/${screenName}`)
         : await fetchProfile(`/signup/${screenName}`, {method: 'POST'});
 
+    document.getElementById('login').close()
+    document.getElementById('profile').showModal()
+
     const game = profile['unfinished_game'];
+
     if (game && Object.keys(game).length) {
       displayUnfinishedGame(game);
       await createFetchButton(continueText, () => startGame(false, screenName));
+
+      function startNewWithConfirmation() {
+        if (confirm() === true) {
+          startGame(true, screenName)
+        }
+      }
+      await createFetchButton(newGameText, () => startNewWithConfirmation())
     }
-    await createFetchButton(newGameText, () => startGame(true, screenName));
+    else {
+      await createFetchButton(newGameText, () => startGame(true, screenName));
+    }
   } catch (error) {
     console.log('täällä');
     if (error.message === 'Failed to fetch') {
