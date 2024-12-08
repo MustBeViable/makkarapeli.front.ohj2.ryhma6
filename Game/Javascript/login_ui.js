@@ -1,11 +1,13 @@
 'use strict';
 
 const target = document.getElementById('login_target');
+const header = document.getElementById('loginheader')
 const signInText = 'Kirjaudu';
 const signUpText = 'Luo tunnus';
 const signUpButtonText = 'Oletko uusi? Luo käyttäjätili'
 const signInButtonText = "Onko sinulla jo tili? Kirjaudu sisään"
-
+const signInHeader = 'Kirjaudu sisään';
+const signUpHeader = 'Rekisteröidy';
 
 /**
  * Creates a button and adds an action to it.
@@ -46,7 +48,6 @@ function createNameForm(value, signin) {
     submitButton.value = value;
     screenNameForm.appendChild(submitButton);
 
-
   screenNameForm.addEventListener('submit', async (event) => {
     const screenName = document.getElementById('nameQuery').value;
     event.preventDefault();
@@ -59,6 +60,7 @@ function createNameForm(value, signin) {
  * Creates the sign-in page with screen name form and a button that takes user to sign-up page.
  */
 function createSigninPage() {
+  header.innerText = signInHeader
   createNameForm(signInText, true);
   function goToSignUp() {
     target.innerHTML = ''
@@ -71,6 +73,7 @@ function createSigninPage() {
  * Creates the sign-up page with screen name form, extra form, and a button that takes user to sign-in page.
  */
 function createSignupPage() {
+  header.innerText = signUpHeader
   createNameForm(signUpText, false);
   function returnToSignIn(){
     target.innerHTML = ''

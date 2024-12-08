@@ -1,7 +1,9 @@
 const newGameText = 'Aloita uusi peli';
 const continueText = 'Jatka vanhaa peliä';
 
-const profile_target = document.getElementById('profile_target')
+const profileTarget = document.getElementById('profile_target')
+const profilePage = document.getElementById('profile')
+const loginPage = document.getElementById('login')
 
 /**
  * Creates a button and adds an async action to it.
@@ -11,7 +13,7 @@ const profile_target = document.getElementById('profile_target')
 async function createFetchButton(text, onClick) {
   const button = document.createElement('button');
   button.textContent = text;
-  profile_target.appendChild(button);
+  profileTarget.appendChild(button);
   button.addEventListener('click', onClick);
 }
 
@@ -47,7 +49,7 @@ function displayUnfinishedGame(game) {
       <br>Sijainti: ${game_location}
     </div>
   `;
-  profile_target.innerHTML += gameInfoHtml;
+  profileTarget.innerHTML += gameInfoHtml;
 }
 
 /**
@@ -61,9 +63,8 @@ async function openProfile(screenName, signIn) {
         ? await fetchProfile(`/signin/${screenName}`)
         : await fetchProfile(`/signup/${screenName}`, {method: 'POST'});
 
-    document.getElementById('login').close()
-    document.getElementById('profile').showModal()
-
+    loginPage.close()
+    profilePage.showModal()
     const game = profile['unfinished_game'];
 
     if (game && Object.keys(game).length) {
@@ -108,6 +109,7 @@ async function startGame(newGame, screenName) {
     const id = await response.json();
     console.log(id);
     saveIde(id['game_id'])
+    profilePage.close()
   } catch (error) {
     console.log(error.message);
   }
