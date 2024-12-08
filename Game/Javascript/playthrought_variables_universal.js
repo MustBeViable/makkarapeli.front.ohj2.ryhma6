@@ -6,4 +6,3 @@ function saveIde(id) {
   ide = id
   console.log(ide)
 }
-

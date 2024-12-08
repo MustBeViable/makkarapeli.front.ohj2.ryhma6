@@ -1,5 +1,6 @@
+const login = document.getElementById('login')
 function openSignUp() {
-  document.getElementById('login').showModal()
+  login.showModal()
   createSigninPage()
 }
 
