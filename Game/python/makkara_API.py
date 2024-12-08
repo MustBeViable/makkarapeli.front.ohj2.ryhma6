@@ -102,6 +102,12 @@ def doubling(ide):
         result = {'result': new_money}
         return result
 
+@app.route('/save_money/<ide>')
+def save_money(ide):
+    player_new_money = int(money_to_be_doubled[ide]) + int(fetch_player_money(ide)['money'])
+    update_player_money(player_new_money, ide)
+    return {'money': 'saved'}
+
 @app.route('/taxfree/<ide>')
 
 def taxfree(ide):
