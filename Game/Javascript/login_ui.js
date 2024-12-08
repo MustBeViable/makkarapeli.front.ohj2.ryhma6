@@ -1,6 +1,6 @@
 'use strict';
 
-const target = document.getElementById('target');
+const target = document.getElementById('login_target');
 const signInText = 'Kirjaudu';
 const signUpText = 'Luo tunnus';
 const signUpButtonText = 'Oletko uusi? Luo käyttäjätili'
