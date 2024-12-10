@@ -82,6 +82,18 @@ def create_playthrough(score, money, mustamakkara, location):
     kursori.execute(sql)
     return
 
+def create_table_makkara_game():
+    sql = (f" CREATE TABLE makkara_game (id int NOT NULL auto_increment,"
+           f" game_id int DEFAULT NULL,"
+           f" garbage BOOLEAN DEFAULT FALSE,"
+           f" taxfree BOOLEAN DEFAULT FALSE,"
+           f" airport BOOLEAN DEFAULT FALSE,"
+           f" hole_in_charge BOOLEAN DEFAULT FALSE,"
+           f" primary key (id))")
+    kursori = yhteys.cursor()
+    kursori.execute(sql)
+    return
+
 def foreign_keys_makkara_reached():
     sql = (f" ALTER TABLE makkara_reached"
            f" ADD CONSTRAINT FK_playthrough_id FOREIGN KEY (playthrough_id) REFERENCES playthrough(id),"
@@ -109,10 +121,18 @@ def foreign_keys_makkara():
     return
 
 
+def foreign_keys_makkara_game():
+    sql = (f" ALTER TABLE makkara_game"
+           f" ADD CONSTRAINT FK_game_id"
+           f" FOREIGN KEY (game_id) REFERENCES playthrough(id)")
+    kursori = yhteys.cursor()
+    kursori.execute(sql)
+    return
+
 makkara = "makkara"
 test1 = table_check(makkara)
 #final_test arvoksi taululuontien määrä
-final_test = 3
+final_test = 4
 if test1 == 0:
     create_table_makkara()
     for i in range(len(iso_country_list)):
@@ -137,6 +157,16 @@ if test3 == 0:
     print("t3")
     print(final_test)
 
+
+"""test5 = table_check(makkara_game)"""
+test4 = 0
+if test4 == 0:
+    create_table_makkara_game()
+    final_test -= 1
+    print("t4")
+    print(final_test)
+
+
 if final_test == 0:
     foreign_keys_makkara_reached()
     print("fk makkara reached tehty")
@@ -144,3 +174,5 @@ if final_test == 0:
     print("fk playthrough tehty")
     foreign_keys_makkara()
     print("fk makkara tehty")
+    foreign_keys_makkara_game()
+    print("fk makkara game tehty")

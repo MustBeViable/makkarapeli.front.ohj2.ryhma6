@@ -22,7 +22,7 @@ async function player_top_5_lists(ide) {
 
 const div_high_score = document.querySelector('#high_score');
 
-div_high_score.innerHTML = `<button id="high_score_button"><h3>Top 5 listat</h3></button>
+div_high_score.innerHTML = `<button id="high_score_button"><h3>Näytä scoret</h3></button>
 <dialog id="top_5_all"></dialog>`;
 
 const high_score_button = document.querySelector('#high_score_button');

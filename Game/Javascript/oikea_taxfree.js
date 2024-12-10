@@ -23,7 +23,7 @@ async function buySausage (ide) {
 const dialog_taxfree = document.getElementById('taxfree');
 const button_taxfree = document.querySelector('#taxfree_btn');
 const close_taxfree = document.querySelector('#close_taxfree');
-const buy_sausage = document.getElementById('taxfree_buy_sausage')
+const buy_sausage = document.getElementById('taxfree_buy_sausage');
 
 
 
@@ -38,22 +38,21 @@ button_taxfree.addEventListener('click',  async(evt) => {
                                     <button id="taxfree_buy_sausage">Kyllä kiitos!</button>
                                     <button id="close_taxfree">Sulje</button>
                                 </form>`
-})
+});
 
 close_taxfree.addEventListener('click', (evt) => {
   dialog_taxfree.close();
-})
+});
 
 buy_sausage.addEventListener('click', (evt) => {
   console.log('Tehdään kaupat');
   const method = 'payment';
   buySausage(ide)
-})
+});
 
 button_taxfree.addEventListener('click', async(evt) => {
   console.log('Tervetuloa ostoksille!')
-  const img = document.querySelector('#bagdrop')
-  //img.src = `/Game/images_and_other/taxfree.png?random=${Date.now()}`
-  const testi = await hole_searcher(ide)
-  console.log(testi)
-})
+  const img = document.querySelector('#taxfree_img')
+  img.src = `/Game/images_and_other/taxfree.png?random=${Date.now()}`
+  img.url('../images_and_other/taxfree.png');
+});
