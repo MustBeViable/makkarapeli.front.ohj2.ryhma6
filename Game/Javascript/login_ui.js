@@ -1,13 +1,23 @@
 'use strict';
 
-import {openProfile} from './profile.js';
-
-const target = document.getElementById('target');
+const loginBase = document.getElementById('login_target');
+const loginHeader = document.getElementById('loginheader');
 const signInText = 'Kirjaudu';
 const signUpText = 'Luo tunnus';
-const signUpButtonText = 'Oletko uusi? Luo tili tästä'
-const signInButtonText = "Oletko jo käyttäjä? Kirjaudu sisään"
+const signUpButtonText = 'Oletko uusi? Luo käyttäjätili';
+const signInButtonText = 'Onko sinulla jo tili? Kirjaudu sisään';
+const signInHeader = 'Kirjaudu sisään';
+const signUpHeader = 'Rekisteröidy';
 
+function preventEsc() {
+  const loginDialog = document.getElementById('login');
+  loginDialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      console.log('Esc-näppäimen toiminta estetty');
+    }
+  });
+}
 
 /**
  * Creates a button and adds an action to it.
@@ -15,10 +25,10 @@ const signInButtonText = "Oletko jo käyttäjä? Kirjaudu sisään"
  * @param {function} onClick Action on click
  */
 function createButton(text, onClick) {
-  const button = document.createElement('button');
-  button.textContent = text;
-  target.appendChild(button);
-  button.addEventListener('click', onClick);
+  const loginButton = document.createElement('button');
+  loginButton.textContent = text;
+  loginBase.appendChild(loginButton);
+  loginButton.addEventListener('click', onClick);
 }
 
 /**
@@ -30,12 +40,24 @@ function createNameForm(value, signin) {
   const formHtml = `
     <form id="nameForm">
       <input id="nameQuery" name="q" type="text" placeholder="Käyttäjätunnus">
-      <input type="submit" value="${value}">
     </form>
   `;
-  target.insertAdjacentHTML('beforeend', formHtml);
+  loginBase.innerHTML += formHtml;
 
   const screenNameForm = document.getElementById('nameForm');
+
+  if (!signin) {
+    const extraformInput = document.createElement('input');
+    extraformInput.type = 'text';
+    extraformInput.name = 'shoeSize';
+    extraformInput.placeholder = 'Kengännumero';
+    screenNameForm.appendChild(extraformInput);
+  }
+  const submitButton = document.createElement('input');
+  submitButton.type = 'submit';
+  submitButton.value = value;
+  screenNameForm.appendChild(submitButton);
+
   screenNameForm.addEventListener('submit', async (event) => {
     const screenName = document.getElementById('nameQuery').value;
     event.preventDefault();
@@ -44,36 +66,37 @@ function createNameForm(value, signin) {
 }
 
 /**
- * Creates an extra form for sign up page.
+ * Creates the sign-in page with screen name form and a button that takes user to sign-up page.
  */
-function createExtraFrom() {
-  const extraForm = document.createElement('input');
-  extraForm.id = 'extraForm';
-  extraForm.placeholder = 'Kengännumero';
-  target.appendChild(extraForm);
-}
-
-/**
- * Creates the sign-in page.
- */
-export function createSigninPage() {
+function createSigninPage() {
+  preventEsc();
+  loginHeader.innerText = signInHeader;
   createNameForm(signInText, true);
+
   function goToSignUp() {
-    target.innerHTML = ''
-    createSignupPage()
+    loginBase.innerHTML = '';
+    preventEsc();
+    createSignupPage();
   }
-  createButton(signUpButtonText, () => goToSignUp())
+  createButton(signUpButtonText, () => goToSignUp());
 }
 
 /**
- * Creates the sign-up page.
+ * Creates the sign-up page with screen name form, extra form, and a button that takes user to sign-in page.
  */
-export function createSignupPage() {
+function createSignupPage() {
+  preventEsc();
+  loginHeader.innerText = signUpHeader;
   createNameForm(signUpText, false);
-  createExtraFrom();
-  function returnToSignIn(){
-    target.innerHTML = ''
-    createSigninPage()
+
+  function returnToSignIn() {
+    loginBase.innerHTML = '';
+    preventEsc();
+    createSigninPage();
+
   }
-  createButton(signInButtonText, ()=> returnToSignIn())
+
+  createButton(signInButtonText, () => returnToSignIn());
 }
+
+

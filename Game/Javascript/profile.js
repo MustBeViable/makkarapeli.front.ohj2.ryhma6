@@ -1,8 +1,9 @@
-import {createSigninPage, createSignupPage} from './login_ui.js';
-
-const target = document.getElementById('target');
 const newGameText = 'Aloita uusi peli';
 const continueText = 'Jatka vanhaa peliä';
+
+const profileTarget = document.getElementById('profile_target')
+const profilePage = document.getElementById('profile')
+const loginPage = document.getElementById('login')
 
 /**
  * Creates a button and adds an async action to it.
@@ -12,7 +13,7 @@ const continueText = 'Jatka vanhaa peliä';
 async function createFetchButton(text, onClick) {
   const button = document.createElement('button');
   button.textContent = text;
-  target.appendChild(button);
+  profileTarget.appendChild(button);
   button.addEventListener('click', onClick);
 }
 
@@ -48,7 +49,7 @@ function displayUnfinishedGame(game) {
       <br>Sijainti: ${game_location}
     </div>
   `;
-  target.innerHTML += gameInfoHtml;
+  profileTarget.innerHTML += gameInfoHtml;
 }
 
 /**
@@ -56,25 +57,36 @@ function displayUnfinishedGame(game) {
  * @param {string} screenName User's name
  * @param {boolean} signIn Is this sign-in (true) or sign-up (false)
  */
-export async function openProfile(screenName, signIn) {
-  target.innerHTML = '';
+async function openProfile(screenName, signIn) {
   try {
     const profile = signIn
         ? await fetchProfile(`/signin/${screenName}`)
         : await fetchProfile(`/signup/${screenName}`, {method: 'POST'});
 
+    loginPage.close()
+    profilePage.showModal()
     const game = profile['unfinished_game'];
+
     if (game && Object.keys(game).length) {
       displayUnfinishedGame(game);
       await createFetchButton(continueText, () => startGame(false, screenName));
+
+      function startNewWithConfirmation() {
+        if (confirm() === true) {
+          startGame(true, screenName)
+        }
+      }
+      await createFetchButton(newGameText, () => startNewWithConfirmation())
     }
-    await createFetchButton(newGameText, () => startGame(true, screenName));
+    else {
+      await createFetchButton(newGameText, () => startGame(true, screenName));
+    }
   } catch (error) {
     console.log('täällä');
     if (error.message === 'Failed to fetch') {
       error.message = 'Elias laita api pyörimään';
     }
-    target.innerHTML = `<div>${error.message}</div>`;
+    loginBase.innerHTML = `<div>${error.message}</div>`;
     if (signIn) {
       createSigninPage()
     } else {
@@ -96,7 +108,8 @@ async function startGame(newGame, screenName) {
     if (!response.ok) throw new Error('Invalid input!');
     const id = await response.json();
     console.log(id);
-    return await id['game_id']
+    saveIde(id['game_id'])
+    profilePage.close()
   } catch (error) {
     console.log(error.message);
   }
