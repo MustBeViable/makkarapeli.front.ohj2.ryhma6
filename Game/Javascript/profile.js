@@ -86,7 +86,7 @@ async function openProfile(screenName, signIn) {
     if (error.message === 'Failed to fetch') {
       error.message = 'Elias laita api pyörimään';
     }
-    target.innerHTML = `<div>${error.message}</div>`;
+    loginBase.innerHTML = `<div>${error.message}</div>`;
     if (signIn) {
       createSigninPage()
     } else {
