@@ -34,11 +34,12 @@ def signin(screen_name):
             print(game_id)
             if game_id:
                 response_text['unfinished_game'] = {
-                    'game_location': fetch_player_location_name(game_id),
+                    'game_location': fetch_player_location_name(game_id)['name'],
                     'game_makkaras': len(fetch_player_makkaras(game_id)),
                     'game_score': player_score_fetch(game_id),
-                    'game_money': fetch_player_money(game_id)
+                    'game_money': fetch_player_money(game_id)['money']
                 }
+                print(response_text)
     except Exception as e:
         status_code = 500
         response_text = {
