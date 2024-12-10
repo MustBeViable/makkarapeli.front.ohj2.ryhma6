@@ -83,13 +83,13 @@ def create_playthrough(score, money, mustamakkara, location):
     return
 
 def create_table_makkara_game():
-    sql = (f" CREATE TABLE makkara_game (id int NOT NULL auto_increment,"
-           f" game_id int DEFAULT NULL,"
+    sql = (f" CREATE TABLE makkara_game ("
+           f" game_id int,"
            f" garbage BOOLEAN DEFAULT FALSE,"
            f" taxfree BOOLEAN DEFAULT FALSE,"
            f" airport BOOLEAN DEFAULT FALSE,"
            f" hole_in_charge BOOLEAN DEFAULT FALSE,"
-           f" primary key (id))")
+           f" primary key (game_id))")
     kursori = yhteys.cursor()
     kursori.execute(sql)
     return
