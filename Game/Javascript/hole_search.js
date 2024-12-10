@@ -1,6 +1,7 @@
 'use strict';
 
 async function hole_searcher(ide, method) {
+
   try {
     const response = await fetch(
         `http://127.0.0.1:5000/hole_search/${ide}/${method}`);
@@ -11,7 +12,7 @@ async function hole_searcher(ide, method) {
   }
 }
 
-function removeElements(no_search, taxi, yango) {
+async function removeElements(no_search, taxi, yango, dialog_hole_search, ide) {
   dialog_hole_search.removeChild(taxi);
   dialog_hole_search.removeChild(yango);
   dialog_hole_search.removeChild(no_search);
@@ -25,17 +26,19 @@ function removeElements(no_search, taxi, yango) {
   });
 }
 
-function addListeners(no_search, taxi, yango) {
+function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
   no_search.addEventListener('click', (evt) => {
     dialog_hole_search.close();
   });
   taxi.addEventListener('click', async (evt) => {
     console.log('menid sidden daxilla :--DD');
     const method = 'taxi';
-    const testi = await hole_searcher(ide, method);
-    const parag = document.querySelector('#response')
+    await hole_searcher(ide, method);
+    const result = await hole_searcher(ide, method);
+    console.log(result)
+    const parag = document.querySelector('#response');
     parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
-    removeElements(no_search, taxi, yango);
+    await removeElements(no_search, taxi, yango, ide);
   });
   yango.addEventListener('click', async (evt) => {
     console.log('Yoloooo!!! :----DDD Yango on senjan lembi gulguneuvo :--DD');
@@ -48,29 +51,31 @@ function addListeners(no_search, taxi, yango) {
     console.log(result);
     if (result.makkara === 'found') {
       parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
-      removeElements(no_search, taxi, yango);
+      await removeElements(no_search, taxi, yango, ide);
     } else {
       //const img = document.querySelector('#spurdo')
       img.src = `/Game/images_and_other/toinen_tarkea_kuva.png?random=${Date.now()}`;
       parag.textContent = 'Voi harmi :-D sinud ryösdeddiin :--DD';
-      removeElements(no_search, taxi, yango);
+      await removeElements(no_search, taxi, yango, ide);
     }
   });
 }
 
-const dialog_hole_search = document.querySelector('#search_hole');
-const hole_search_button = document.querySelector('#hole_search');
-
-hole_search_button.addEventListener('click', (evt) => {
-  dialog_hole_search.showModal();
-  dialog_hole_search.innerHTML = `<h3>Lähde etsimään koloa ja kadonneita makkaroita!</h3>
+async function hole_search_buttons(ide) {
+  const dialog_hole_search = document.querySelector('#search_hole');
+  const hole_search_button = document.querySelector('#hole_search');
+  hole_search_button.addEventListener('click', async () => {
+    dialog_hole_search.showModal();
+    dialog_hole_search.innerHTML = `<h3>Lähde etsimään koloa ja kadonneita makkaroita!</h3>
                                 <img id="spurdo" src="/Game/images_and_other/tarkee_kuva.png" alt="Tärkee kuva :-D">
                                 <p id="response">Dämä on Golon edsindä :--D. Jogo mened daxilla :-D (300€) dai odad risgin Yangolla :--DDD (50€)</p>
                                 <button id="search_hole_taxi">Edsi golo :---DDD daxilla</button>
                                 <button id="search_hole_yango">Edsi golo :---DDD yangolla</button>
                                 <button id="no_search">En edsiggään :---DDD</button>`;
-  const taxi = document.querySelector('#search_hole_taxi');
-  const yango = document.querySelector('#search_hole_yango');
-  const no_search = document.querySelector('#no_search');
-  addListeners(no_search, taxi, yango);
-});
+    const taxi = document.querySelector('#search_hole_taxi');
+    const yango = document.querySelector('#search_hole_yango');
+    const no_search = document.querySelector('#no_search');
+     await addListeners(no_search, taxi, yango, dialog_hole_search, ide);
+  });
+  return hole_search_button
+}

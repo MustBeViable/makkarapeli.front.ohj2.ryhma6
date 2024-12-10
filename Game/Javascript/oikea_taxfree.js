@@ -32,7 +32,16 @@ button_taxfree.addEventListener('click',  async(evt) => {
   const json = await getDataTaxfree(ide)
   console.log(json)
   dialog_taxfree.innerHTML = `<h3>Tervetuloa taxfree-myymälään!</h3>
+                                
                                 <form method="dialog">
+                                    <div class="taxfree_img">
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                    </div>
                                     <p id="country_sausage_name">Haluatko ostaa ${json.name}n?</p>
                                     <p id="sausage_price">(${json.value}€)</p>
                                     <button id="taxfree_buy_sausage">Kyllä kiitos!</button>
@@ -53,6 +62,4 @@ buy_sausage.addEventListener('click', (evt) => {
 button_taxfree.addEventListener('click', async(evt) => {
   console.log('Tervetuloa ostoksille!')
   const img = document.querySelector('#taxfree_img')
-  img.src = `/Game/images_and_other/taxfree.png?random=${Date.now()}`
-  img.url('../images_and_other/taxfree.png');
 });
