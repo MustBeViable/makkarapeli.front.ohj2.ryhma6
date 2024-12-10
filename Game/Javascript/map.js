@@ -9,7 +9,9 @@ map.setView([60, 24], 7);
 const airportMarkers = L.featureGroup().addTo(map);
 
 
-const marker = L.marker([60.688477, 24.472502]).addTo(map);
+
+
+//const marker = L.marker([60.688477, 24.472502]).addTo(map);
 //latitude longitude
 airportMarkers.addLayer(marker);
 
