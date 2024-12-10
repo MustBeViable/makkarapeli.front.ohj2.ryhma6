@@ -57,6 +57,7 @@ async function player_current_airport_info (ide) {
   }
 }
 
+
 setInterval(async function() {
   const country_code = await country(ide);
   if (country_code) {

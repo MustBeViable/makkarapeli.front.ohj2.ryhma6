@@ -46,7 +46,7 @@ async function airport_fly_to(airport_number,IDE){
 }
 
 
-async function airport_selection_function(IDE){
+async function airport_selection_function(IDE, airportMarkers, map){
   try {
     const url = `http://127.0.0.1:5000/airport/${IDE}`;
     const result = await getData(url)
@@ -64,7 +64,7 @@ async function airport_selection_function(IDE){
       button.setAttribute("id", buttonid)
       button.style.display = "block"
       //L.marker([result[i+1].latitide , result[i+1].longitude]).addTo(map);
-      const location = await getData(`http://127.0.0.1:5000/player_location/${ide}`)
+      const location = await getData(`http://127.0.0.1:5000/player_location/${IDE}`)
         await console.log(location)
 
         const locmarker = await L.marker([location.lattitude, location.longitude]).addTo(map);
@@ -88,7 +88,9 @@ async function airport_selection_function(IDE){
         console.log(result[`${i + 1}`]['number'])
         await airport_fly_to(result[`${i + 1}`]['number'],IDE)
         document.querySelector("#select_airport").close()
-        await airport_selection_function(IDE)
+        await airport_selection_function(IDE, airportMarkers)
+
+
 
 
 
@@ -106,8 +108,16 @@ async function airport_selection_function(IDE){
 }
 
 
-airport_selection_function(ide)
+async function airport_buttons (){
+  document.querySelector("#airport_selection").addEventListener("click", async () =>{
+  document.querySelector("#select_airport").showModal()
+})
 
+document.querySelector("#colslaw").addEventListener("click",async ()=>{
+  document.querySelector("#select_airport").close()
+})
+}
+/**
 document.querySelector("#airport_selection").addEventListener("click", () =>{
   document.querySelector("#select_airport").showModal()
 })
@@ -115,4 +125,5 @@ document.querySelector("#airport_selection").addEventListener("click", () =>{
 document.querySelector("#colslaw").addEventListener("click",()=>{
   document.querySelector("#select_airport").close()
 })
+**/
 //asd
