@@ -2,7 +2,6 @@
 
 const loginBase = document.getElementById('login_target');
 const loginHeader = document.getElementById('loginheader');
-const loginDialog = document.getElementById('login');
 const signInText = 'Kirjaudu';
 const signUpText = 'Luo tunnus';
 const signUpButtonText = 'Oletko uusi? Luo käyttäjätili';
@@ -10,17 +9,15 @@ const signInButtonText = 'Onko sinulla jo tili? Kirjaudu sisään';
 const signInHeader = 'Kirjaudu sisään';
 const signUpHeader = 'Rekisteröidy';
 
-/**
- * Prevent user from using esc to close a dialog.
- */
-function preventCancel(event) {
-  console.log('t')
+function preventEsc() {
+  const loginDialog = document.getElementById('login');
+  loginDialog.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       event.preventDefault();
       console.log('Esc-näppäimen toiminta estetty');
     }
-  }
-
+  });
+}
 
 /**
  * Creates a button and adds an action to it.
@@ -72,11 +69,13 @@ function createNameForm(value, signin) {
  * Creates the sign-in page with screen name form and a button that takes user to sign-up page.
  */
 function createSigninPage() {
+  preventEsc();
   loginHeader.innerText = signInHeader;
   createNameForm(signInText, true);
 
   function goToSignUp() {
     loginBase.innerHTML = '';
+    preventEsc();
     createSignupPage();
   }
   createButton(signUpButtonText, () => goToSignUp());
@@ -86,14 +85,17 @@ function createSigninPage() {
  * Creates the sign-up page with screen name form, extra form, and a button that takes user to sign-in page.
  */
 function createSignupPage() {
+  preventEsc();
   loginHeader.innerText = signUpHeader;
   createNameForm(signUpText, false);
 
   function returnToSignIn() {
     loginBase.innerHTML = '';
+    preventEsc();
     createSigninPage();
 
   }
+
   createButton(signInButtonText, () => returnToSignIn());
 }
 
