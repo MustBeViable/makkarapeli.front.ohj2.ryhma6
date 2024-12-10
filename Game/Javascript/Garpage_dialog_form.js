@@ -39,6 +39,12 @@ async function finnair() {
   return result;
 }
 
+async function save_money() {
+  const save_money_data = await getData(`http://127.0.0.1:5000/save_money/1`);
+  console.log(save_money_data)
+  return result;
+}
+
 function createButton(id, text, parent,onClick){
   const button=document.createElement('button');
   button.id=id;
@@ -75,7 +81,7 @@ async function garbage_action() {
     });
     // no button if dont want to double and what if dont double
     createButton('button_no', 'älä tuplaa', buttoncontainer, function() {
-      garbageresults.textContent= `Säästit rahasi!`;
+      garbagemessage.textContent= `Säästit rahasi!`;
       // Disables the buttons
       buttoncontainer.innerHTML = ''
 
@@ -84,7 +90,7 @@ async function garbage_action() {
   //if hole_in_charge comes from garbage
   else if (action === 'answer') {
     const kolo_amount = data.answer
-    garbageresults.textContent=`kolovastaava vei sinulta ${kolo_amount} makkaraa`;
+    garbagemessage.textContent=`kolovastaava vei sinulta ${kolo_amount} makkaraa`;
     //if robber comes from garbage
   } else if (action === 'robber') {
     const robber_amount = data.robber
@@ -94,13 +100,13 @@ async function garbage_action() {
     garbagemessage.textContent=`Haluatko lahjoittaa 500€ harvinaiseen makkaraan?`;
     createButton('finnair_button_yes', 'kyllä', buttoncontainer, async function() {
           const finnair_result = await finnair()
-          garbageresults.textContent=` ${finnair_result}`;
+          garbagemessage.textContent=` ${finnair_result}`;
           // Disables the buttons
           buttoncontainer.innerHTML = ''
         });
 
     createButton('finnair_button_no', 'ei', buttoncontainer, function() {
-      garbageresults.textContent=`Et ostanut makkaraa`;
+      garbagemessage.textContent=`Et ostanut makkaraa`;
       // Disables the buttons
       buttoncontainer.innerHTML = ''
 
@@ -120,6 +126,11 @@ open_garbage_button.addEventListener('click',()=>{
 const closeButton = document.querySelector('.close');
 closeButton.addEventListener('click', () => {
   garbage_dialog.close();
+  save_money()
+  document.querySelector('#intro').style.display='block';
+  document.querySelector('#garbage_results').style.display = 'none';
+  document.querySelector('#garbage_message').style.display='none';
+  document.querySelector('#garbage_button_container').style.display='none';
 });
 
 const garbage_form = document.querySelector('#garbage_form');
@@ -127,4 +138,8 @@ garbage_form.addEventListener('submit', (event) => {
   event.preventDefault();
   document.querySelector('#intro').style.display = 'none';
   garbage_action();
+  document.querySelector('#garbage_results').style.display = 'block';
+  document.querySelector('#garbage_message').style.display='block';
+  document.querySelector('#garbage_button_container').style.display='block';
+
 });
