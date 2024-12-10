@@ -51,8 +51,10 @@ async function airport_selection_function(IDE){
     const url = `http://127.0.0.1:5000/airport/${IDE}`;
     const result = await getData(url)
     const result1 = await get_money(IDE)
+    console.log(result)
 
     document.querySelector("#target12").innerHTML = ""
+    airportMarkers.clearLayers();
     for(let i =0;i <= 19;i++){
       const button = document.createElement("button")
       button.innerText = `Airport: ${result[`${i+1}`].name} Price: ${result[`${i+1}`].price}`;
@@ -60,6 +62,7 @@ async function airport_selection_function(IDE){
       button.setAttribute("class","airport_selection_button")
       button.setAttribute("id", buttonid)
       button.style.display = "block"
+      //L.marker([result[i+1].latitide , result[i+1].longitude]).addTo(map);
       button.addEventListener("click",async() =>{
         //here should be a call to check players money
         //if money is not enough for flight returns a message that reflects that

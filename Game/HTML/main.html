@@ -11,9 +11,13 @@
     <script src="/Game/Javascript/airport_selection.js" defer></script>
     <script src="/Game/Javascript/interval_functions.js" defer></script>
     <script src="/Game/Javascript/oikea_taxfree.js" defer></script>
-    <script src="/Game/Javascript/top_5_chart.js" defer></script>
-    <script src="/Game/Javascript/player_count_of_all_unique_sausages.js" defer></script>
-    <script src="/Game/Javascript/garbage.js" defer></script>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
+
+    <script src="../Javascript/map.js" defer ></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <style>
         body {
             font-family: "Trirong", serif;
@@ -28,7 +32,7 @@
         </header>
     </div>
     <main>
-        <div class="innerContainer">
+    <div class="innerContainer">
             <div class="div1">
                 <div class="map" id="map_here">
                     <p>kartta</p>
@@ -59,7 +63,7 @@
                                 <h3>Tervetuloa roskiksen luo!</h3>
                                 <form method="dialog">
                                     <p>Haluatko penkoa roskista ja koettaa onneasi?</p>
-                                    <button id="garbage">Kyllä!</button>
+                                    <button  id="garbage">Kyllä!</button>
                                     <button class="close" autofocus>Sulje</button>
                                 </form>
                             </dialog>
@@ -72,8 +76,8 @@
                             <dialog id="taxfree">
                                 <h3>Tervetuloa taxfree-myymälään!</h3>
                                 <form method="dialog">
-                                    <p id="country_sausage_name">Haluatko ostaa tämän maan makkaran?</p>
-                                    <p id="sausage_price">(100 €)</p>
+                                    <p>Haluatko ostaa tämän maan makkaran?</p>
+                                    <p>(100 €)</p>
                                     <button id="taxfree_buy_sausage">Kyllä kiitos!</button>
                                     <button id="close_taxfree">Sulje</button>
                                 </form>
@@ -106,9 +110,8 @@
                         <p id="player_location"></p>
                     </div>
                     <div class="div2_3_all_four">
-                        <dialog id="player_sausages_and_count">
-                        </dialog>
-                        <button id="player_sausages">Kerätyt makkarat</button>
+                        <p>Kerätyt makkarat</p>
+                        <p id="player_sausages"></p>
                     </div>
                     <div class="div2_3_all_four">
                         <p>Pelaajan score</p>
@@ -120,19 +123,19 @@
                 <div class="side_bar">
                     <div class="instructions_and_high_score" id="instructions">Ohjeet
                         <dialog>
-                            <h2>Pelin kuvaus ja ohjeistus</h2>
+                        <h2>Pelin kuvaus ja ohjeistus</h2>
                             <form method="dialog">
                                 <button autofocus>Näytä matkakohteet</button>
                                 <button class="close" autofocus>Sulje</button>
                             </form>
-                        </dialog>
+                    </dialog>
                     </div>
                     <div class="instructions_and_high_score" id="high_score">
                         <p>Top 5 high score</p>
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     </main>
 </div>
 </body>
