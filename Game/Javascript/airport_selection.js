@@ -92,6 +92,8 @@ async function airport_selection_function(IDE, airportMarkers, map){
 
 
 
+
+
         console.log(button.id)
       })
       document.querySelector("#target12").appendChild(button)
