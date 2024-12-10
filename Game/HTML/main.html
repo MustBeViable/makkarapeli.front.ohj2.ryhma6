@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MAKKARAMANIA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <script src="/Game/Javascript/playthrought_variables_universal.js" defer></script>
+    <script src="/Game/Javascript/hole_search.js" defer></script>
+    <script src="/Game/Javascript/airport_selection.js" defer></script>
+    <script src="/Game/Javascript/interval_functions.js" defer></script>
+    <script src="/Game/Javascript/oikea_taxfree.js" defer></script>
+    <script src="/Game/Javascript/top_5_chart.js" defer></script>
+    <script src="/Game/Javascript/player_count_of_all_unique_sausages.js" defer></script>
+    <script src="/Game/Javascript/game_istructions.js" defer></script>
+    <script src="/Game/Javascript/Garpage_dialog_form.js" defer></script>
+    <style>
+        body {
+            font-family: "Trirong", serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="navi">
+        <header class="pic">
+            <h1>MAKKARAMANIA: Airport Adventure</h1>
+        </header>
+    </div>
+    <main>
+        <div class="innerContainer">
+            <div class="div1">
+                <div class="map" id="map_here">
+                    <p>kartta</p>
+                </div>
+                <div class="flagAndSausage">
+                    <div class="flag" id="flag">
+                        <p>Lippu:</p>
+                    </div>
+                    <div class="playerSausageNum">
+                        <p>Makkarat yheensä:</p>
+                        <p id="num_of_sausages"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="div2">
+                <div class="div2_1">
+                    <div class="div2_box1">
+                        <div class="sausage_hunt" id="playerSausage">
+                            <h2>Kolon etsintä</h2>
+                            <dialog id="search_hole">
+                                <h3>Lähde etsimään koloa ja kadonneita makkaroita!</h3>
+                            </dialog>
+                            <button id="hole_search">Kolon etsintään</button>
+                        </div>
+                        <div class="garbage">
+                            <h2>Pengo roskista</h2>
+                            <dialog id="garbage_can">
+                                <div id="intro">
+                                    <h3>Tervetuloa roskiksen luo!</h3>
+                                    <form method="dialog" id="garbage_form">
+                                      <p>Haluatko penkoa roskista ja koettaa onneasi?</p>
+                                      <button id="garbage">Kyllä!</button>
+
+                                    </form>
+                                 </div>
+                                 <p id="garbage_message"></p>
+                                 <div id="garbage_button_container"></div>
+                                 <p id="garbage_results"></p>
+                                 <button type="button" class="close" >Sulje</button>
+
+                            </dialog>
+                            <button id="open_garbage">Penkomaan</button>
+                        </div>
+                    </div>
+                    <div class="div2_box2">
+                        <div class="tax_free">
+                            <h2>Taxfree-myymälä</h2>
+                            <dialog id="taxfree">
+                                <h3>Tervetuloa taxfree-myymälään!</h3>
+                                <form method="dialog">
+                                    <p id="country_sausage_name">Haluatko ostaa tämän maan makkaran?</p>
+                                    <p id="sausage_price">(100 €)</p>
+                                    <button id="taxfree_buy_sausage">Kyllä kiitos!</button>
+                                    <button id="close_taxfree">Sulje</button>
+                                </form>
+                            </dialog>
+                            <button id="taxfree_btn">Shoppailemaan</button>
+                        </div>
+                        <div class="airport">
+                            <h2>Lentokenttävalikko</h2>
+                            <dialog id="select_airport">
+                                <h2>Minne haluat lentää?</h2>
+                                <div id="target12">
+
+                                </div>
+                                <button id="colslaw" autofocus>Sulje</button>
+                            </dialog>
+                            <button id="airport_selection">Määränpäät</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="div2_2">
+                    <h2>Pelin tiedot ja eteneminen:</h2>
+                </div>
+                <div class="div2_3">
+                    <div class="div2_3_all_four">
+                        <p>Pelaajan rahat</p>
+                        <p id="player_money"></p>
+                    </div>
+                    <div class="div2_3_all_four">
+                        <p>Olet lentokentällä:</p>
+                        <p id="player_location"></p>
+                    </div>
+                    <div class="div2_3_all_four">
+                        <p>Kerätyt makkarat</p>
+                        <dialog id="player_sausages_and_count">
+                        </dialog>
+                        <button id="player_sausages">Näytä</button>
+                    </div>
+                    <div class="div2_3_all_four">
+                        <p>Pelaajan score</p>
+                        <p id="player_score"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="div3">
+                <div class="side_bar">
+                    <div class="instructions_and_high_score">
+                        <p id="instructions_btn">Pelin kuvaus ja ojeet</p>
+                        <dialog id="instructions">
+                            <button id="close_instructions">Sulje</button>
+                        </dialog>
+                    </div>
+                    <div class="instructions_and_high_score">
+                        <p>Top 5 pelaajien high score</p>
+                        <div  id="high_score">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

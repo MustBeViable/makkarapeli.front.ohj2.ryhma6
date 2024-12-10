@@ -1,7 +1,27 @@
-from Game.game_creation_lists.iso_country_list import iso_country_list
+from Game.python.game_creation_lists.iso_country_list import iso_country_list
 from Game.python.game_creation_lists.makkaras_dictionary import makkaras_dictionary
-from Game.game_creation_lists.score_value_makkara import score_value_makkara
-from Game.game_texts import yhteys, start_location
+from Game.python.game_creation_lists.score_value_makkara import score_value_makkara
+from Game.python.game_texts import yhteys, start_location
+
+""""def foreign_keys_makkara_game():
+    sql = (f" ALTER TABLE makkara_game"
+           f" ADD CONSTRAINT FK_game_id"
+           f" FOREIGN KEY (game_id) REFERENCES playthrough(id)")
+    kursori = yhteys.cursor()
+    kursori.execute(sql)
+    return"""
+
+"""def create_table_makkara_game():
+    sql = (f" CREATE TABLE makkara_game (id int NOT NULL auto_increment,"
+           f" game_id int DEFAULT NULL,"
+           f" garbage BOOLEAN DEFAULT FALSE,"
+           f" taxfree BOOLEAN DEFAULT FALSE,"
+           f" airport BOOLEAN DEFAULT FALSE,"
+           f" hole_in_charge BOOLEAN DEFAULT FALSE,"
+           f" primary key (id))")
+    kursori = yhteys.cursor()
+    kursori.execute(sql)
+    return"""
 
 start_score = 0
 start_money = 2000

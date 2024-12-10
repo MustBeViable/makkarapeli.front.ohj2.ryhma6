@@ -1,4 +1,4 @@
-from Game.game_texts import yhteys
+from Game.python.game_texts import yhteys
 
 def add_makkara_reached(id, makkara):
     sql = (f" INSERT INTO makkara_reached (playthrough_id, makkara_id)"

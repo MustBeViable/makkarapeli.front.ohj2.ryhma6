@@ -1,4 +1,4 @@
-from game_texts import yhteys
+from Game.python.game_texts import yhteys
 
 def table_remove(table):
     sql = "DROP TABLE {table} "
@@ -13,7 +13,7 @@ def drop_constraint(table, constraint):
     kursori.execute(sql)
     return
 #lisää listaa tablen nimi ku lisäät uuden tablen tietokantaa
-test_list = ["makkara_reached", "makkara", "playthrough"]
+test_list = ["makkara_game","makkara_reached", "makkara", "playthrough"]
 '''
 drop_constraint("playthrough", "FK_location")
 drop_constraint("makkara_reached", "FK_makkara_id")

@@ -11,12 +11,9 @@ def tuplaus(amount, times_player_have_doubled):
     player_number = luckynumber - (times_player_have_doubled * 5)
     casinos_number = 100 - luckynumber + (times_player_have_doubled * 5)
     if player_number >= casinos_number:
-        print("Tuplaus onnistui!")
         amount = amount * 2
-        print(f"Olet saamassa nyt {amount}€.")
         return amount
     else:
-        print("Tuplaus epäonnistui! Hävisit kaikki löytämäsi rahat.")
         amount = 0
         return amount
 
