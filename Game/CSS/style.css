@@ -196,3 +196,10 @@ button {
     font-weight: bolder;
     background-color: #e0feff;
 }
+.game_board_inst {
+    background-image: url("../images_and_other/makkaramania_afrikan_tahti.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 40%;
+}
