@@ -8,7 +8,7 @@ button_instructions.addEventListener('click',  async(evt) => {
   dialog_instructions.showModal();
   dialog_instructions.innerHTML = `<h3>Pelin ohjeistus</h3>
                                     <p>Pelin tavoitteena on kerätä mahdollisimman paljon makkaroita 
-                                    ja siten kerryttää pistesaalista. Makkaroita voi ostaa 
+                                    ja siten maksimoida pistesaalista. Makkaroita voi ostaa 
                                     lentokenttien Tax free -myymälöistä. Kullakin maalla on oma 
                                     makkaransa, ja rilaisista makkaroista saa eri määrän pisteitä. 
                                     Peli päättyy, kun sinulla ei ole enää rahaa ostaa lentolippua 
