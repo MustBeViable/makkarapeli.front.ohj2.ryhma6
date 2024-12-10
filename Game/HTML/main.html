@@ -14,10 +14,6 @@
     <script src="/Game/Javascript/top_5_chart.js" defer></script>
     <script src="/Game/Javascript/player_count_of_all_unique_sausages.js" defer></script>
     <script src="/Game/Javascript/game_istructions.js" defer></script>
-    <script src="/Game/Javascript/Garpage_dialog_form.js" defer></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-    <script src="/Game/Javascript/map.js" defer></script>
     <style>
         body {
             font-family: "Trirong", serif;
@@ -63,15 +59,15 @@
                                 <div id="intro">
                                     <h3>Tervetuloa roskiksen luo!</h3>
                                     <form method="dialog" id="garbage_form">
-                                        <p>Haluatko penkoa roskista ja koettaa onneasi?</p>
-                                        <button id="garbage">Kyllä!</button>
+                                      <p>Haluatko penkoa roskista ja koettaa onneasi?</p>
+                                      <button id="garbage">Kyllä!</button>
 
                                     </form>
-                                </div>
-                                <p id="garbage_message"></p>
-                                <div id="garbage_button_container"></div>
-                                <p id="garbage_results"></p>
-                                <button type="button" class="close">Sulje</button>
+                                 </div>
+                                 <p id="garbage_message"></p>
+                                 <div id="garbage_button_container"></div>
+                                 <p id="garbage_results"></p>
+                                 <button type="button" class="close" >Sulje</button>
 
                             </dialog>
                             <button id="open_garbage">Penkomaan</button>
@@ -138,7 +134,7 @@
                     </div>
                     <div class="instructions_and_high_score">
                         <p>Top 5 pelaajien high score</p>
-                        <div id="high_score">
+                        <div  id="high_score">
                         </div>
                     </div>
                 </div>
