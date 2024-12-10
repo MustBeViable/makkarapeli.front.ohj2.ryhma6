@@ -1,0 +1,198 @@
+.container {
+	object-fit: contain;
+	margin:  auto;
+	width: 100%;
+    color: floralwhite;
+    background-color: floralwhite;
+}
+
+.innerContainer {
+    margin: auto;
+    width: 95%;
+    color: black;
+    background-color: floralwhite;
+    display: flex;
+    height: 95%;
+}
+
+body {
+	margin: 0;
+	background-color: #181818;
+}
+
+header {
+	background-color: #303030;
+    width: 100%;
+    text-align: center;
+}
+
+main {
+    width: 100%;
+    margin: auto;
+    height: 530px;
+}
+
+nav {
+	width: 100%;
+	margin: 0;
+    justify-content: center;
+    display: flex;
+    line-height: 4rem;
+}
+
+.div1 {
+    margin: 0.5rem;
+    width: 40%;
+    background-color: floralwhite;
+    height: auto;
+}
+.map {
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 30px;
+    height: 70%;
+}
+.flagAndSausage {
+    display: flex;
+    width: 100%;
+    height: 30%;
+}
+.flag {
+    width: 40%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.playerSausageNum {
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 30px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 20px;
+    background-color: #e0feff;
+}
+
+
+
+.div2 {
+    margin: 0.5rem;
+    width: 50%;
+    background-color: floralwhite;
+}
+.div2_1 {
+    height: 60%;
+    width: 100%;
+    align-content: center;
+    display: flex;
+}
+.div2_box1 {
+    width: 50%;
+    align-content: center;
+}
+.div2_box2 {
+    width: 50%;
+    align-content: center;
+}
+.sausage_hunt {
+    height: 50%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 30px;
+    align-content: center;
+    text-align: center;
+}
+.garbage {
+    height: 50%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 30px;
+    align-content: center;
+    text-align: center;
+}
+.tax_free {
+    height: 50%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 30px;
+    align-content: center;
+    text-align: center;
+
+}
+.airport {
+    height: 50%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 30px;
+    align-content: center;
+    text-align: center;
+}
+dialog {
+    border-radius: 10px;
+}
+dialog button {
+    border-radius: 20px;
+    padding: 0.5em;
+}
+
+button {
+    border-radius: 20px;
+    padding: 0.5em;
+    font-weight: bolder;
+}
+
+
+
+
+.div2_2 {
+    height: 10%;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+.div2_3 {
+    height: 30%;
+    width: 100%;
+    display: flex;
+}
+.div2_3_all_four {
+    width: 25%;
+    margin: 0.25rem;
+    border: 1px solid black;
+    border-radius: 30px;
+    font-weight: bolder;
+    text-align: center;
+    background-color: #e0feff;
+}
+
+
+
+
+.div3 {
+    margin: 0.5rem;
+    border-radius: 30px;
+    border: 1px solid black;
+    width: 10%;
+    background-color: floralwhite;
+    align-content: center;
+}
+.side_bar {
+    height: 80%;
+    width: 100%;
+    align-content: center;
+}
+.instructions_and_high_score {
+    width: 60%;
+    margin: 1rem;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 0.5em;
+    font-weight: bolder;
+    background-color: #e0feff;
+}
+
+#nameForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
