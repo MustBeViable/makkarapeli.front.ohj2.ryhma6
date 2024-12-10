@@ -13,6 +13,7 @@ async function hole_searcher(ide, method) {
 }
 
 async function removeElements(no_search, taxi, yango, dialog_hole_search, ide) {
+  console.log(dialog_hole_search)
   dialog_hole_search.removeChild(taxi);
   dialog_hole_search.removeChild(yango);
   dialog_hole_search.removeChild(no_search);
@@ -51,12 +52,12 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
     console.log(result);
     if (result.makkara === 'found') {
       parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
-      await removeElements(no_search, taxi, yango, ide);
+      await removeElements(no_search, taxi, yango, dialog_hole_search, ide);
     } else {
       //const img = document.querySelector('#spurdo')
       img.src = `/Game/images_and_other/toinen_tarkea_kuva.png?random=${Date.now()}`;
       parag.textContent = 'Voi harmi :-D sinud ryösdeddiin :--DD';
-      await removeElements(no_search, taxi, yango, ide);
+      await removeElements(no_search, taxi, yango, dialog_hole_search, ide);
     }
   });
 }
@@ -76,6 +77,7 @@ async function hole_search_buttons(ide) {
     const yango = document.querySelector('#search_hole_yango');
     const no_search = document.querySelector('#no_search');
      await addListeners(no_search, taxi, yango, dialog_hole_search, ide);
+     console.log(no_search, taxi, yango, dialog_hole_search, ide)
   });
   return hole_search_button
 }
