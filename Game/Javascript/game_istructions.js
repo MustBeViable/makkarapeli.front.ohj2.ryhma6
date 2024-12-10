@@ -2,7 +2,6 @@
 
 const dialog_instructions = document.getElementById('instructions');
 const button_instructions = document.getElementById('instructions_btn');
-const close_instructions = document.getElementById('close_instructions');
 
 
 button_instructions.addEventListener('click',  async(evt) => {
@@ -46,9 +45,11 @@ button_instructions.addEventListener('click',  async(evt) => {
                                     on muita erikoismakkaroita, kuten legendaarinen mustamakkara, jonka voi 
                                     löytää ainoastaan päättäväisellä ja onnekkaalla roskisten kaivamisella.</p>
                                     <button id="close_instructions">Sulje</button>`
-});
 
-close_instructions.addEventListener('click', (evt) => {
+const dynamicCloseBtn = document.getElementById('close_instructions');
+
+dynamicCloseBtn.addEventListener('click', (evt) => {
   dialog_instructions.close();
   console.log('Instructions closed');
+  });
 });
