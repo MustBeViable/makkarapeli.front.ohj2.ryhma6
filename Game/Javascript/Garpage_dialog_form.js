@@ -16,14 +16,14 @@ async function getData(url){
 }
 //gets data from garbage_can api
 async function garbage_content_java() {
-  const data=await getData(`http://127.0.0.1:5000/garbage/1`);
+  const data=await getData(`http://127.0.0.1:5000/garbage/${ide}`);
   let garbage_content=Object.keys(data)[0];
   console.log(garbage_content);
   return data;
 }
 //gets data from doubling api
 async function doubling(){
-  const data=await getData(`http://127.0.0.1:5000/doubling/1`);
+  const data=await getData(`http://127.0.0.1:5000/doubling/${ide}`);
   console.log(data)
   let result=data.result;
   console.log(data.result);
@@ -32,7 +32,7 @@ async function doubling(){
 
 //gets data from finnair
 async function finnair() {
-  const finnair_data = await getData(`http://127.0.0.1:5000/finnair/1`);
+  const finnair_data = await getData(`http://127.0.0.1:5000/finnair/${ide}`);
   console.log(finnair_data)
   const result = finnair_data.answer;
   console.log(finnair_data.answer);
@@ -40,9 +40,9 @@ async function finnair() {
 }
 
 async function save_money() {
-  const save_money_data = await getData(`http://127.0.0.1:5000/save_money/1`);
+  const save_money_data = await getData(`http://127.0.0.1:5000/save_money/${ide}`);
   console.log(save_money_data)
-  return result;
+
 }
 
 function createButton(id, text, parent,onClick){
@@ -86,6 +86,7 @@ async function garbage_action() {
       buttoncontainer.innerHTML = ''
 
     })
+
   }
   //if hole_in_charge comes from garbage
   else if (action === 'answer') {
@@ -112,6 +113,7 @@ async function garbage_action() {
 
     })
   }
+  return action
 }
 //buttons for opening garbage modal and closing and modal actions
 const open_garbage_button=document.querySelector('#open_garbage');
@@ -127,17 +129,25 @@ const closeButton = document.querySelector('.close');
 closeButton.addEventListener('click', () => {
   garbage_dialog.close();
   save_money()
-  document.querySelector('#intro').style.display='block';
+  document.querySelector('#intro').style.display = 'block';
   document.querySelector('#garbage_results').style.display = 'none';
-  document.querySelector('#garbage_message').style.display='none';
-  document.querySelector('#garbage_button_container').style.display='none';
-});
+  document.querySelector('#garbage_message').style.display = 'none';
+  document.querySelector('#garbage_button_container').style.display = 'none';
+})
+
+//async function save_money_call() {
+ //const tulos = await garbage_action();
+ //console.log(tulos)
+ //if (tulos === 'player_found_money'){
+//   save_money()
+// }
+//}
 
 const garbage_form = document.querySelector('#garbage_form');
 garbage_form.addEventListener('submit', (event) => {
   event.preventDefault();
   document.querySelector('#intro').style.display = 'none';
-  garbage_action();
+  garbage_action()
   document.querySelector('#garbage_results').style.display = 'block';
   document.querySelector('#garbage_message').style.display='block';
   document.querySelector('#garbage_button_container').style.display='block';
