@@ -5,16 +5,7 @@
 //so once when the page is opened and after that in every event listener in airport selection buttons
 
 
-function waitForValueChange() {
-  return new Promise((resolve) => {
-    const interval = setInterval(() => {
-      if (ide !== undefined) {
-        clearInterval(interval);
-        resolve(ide); // Resolve with the current value when it changes
-      }
-    }, 100); // Check every 50ms (adjust interval as needed)
-  });
-}
+
 
 async function getData(url) {
     try {
