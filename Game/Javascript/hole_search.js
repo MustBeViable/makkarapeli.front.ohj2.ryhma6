@@ -35,7 +35,7 @@ async function removeElements(no_search, taxi, yango, dialog_hole_search, ide) {
   dialog_hole_search.removeChild(no_search);
   const close = document.createElement('button');
   close.id = 'close';
-  close.textContent = 'Däsdä bääsed bois :---D';
+  close.textContent = 'Palaa lentokentälle';
   dialog_hole_search.appendChild(close);
   close.addEventListener('click', (evt) => {
     dialog_hole_search.close();
@@ -49,13 +49,17 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
   });
   taxi.addEventListener('click', async (evt) => {
     console.log('menid sidden daxilla :--DD');
+    const img = document.querySelector('#spurdo');
+    const h3 = document.querySelector('#kolovastaava');
+    img.src = `/Game/images_and_other/A_white-skinned_blonde_girl_scout_resized_600x600.jpg`;
     const method = 'taxi';
     await hole_searcher(ide, method);
     const result = await hole_searcher(ide, method);
     await sausage_count(ide);
     console.log(result);
     const parag = document.querySelector('#response');
-    parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
+    parag.textContent = '';
+    h3.textContent = 'Löysit kolovastaavan ja sait makkarasi takaisin!';
     const game_check_code = await game_end_check();
     console.log(game_check_code);
     if (game_check_code === 1) {
@@ -68,12 +72,14 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
     const img = document.querySelector('#spurdo');
     img.src = `/Game/images_and_other/tarkee_kuva.png?random=${Date.now()}`;
     const parag = document.querySelector('#response');
+    const h3 = document.querySelector('#kolovastaava');
     parag.textContent = '';
+    h3.textContent = 'Löysit kolovastaavan ja sait makkarasi takaisin!';
     const method = 'yango';
     const result = await hole_searcher(ide, method);
     console.log(result);
     if (result.makkara === 'found') {
-      parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
+      h3.textContent = 'Löysit kolovastaavan ja sait makkarasi takaisin!';
       await sausage_count(ide);
       const game_check_code = await game_end_check();
       console.log(game_check_code);
@@ -83,8 +89,8 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
       await removeElements(no_search, taxi, yango, dialog_hole_search, ide);
     } else {
       //const img = document.querySelector('#spurdo')
-      img.src = `/Game/images_and_other/toinen_tarkea_kuva.png?random=${Date.now()}`;
-      parag.textContent = 'Voi harmi :-D sinud ryösdeddiin :--DD';
+      img.src = `/Game/images_and_other/A_person_waiting_for_a_taxi_in_rainy_weather_resized_600x600.jpg`;
+      h3.textContent = 'Voi harmi, Yango ajoi hitaasti ja saavuit perille myöhään. Jouduit tilaamaan taksin takaisin kentälle.';
       await removeElements(no_search, taxi, yango, dialog_hole_search, ide);
       const game_check_code = await game_end_check();
       console.log(game_check_code);
@@ -103,12 +109,12 @@ hole_search_button.addEventListener('click', async () => {
   console.log(possibility);
   if (possibility === 'stolen') {
     dialog_hole_search.showModal();
-    dialog_hole_search.innerHTML = `<h3>Lähde etsimään koloa ja kadonneita makkaroita!</h3>
-                                <img id="spurdo" src="/Game/images_and_other/tarkee_kuva.png" alt="Tärkee kuva :-D">
-                                <p id="response">Dämä on Golon edsindä :--D. Jogo mened daxilla :-D (300€) dai odad risgin Yangolla :--DDD (50€)</p>
-                                <button id="search_hole_taxi">Edsi golo :---DDD daxilla</button>
-                                <button id="search_hole_yango">Edsi golo :---DDD yangolla</button>
-                                <button id="no_search">En edsiggään :---DDD</button>`;
+    dialog_hole_search.innerHTML = `<h3 id="kolovastaava">Lähde etsimään koloa ja kadonneita makkaroita!</h3>
+                                <img id="spurdo" src="/Game/images_and_other/A_person_leaving_an_airport_terminal_and_getting_i_resized_600x600.jpg" alt="Tärkee kuva :-D">
+                                <p id="response">Päätit lähteä etsimään varastettuja makkaroita. Sinulla on 2 vaihtoehtoa, taksi (300€) tai otat riskin Yangolla (50€).</p>
+                                <button id="search_hole_taxi">Taksi (300€)</button>
+                                <button id="search_hole_yango">Yango (50€)</button>
+                                <button id="no_search">Palaa lentokentälle</button>`;
     const taxi = document.querySelector('#search_hole_taxi');
     const yango = document.querySelector('#search_hole_yango');
     const no_search = document.querySelector('#no_search');
@@ -119,9 +125,9 @@ hole_search_button.addEventListener('click', async () => {
     dialog_hole_search.innerHTML = `<h3>Koloa ei voi etsiä</h3>
          <p>Kolovastaava ei ole vienyt sinulta makkaroita ;)</p>
          <p>Varo! Saatat törmätä kolovastaavaan roskiksella.</p>
-         <button id="close_no_kolo">pois!</button>`;
+         <button id="close_no_kolo">Palaa kentälle</button>`;
     const close_no_kolo = document.querySelector('#close_no_kolo');
-    close_no_kolo.addEventListener('click', async() => {
+    close_no_kolo.addEventListener('click', async () => {
       dialog_hole_search.close();
       let game_check_code = await game_end_check();
       console.log(game_check_code);
