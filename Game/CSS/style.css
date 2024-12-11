@@ -2,7 +2,7 @@
     width: 100px;
   height: auto;
   position: absolute;
-  animation: randomMove 10s infinite linear;
+  animation: randomMove 15s infinite linear;
 
 }
 @keyframes randomMove {
@@ -142,32 +142,35 @@ nav {
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    color: white;
 }
 .garbage {
     height: 50%;
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    color: white;
+    align-items: center;
 }
 .tax_free {
     height: 50%;
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    color: white;
+}
 .taxfree_img {
     background-image: url("../images_and_other/taxfree.png");
     background-position: center;
     background-size: 100%;
     opacity: 0.85;
 }
-
-
-}
 .airport {
     height: 50%;
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    color: white;
 }
 dialog {
     border-radius: 10px;
@@ -178,11 +181,21 @@ dialog button {
 }
 
 button {
+
     border-radius: 20px;
     padding: 0.5em;
     font-weight: bolder;
 }
 
+.blur {
+    background: rgba(255, 255, 255, 0.2); /* Läpinäkyvä valkoinen */
+    backdrop-filter: blur(10px);         /* Blur-tausta */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;                         /* Valkoinen teksti */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
 
 
