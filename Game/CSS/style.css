@@ -150,6 +150,7 @@ nav {
     align-content: center;
     text-align: center;
     color: white;
+    align-items: center;
 }
 .tax_free {
     height: 50%;
@@ -180,11 +181,21 @@ dialog button {
 }
 
 button {
+
     border-radius: 20px;
     padding: 0.5em;
     font-weight: bolder;
 }
 
+.blur {
+    background: rgba(255, 255, 255, 0.2); /* Läpinäkyvä valkoinen */
+    backdrop-filter: blur(10px);         /* Blur-tausta */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;                         /* Valkoinen teksti */
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
 
 
