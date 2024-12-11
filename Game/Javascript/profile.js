@@ -40,7 +40,7 @@ async function displayTop5() {
   for (let key in top_5_all) {
     const entry = top_5_all[key];
     let number = parseFloat(key)
-    top5_all_HTML_content += `<p>${number}. ${entry.screen_name}: ${entry.score}</p>`;
+    top5_all_HTML_content += `<p>${number+1}. ${entry.screen_name}: ${entry.score}</p>`;
   }
   profileTarget.innerHTML += top5_all_HTML_content;
 }
