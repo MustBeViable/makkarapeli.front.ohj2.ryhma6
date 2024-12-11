@@ -98,15 +98,6 @@ async function airport_selection_function(){
 
 
 
-      /*
-        const locmarker = await L.marker([location.lattitude, location.longitude]).addTo(map);
-        map.flyTo([location.lattitude, location.longitude],5,{
-            duration: 3,             // 3 seconds duration
-            easeLinearity: 0.2,      // More linear easing (easing type)
-            noMoveStart: true        // Do not trigger the 'movestart' event
-        })
-        airportMarkers.addLayer(locmarker)
-        */
 
       button.addEventListener("click",async() =>{
         //here should be a call to check players money
