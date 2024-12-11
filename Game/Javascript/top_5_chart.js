@@ -38,7 +38,7 @@ high_score_button.addEventListener('click', async (evt) => {
   for (let key in top_5_all) {
     const entry = top_5_all[key];
     let number = parseFloat(key)
-    top5_all_HTML_content += `<p>${number+1}. ${entry.screen_name}: ${entry.score}</p>`;
+    top5_all_HTML_content += `<p>${number}. ${entry.screen_name}: ${entry.score}</p>`;
   }
   for (let key in player_top_5) {
     const entry = player_top_5[key];
