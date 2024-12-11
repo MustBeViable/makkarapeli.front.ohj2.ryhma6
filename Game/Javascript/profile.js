@@ -1,9 +1,9 @@
 const newGameText = 'Aloita uusi peli';
 const continueText = 'Jatka vanhaa peliä';
 
-const profileTarget = document.getElementById('profile_target')
-const profilePage = document.getElementById('profile')
-const loginPage = document.getElementById('login')
+const profileTarget = document.getElementById('profile_target');
+const profilePage = document.getElementById('profile');
+const loginPage = document.getElementById('login');
 
 /**
  * Creates a button and adds an async action to it.
@@ -63,8 +63,8 @@ async function openProfile(screenName, signIn) {
         ? await fetchProfile(`/signin/${screenName}`)
         : await fetchProfile(`/signup/${screenName}`, {method: 'POST'});
 
-    loginPage.close()
-    profilePage.showModal()
+    loginPage.close();
+    profilePage.showModal();
     const game = profile['unfinished_game'];
 
     if (game && Object.keys(game).length) {
@@ -73,12 +73,12 @@ async function openProfile(screenName, signIn) {
 
       function startNewWithConfirmation() {
         if (confirm() === true) {
-          startGame(true, screenName)
+          startGame(true, screenName);
         }
       }
-      await createFetchButton(newGameText, () => startNewWithConfirmation())
-    }
-    else {
+
+      await createFetchButton(newGameText, () => startNewWithConfirmation());
+    } else {
       await createFetchButton(newGameText, () => startGame(true, screenName));
     }
   } catch (error) {
@@ -88,9 +88,9 @@ async function openProfile(screenName, signIn) {
     }
     loginBase.innerHTML = `<div>${error.message}</div>`;
     if (signIn) {
-      createSigninPage()
+      createSigninPage();
     } else {
-      createSignupPage()
+      createSignupPage();
     }
   }
 }
@@ -108,8 +108,15 @@ async function startGame(newGame, screenName) {
     if (!response.ok) throw new Error('Invalid input!');
     const id = await response.json();
     console.log(id);
-    saveIde(id['game_id'])
-    profilePage.close()
+    saveIde((id['game_id']).toString());
+    console.log(`universaali: ${ide}`)
+    console.log(`universaali: ${typeof ide}`)
+    profilePage.close();
+    await flag_for_html();
+    await player_money(ide);
+    await player_score(ide);
+    await player_current_airport_info(ide);
+    await sausage_count(ide);
   } catch (error) {
     console.log(error.message);
   }
