@@ -1,10 +1,10 @@
 from Game.python.game_texts import yhteys
 
-def update_player_makkara_game(action, id):
+def update_player_makkara_game(id, action, done):
 
     """Updates player playthrough situation ie. if player have been at tax free it will be true"""
 
-    sql = (f"UPDATE makkara_game SET {action} = true WHERE game_id = '{id}'")
+    sql = (f"UPDATE makkara_game SET {action} = {done} WHERE game_id = '{id}'")
     kursori = yhteys.cursor()
     kursori.execute(sql)
 

@@ -5,6 +5,17 @@
 //so once when the page is opened and after that in every event listener in airport selection buttons
 
 
+function waitForValueChange() {
+  return new Promise((resolve) => {
+    const interval = setInterval(() => {
+      if (ide !== undefined) {
+        clearInterval(interval);
+        resolve(ide); // Resolve with the current value when it changes
+      }
+    }, 100); // Check every 50ms (adjust interval as needed)
+  });
+}
+
 async function getData(url) {
     try {
         const response = await fetch(url);
@@ -16,9 +27,9 @@ async function getData(url) {
 
 }
 
-async function get_money(IDE){
+async function get_money(){
   //add IDE functionality to all functions when it works
-  const url = `http://127.0.0.1:5000/player_money/${IDE}`
+  const url = `http://127.0.0.1:5000/player_money/${ide}`
   try {
     const result = await getData(url)
 
@@ -30,12 +41,11 @@ async function get_money(IDE){
   }
 }
 
-async function airport_fly_to(airport_number,IDE){
+async function airport_fly_to(airport_number){
 
   try{
-
-    const url = `http://127.0.0.1:5000/airport_selected/${IDE}/${airport_number}`
-    const result = await getData(url)
+    const url = `http://127.0.0.1:5000/airport_selected/${ide}/${airport_number}`;
+    const result = await getData(url);
     return;
 
   }
@@ -46,15 +56,36 @@ async function airport_fly_to(airport_number,IDE){
 }
 
 
-async function airport_selection_function(IDE, airportMarkers, map){
+async function airport_selection_function(){
   try {
-    const url = `http://127.0.0.1:5000/airport/${IDE}`;
+
+    await waitForValueChange();
+
+    const url = `http://127.0.0.1:5000/airport/${ide}`;
     const result = await getData(url)
-    const result1 = await get_money(IDE)
+
+    const result1 = await get_money()
     console.log(result)
 
     document.querySelector("#target12").innerHTML = ""
-    airportMarkers.clearLayers();
+
+    await flag_for_html()
+    await player_current_airport_info(ide)
+    await player_money(ide)
+
+    const location = await getData(`http://127.0.0.1:5000/player_location/${ide}`)
+    airportMarkers.clearLayers()
+
+    const locmarker = await L.marker([location.lattitude , location.longitude]).addTo(map);
+
+     map.flyTo([location.lattitude, location.longitude],5,{
+            duration: 3,             // 3 seconds duration
+            easeLinearity: 0.2,      // More linear easing (easing type)
+            noMoveStart: true        // Do not trigger the 'movestart' event
+        })
+        airportMarkers.addLayer(locmarker)
+
+    console.log(location)
 
     for(let i =0;i <= 19;i++){
       const button = document.createElement("button")
@@ -63,9 +94,7 @@ async function airport_selection_function(IDE, airportMarkers, map){
       button.setAttribute("class","airport_selection_button")
       button.setAttribute("id", buttonid)
       button.style.display = "block"
-      //L.marker([result[i+1].latitide , result[i+1].longitude]).addTo(map);
-      const location = await getData(`http://127.0.0.1:5000/player_location/${IDE}`)
-        await console.log(location)
+
 
 
 
@@ -80,9 +109,9 @@ async function airport_selection_function(IDE, airportMarkers, map){
         // needs a function that calls for some kind of flyto api
         // so an async function
         console.log(result[`${i + 1}`]['number'])
-        await airport_fly_to(result[`${i + 1}`]['number'],IDE)
+        await airport_fly_to(result[`${i + 1}`]['number'])
         document.querySelector("#select_airport").close()
-        await airport_selection_function(IDE, airportMarkers)
+        await airport_selection_function()
 
 
 
@@ -90,6 +119,7 @@ async function airport_selection_function(IDE, airportMarkers, map){
 
         console.log(button.id)
       })
+
       document.querySelector("#target12").appendChild(button)
     }
 
@@ -101,7 +131,7 @@ async function airport_selection_function(IDE, airportMarkers, map){
 
 }
 
-
+/*
 async function airport_buttons (){
   document.querySelector("#airport_selection").addEventListener("click", async () =>{
   document.querySelector("#select_airport").showModal()
@@ -111,7 +141,8 @@ document.querySelector("#colslaw").addEventListener("click",async ()=>{
   document.querySelector("#select_airport").close()
 })
 }
-/**
+*/
+airport_selection_function(ide)
 document.querySelector("#airport_selection").addEventListener("click", () =>{
   document.querySelector("#select_airport").showModal()
 })
@@ -119,5 +150,5 @@ document.querySelector("#airport_selection").addEventListener("click", () =>{
 document.querySelector("#colslaw").addEventListener("click",()=>{
   document.querySelector("#select_airport").close()
 })
-**/
+
 //asd
