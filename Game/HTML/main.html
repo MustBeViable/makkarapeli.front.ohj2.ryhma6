@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="../Javascript/profile.js" defer></script>
+    <script src="../Javascript/login_ui.js" defer></script>
+    <script src="../Javascript/login.js" defer></script>
     <script src="/Game/Javascript/playthrought_variables_universal.js" defer></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
     <script src="/Game/Javascript/map.js" defer></script>
@@ -35,6 +38,16 @@
     </div>
     <main>
         <div class="innerContainer">
+            <dialog id="login">
+                <h2 id="loginheader">Kirjaudu sisään</h2>
+                <div id="login_target">
+                </div>
+            </dialog>
+            <dialog id="profile">
+                <h2>Tervetuloa</h2>
+                <div id="profile_target">
+                </div>
+            </dialog>
             <div class="div1">
                 <div class="map" id="map_here">
                     <p>kartta</p>
