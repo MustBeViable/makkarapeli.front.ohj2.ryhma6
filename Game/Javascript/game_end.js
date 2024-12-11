@@ -24,7 +24,7 @@ async function game_end_creater(player_money_int, player_section_garbage) {
   if (player_money_int < 50 && player_section_garbage === 1) {
     const end_dialog = document.createElement('dialog');
     end_dialog.innerHTML = `<h2>Peli loppui</h2>
-<img src="/Game/images_and_other/tarkee_kuva.png" alt="lopetuskuva">
+<img src="/Game/images_and_other/A_creative_and_surreal_'Game_Over'_screen_combinin_resized_600x600.jpg" alt="lopetuskuva">
 <p>Sinulta loppui rahat ja et voi tehdä pelissä enään mitään. Voit palata aloitussivulle alhaalta.</p>
 <button id="game_end_button">Aloitussivulle</button>`;
     document.body.appendChild(end_dialog);
