@@ -49,6 +49,9 @@ async function airport_fly_to(airport_number){
 
 async function airport_selection_function(){
   try {
+    await gamesectionstatusupdate('garbage','false');
+
+
 
 
 
@@ -103,6 +106,9 @@ async function airport_selection_function(){
         await airport_fly_to(result[`${i + 1}`]['number'])
         document.querySelector("#select_airport").close()
         await airport_selection_function()
+
+
+
 
 
 

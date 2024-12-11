@@ -55,6 +55,14 @@ function createButton(id, text, parent,onClick){
 
 //uses data from garbage to perform actions
 async function garbage_action() {
+
+const joku = await game_section_check('garbage')
+console.log(joku.status)
+  //if(await game_section_check('garbage') == 0){
+
+  await gamesectionstatusupdate('garbage','true');
+
+
   const data = await garbage_content_java();
   const action = Object.keys(data)[0]
   const garbagemessage=document.querySelector('#garbage_message')
@@ -91,6 +99,8 @@ async function garbage_action() {
     })
 
   }
+
+ // }
   //if hole_in_charge comes from garbage
   else if (action === 'answer') {
     const kolo_amount = data.answer
