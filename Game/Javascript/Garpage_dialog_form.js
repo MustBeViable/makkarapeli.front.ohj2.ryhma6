@@ -136,14 +136,19 @@ open_garbage_button.addEventListener('click',()=>{
 const closeButton = document.querySelector('.close');
 closeButton.addEventListener('click', async() => {
   garbage_dialog.close();
-  await save_money()
-  await player_score(ide)
-  await player_money(ide)
-  await sausage_count(ide)
+  await save_money();
+  await player_score(ide);
+  await player_money(ide);
+  await sausage_count(ide);
   document.querySelector('#intro').style.display = 'block';
   document.querySelector('#garbage_results').style.display = 'none';
   document.querySelector('#garbage_message').style.display = 'none';
   document.querySelector('#garbage_button_container').style.display = 'none';
+  const game_check_code = await game_end_check()
+  console.log(game_check_code)
+  if (game_check_code === 1) {
+    console.log('jee')
+  };
 })
 
 //async function save_money_call() {
