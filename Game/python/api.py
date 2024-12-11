@@ -312,7 +312,7 @@ def player_current_makkara_list(ide):
     return current_list_of_player_makkaras(ide)
 
 
-@app.route('/check_satus/<ide>/<section>')
+@app.route('/check_status/<ide>/<section>')
 # return every player unique sausage and sausage count
 def check_section_satus(ide, section):
     try:
