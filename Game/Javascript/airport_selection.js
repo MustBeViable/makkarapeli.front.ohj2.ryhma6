@@ -67,13 +67,7 @@ async function airport_selection_function(IDE, airportMarkers, map){
       const location = await getData(`http://127.0.0.1:5000/player_location/${IDE}`)
         await console.log(location)
 
-        const locmarker = await L.marker([location.lattitude, location.longitude]).addTo(map);
-        map.flyTo([location.lattitude, location.longitude],5,{
-            duration: 3,             // 3 seconds duration
-            easeLinearity: 0.2,      // More linear easing (easing type)
-            noMoveStart: true        // Do not trigger the 'movestart' event
-        })
-        airportMarkers.addLayer(locmarker)
+
 
 
       button.addEventListener("click",async() =>{
