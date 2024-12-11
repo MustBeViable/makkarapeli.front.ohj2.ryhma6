@@ -19,12 +19,12 @@ def robber(id):
     player_money = int(fetch_player_money(id)['money'])
     if player_money == 1:
         aft_rob = player_money - 1
-        result = {'answer': f'{aft_rob}'}
+        result = {'robber': f'{aft_rob}'}
         return result
     else:
         aft_rob = player_money * 0.5
         update_player_money(aft_rob, id)
-        result = {'answer': f'{aft_rob}'}
+        result = {'robber': f'{aft_rob}'}
         return result
 
 
@@ -86,7 +86,7 @@ def garbage_can(game_id):
     hole in charge, finnair personnel"""
     from Game.python.commands import input_in_section
     outcome = \
-    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[70, 0, 0, 0], k=1)[0]
+    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[25, 25, 25, 25], k=1)[0]
     return outcome
 
 
