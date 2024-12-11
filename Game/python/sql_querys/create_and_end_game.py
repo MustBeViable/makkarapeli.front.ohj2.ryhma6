@@ -13,6 +13,8 @@ def create_game(screen_name):
     sql_id = (f"SELECT id FROM playthrough WHERE screen_name = '{screen_name}' AND finished = false ORDER BY id DESC")
     sql_executed(sql_id)
     new_id = sql_executed(sql_id)[0][0]
+    sql_create_status = (f"INSERT INTO makkara_game (game_id) VALUES ({new_id})")
+    sql_executed(sql_create_status)
     return new_id
 
 def finish_game_in_database(finish_id):
@@ -37,4 +39,13 @@ def fetch_all_screen_names():
         fine_screen_name_list.append(name[0])
     return fine_screen_name_list
 
-create_game('perse')
+def create_game_safely(screen_name):
+    """Creates a new game and finishes all unfinished games of the player.
+    Returns the id of the created game."""
+    unfinished_game_list = fetch_unfinished_playthrough(screen_name)
+    if len(unfinished_game_list) != 0:
+        for unfinished_game in unfinished_game_list:
+            unfinished_game_id = unfinished_game[0]
+            finish_game_in_database(unfinished_game_id)
+    current_game_id = create_game(screen_name)
+    return current_game_id
