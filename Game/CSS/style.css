@@ -118,6 +118,9 @@ nav {
     text-align: center;
 .taxfree_img {
     background-image: url("../images_and_other/taxfree.png");
+    background-position: center;
+    background-size: 100%;
+    opacity: 0.85;
 }
 
 
@@ -193,3 +196,10 @@ button {
     font-weight: bolder;
     background-color: #e0feff;
 }
+
+#nameForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }

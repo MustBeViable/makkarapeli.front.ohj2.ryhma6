@@ -2,27 +2,26 @@
 
 const dialog_instructions = document.getElementById('instructions');
 const button_instructions = document.getElementById('instructions_btn');
-const close_instructions = document.getElementById('close_instructions');
 
 
 button_instructions.addEventListener('click',  async(evt) => {
   dialog_instructions.showModal();
   dialog_instructions.innerHTML = `<h3>Pelin ohjeistus</h3>
                                     <p>Pelin tavoitteena on kerätä mahdollisimman paljon makkaroita 
-                                    ja siten kerryttää pistesaalista. Makkaroita voi ostaa 
+                                    ja siten maksimoida pistesaalista. Makkaroita voi ostaa 
                                     lentokenttien Tax free -myymälöistä. Kullakin maalla on oma 
                                     makkaransa, ja rilaisista makkaroista saa eri määrän pisteitä. 
                                     Peli päättyy, kun sinulla ei ole enää rahaa ostaa lentolippua 
                                     tai et pysty enää tuplaamaan rahojasi. Edistymisesi tallentuu 
                                     automaattisesti.</p>
                                     
-                                    <p>Saapuessasi uuteen maahan, voi pelaaja koettaa onneaan
+                                    <p>Saapuessa uuteen maahan, voi pelaaja koettaa onneaan
                                     roskiksessa. Siellä on mahdollisuus ansaita lisää rahaa, mutta 
-                                    toisaalta menettääksesi osan rahoista tai jo kerätyistä makkaroista. 
-                                    Tämän jälkeen on mahdollista vierailla kyseisen maan taxfree-myymälässä
-                                    ostaakseen kyseisen maan makkaran. Taxfreen jälkeen pelaajan on taas
-                                     lennettävä seuraavaan maahan kasvattaakseen edelleen makkarakokoelmaa
-                                      ja pistesaldoaan.</p>
+                                    toisaalta menettää osan rahoista tai jo kerätyistä makkaroista. 
+                                    Tämän jälkeen pelaajan on mahdollista vierailla kyseisen maan 
+                                    taxfree-myymälässä ostaakseen kyseisen maan makkaran. Taxfreen 
+                                    jälkeen pelaajan on taas lennettävä seuraavaan maahan
+                                    kasvattaakseen edelleen makkarakokoelmaa ja pistesaldoaan.</p>
                                     
                                     <h3>Pelin visio</h3>
                                     <p>Makkara Mania: Airport Adventure on humoristinen tuuria ja strategiaa 
@@ -46,9 +45,11 @@ button_instructions.addEventListener('click',  async(evt) => {
                                     on muita erikoismakkaroita, kuten legendaarinen mustamakkara, jonka voi 
                                     löytää ainoastaan päättäväisellä ja onnekkaalla roskisten kaivamisella.</p>
                                     <button id="close_instructions">Sulje</button>`
-});
 
-close_instructions.addEventListener('click', (evt) => {
+const dynamicCloseBtn = document.getElementById('close_instructions');
+
+dynamicCloseBtn.addEventListener('click', (evt) => {
   dialog_instructions.close();
   console.log('Instructions closed');
+  });
 });
