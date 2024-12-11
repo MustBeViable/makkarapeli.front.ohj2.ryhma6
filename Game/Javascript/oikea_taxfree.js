@@ -43,6 +43,9 @@ button_taxfree.addEventListener('click', async (evt) => {
   buy_sausage.addEventListener('click', async (evt) => {
     console.log('Tehdään kaupat');
     await buySausage(ide);
+    await player_score(ide)
+    await player_money(ide)
+    await sausage_count(ide)
     dialog_taxfree.close();
   });
   close_taxfree.addEventListener('click', (evt) => {

@@ -6,18 +6,28 @@ const button_instructions = document.getElementById('instructions_btn');
 
 button_instructions.addEventListener('click',  async(evt) => {
   dialog_instructions.showModal();
-  dialog_instructions.innerHTML = `<h3>Pelin ohjeistus</h3>
+  dialog_instructions.innerHTML = `<div class="game_board_inst">
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    </div>
+                                    <h3>Pelin ohjeistus</h3>
                                     <p>Pelin tavoitteena on kerätä mahdollisimman paljon makkaroita 
                                     ja siten maksimoida pistesaalista. Makkaroita voi ostaa 
                                     lentokenttien Tax free -myymälöistä. Kullakin maalla on oma 
-                                    makkaransa, ja rilaisista makkaroista saa eri määrän pisteitä. 
-                                    Peli päättyy, kun sinulla ei ole enää rahaa ostaa lentolippua 
-                                    tai et pysty enää tuplaamaan rahojasi. Edistymisesi tallentuu 
-                                    automaattisesti.</p>
+                                    makkaransa, ja erilaisista makkaroista saa eri määrän pisteitä. 
+                                    Peli päättyy, kun pelaajalla ei ole enää rahaa ostaa lentolippua.
+                                    Pelaaja kilpailee itseään ja 
+                                    muita pelaajia vastaan yrittäen ylittää aiemmat piste-ennätykset. 
+                                    Pelaajan edistyminen tallentuu automaattisesti.</p>
                                     
                                     <p>Saapuessa uuteen maahan, voi pelaaja koettaa onneaan
                                     roskiksessa. Siellä on mahdollisuus ansaita lisää rahaa, mutta 
-                                    toisaalta menettää osan rahoista tai jo kerätyistä makkaroista. 
+                                    toisaalta riski menettää osan rahoista tai jo kerätyistä makkaroista. 
                                     Tämän jälkeen pelaajan on mahdollista vierailla kyseisen maan 
                                     taxfree-myymälässä ostaakseen kyseisen maan makkaran. Taxfreen 
                                     jälkeen pelaajan on taas lennettävä seuraavaan maahan
