@@ -3,7 +3,7 @@ from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_g
 from Game.python.search_of_kolo import kolo_search
 from Game.python.sql_querys.country_code_for_flag import country_code_for_flag
 from Game.python.sql_querys.fetch_player_makkaras import current_list_of_player_makkaras
-from Game.python.sql_querys.game_logic_table import check_player_makkara_game
+from Game.python.sql_querys.game_logic_table import check_player_makkara_game, update_player_makkara_game
 from Game.python.sql_querys.makkara_sql_haku import search_makkara, search_makkara_id
 from Game.python.sql_querys.money_function import update_player_money
 from Game.python.sql_querys.player_current_airport import player_current_airport_sql
@@ -312,9 +312,9 @@ def player_current_makkara_list(ide):
     return current_list_of_player_makkaras(ide)
 
 
-@app.route('/check_satus/<ide>/<section>')
+@app.route('/check_status/<ide>/<section>')
 # return every player unique sausage and sausage count
-def check_section_satus(ide, section):
+def check_satus(ide, section):
     try:
         status_dict = check_player_makkara_game(ide)
         if not all(section in status_dict for sec in ('game_id', 'garbage', 'taxfree', 'airport', 'hole_in_charge')):
@@ -338,7 +338,33 @@ def check_section_satus(ide, section):
     jsonresponse = json.dumps(response_text)
     return Response(response=jsonresponse, status=status_code, mimetype="application/json")
 
+@app.route('/update_status/<ide>/<section>/<done>')
+# return every player unique sausage and sausage count
+def check_section_satus(ide, section, done):
+    """
+       Parameters
+       ide : int, The ide of the game.
+       section : str, The section of the game to be updated
+       done : str, 'true' or 'false'
+       Returns status code and message (success or error)
+       """
+    try:
+        update_player_makkara_game(ide, section, done)
+        status_code = 200
+        response_text = {
+            'status': status_code,
+            'message': 'Success.'
+        }
+    except Exception as e:
+        status_code = 500
+        response_text = {
+            'status': status_code,
+            'message': str(e)
+        }
+    jsonresponse = json.dumps(response_text)
+    return Response(response=jsonresponse, status=status_code, mimetype="application/json")
+
 CORS(app)
 
 if __name__ == '__main__':
-    app.run(use_reloader=True, host='127.0.0.1', port=5000)
+    app.run(use_reloader=True, host='127.0.0.1', port=3000)
