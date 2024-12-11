@@ -31,6 +31,9 @@ main {
     margin: auto;
     height: 530px;
 }
+.sausage_cursor {
+    cursor: url('../images_and_other/file3.png'), auto;
+}
 
 nav {
 	width: 100%;
