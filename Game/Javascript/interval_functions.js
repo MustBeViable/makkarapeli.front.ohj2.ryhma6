@@ -15,13 +15,26 @@ async function country() {
   }
 }
 
+async function flag_for_html() {
+  const country_code = await country(ide);
+  console.log(ide)
+  console.log(`${country_code} countrycode`)
+  if (country_code) {
+    flag_img.src = `https://flagsapi.com/${country_code}/shiny/64.png`;
+    flag_img.style = 'scale: 235%; padding-left: 3.4rem; padding-bottom: 1.6rem; padding-top: 1.5rem;';
+    flag.appendChild(flag_img);
+  }
+}
+
 async function sausage_count(ide) {
   try {
     const response = await fetch(
         `http://127.0.0.1:5000/player_makkaras/${ide}`);
     const json = await response.json();
     const makkara_count = parseFloat(json.makkara_count);
-    return makkara_count;
+    console.log('makkara');
+    const parag = document.querySelector('#num_of_sausages');
+    parag.textContent = makkara_count;
   } catch (error) {
     console.log(error);
   }
@@ -31,7 +44,9 @@ async function player_score(ide) {
   try {
     const response = await fetch(`http://127.0.0.1:5000/player_score/${ide}`);
     const json = await response.json();
-    return json.score;
+    console.log('score');
+    const score = document.querySelector('#player_score');
+    score.textContent = json.score;
   } catch (error) {
     console.log(error);
   }
@@ -41,40 +56,36 @@ async function player_money(ide) {
   try {
     const response = await fetch(`http://127.0.0.1:5000/player_money/${ide}`);
     const json = await response.json();
-    return json.money;
+    console.log('raha');
+    const money = document.querySelector('#player_money');
+    money.textContent = json.money;
+    return json.money
   } catch (error) {
     console.log(error);
   }
 }
 
-async function player_current_airport_info (ide) {
+async function player_current_airport_info(ide) {
   try {
-    const response = await fetch(`http://127.0.0.1:5000/player_current_airport/${ide}`)
-    const json = await response.json()
-    return json
+    const response = await fetch(
+        `http://127.0.0.1:5000/player_current_airport/${ide}`);
+    const json = await response.json();
+    console.log('lentsikka kentsukka');
+    const player_location = document.querySelector('#player_location');
+    player_location.innerHTML = `${json.name} ${json.countrycode}`;
   } catch (error) {
-    console.log(error + 'Daisi dulla virhe :---DDDD')
+    console.log(error + 'Daisi dulla virhe :---DDDD');
   }
 }
 
+/**
+ *
 
-setInterval(async function() {
-  const country_code = await country(ide);
-  if (country_code) {
-    flag_img.src = `https://flagsapi.com/${country_code}/shiny/64.png`;
-    flag_img.style = 'scale: 235%; padding-left: 3.4rem; padding-bottom: 1.6rem; padding-top: 1.5rem;'
-    flag.appendChild(flag_img);
-  } else {
-  } //vastaa pythonin pass, voi olla turha, mut laitoin varuilta
-  const parag = document.querySelector('#num_of_sausages');
-  parag.textContent = await sausage_count(ide);
-  const score = document.querySelector('#player_score');
-  score.textContent = await player_score(ide);
-  const money = document.querySelector('#player_money');
-  money.textContent = await player_money(ide);
-  const player_location = document.querySelector('#player_location')
-  const player_info = await player_current_airport_info(ide)
-  player_location.innerHTML = `${player_info.name} ${player_info.countrycode}`
-}, 3000);
+ *   const player_location = document.querySelector('#player_location')
+ *   const player_info = await player_current_airport_info(ide)
+ *   player_location.innerHTML = `${player_info.name} ${player_info.countrycode}`
+ *
+ *
+ */
 
 //const player_location = document.querySelector()
