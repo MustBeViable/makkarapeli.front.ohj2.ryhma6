@@ -55,73 +55,82 @@ function createButton(id, text, parent,onClick){
 
 //uses data from garbage to perform actions
 async function garbage_action() {
-  const data = await garbage_content_java();
-  const action = Object.keys(data)[0]
-  const garbagemessage=document.querySelector('#garbage_message')
-  const garbageresults=document.querySelector('#garbage_results')
-  const buttoncontainer = document.querySelector('#garbage_button_container')
-  buttoncontainer.innerHTML = ''
+  const status = await game_section_check('garbage')
+  console.log(`ollaan roskiksessa ${status}`)
+  console.log(`ollaan roskiksessa ${status}` + typeof status)
+  if (status === 0) {
+    const testi = await gamesectionstatusupdate('garbage', '1')
+    console.log(`ollaan if sisällä: ${testi}`)
+    const data = await garbage_content_java();
+    const action = Object.keys(data)[0];
+    const garbagemessage = document.querySelector('#garbage_message');
+    const garbageresults = document.querySelector('#garbage_results');
+    const buttoncontainer = document.querySelector('#garbage_button_container');
+    buttoncontainer.innerHTML = '';
 
-  //if money found from garbage, doubling actions
+    //if money found from garbage, doubling actions
 
-  if (action === 'player_found_money') {
-    const amount = data.player_found_money
-    garbagemessage.textContent=`Löysit roskiksesta ${amount}€`
+    if (action === 'player_found_money') {
+      const amount = data.player_found_money;
+      garbagemessage.textContent = `Löysit roskiksesta ${amount}€`;
 
-    //created yes button for doubling
-    createButton('button_yes', 'Tuplaa', buttoncontainer, async function() {
-      const doubling_result = await doubling()
-      //if money won
-      if ((parseInt(doubling_result.result) === 0)) {
-        garbagemessage.textContent=`Hävisit, parempi tuuri ensikerralla!`
-        await player_money(ide)
-        buttoncontainer.innerHTML = ''
-      } else {
-        garbagemessage.textContent=`Tuplaus onnistui, sait nyt ${doubling_result.result}€`;
-        await player_money(ide)
-      }
-    });
-    // no button if dont want to double and what if dont double
-    createButton('button_no', 'älä tuplaa', buttoncontainer, async function() {
-      garbagemessage.textContent= `Säästit rahasi!`;
-      await player_money(ide)
-      // Disables the buttons
-      buttoncontainer.innerHTML = ''
+      //created yes button for doubling
+      createButton('button_yes', 'Tuplaa', buttoncontainer, async function() {
+        const doubling_result = await doubling();
+        //if money won
+        if ((parseInt(doubling_result.result) === 0)) {
+          garbagemessage.textContent = `Hävisit, parempi tuuri ensikerralla!`;
+          await player_money(ide);
+          buttoncontainer.innerHTML = '';
+        } else {
+          garbagemessage.textContent = `Tuplaus onnistui, sait nyt ${doubling_result.result}€`;
+          await player_money(ide);
+        }
+      });
+      // no button if dont want to double and what if dont double
+      createButton('button_no', 'älä tuplaa', buttoncontainer,
+          async function() {
+            garbagemessage.textContent = `Säästit rahasi!`;
+            await player_money(ide);
+            // Disables the buttons
+            buttoncontainer.innerHTML = '';
 
-    })
+          });
 
+    }
+    //if hole_in_charge comes from garbage
+    else if (action === 'answer') {
+      const kolo_amount = data.answer;
+      garbagemessage.textContent = `kolovastaava vei sinulta ${kolo_amount} makkaraa`;
+      await player_score(ide);
+      //if robber comes from garbage
+    } else if (action === 'robber') {
+      const robber_amount = data.robber;
+      garbagemessage.textContent = `Rosvo vei sinulta ${robber_amount}€`;
+      await player_money(ide);
+      //if finnair_personel comes from garbage
+    } else if (action === 'value') {
+      garbagemessage.textContent = `Haluatko lahjoittaa 500€ ympäristön hyvinvointiin? Lahjoittajana voit saada harvinaisen palkinnon`;
+      createButton('finnair_button_yes', 'kyllä', buttoncontainer,
+          async function() {
+            const finnair_result = await finnair();
+            await player_money(ide);
+            await player_score(ide);
+            await sausage_count(ide);
+            garbagemessage.textContent = `Kiva kuin lahjoitit! Sait harvinaisen Finnair-makkaran.`;
+            // Disables the buttons
+            buttoncontainer.innerHTML = '';
+          });
+
+      createButton('finnair_button_no', 'ei', buttoncontainer, function() {
+        garbagemessage.textContent = `Et lahjoittanut höh! Maapallo tuhoutuu :(`;
+        // Disables the buttons
+        buttoncontainer.innerHTML = '';
+
+      });
+    }
+    return action;
   }
-  //if hole_in_charge comes from garbage
-  else if (action === 'answer') {
-    const kolo_amount = data.answer
-    garbagemessage.textContent=`kolovastaava vei sinulta ${kolo_amount} makkaraa`;
-    await player_score(ide)
-    //if robber comes from garbage
-  } else if (action === 'robber') {
-    const robber_amount = data.robber
-    garbagemessage.textContent=`Rosvo vei sinulta ${robber_amount}€`;
-    await player_money(ide)
-    //if finnair_personel comes from garbage
-  } else if (action === 'value') {
-    garbagemessage.textContent=`Haluatko lahjoittaa 500€ ympäristön hyvinvointiin? Lahjoittajana voit saada harvinaisen palkinnon`;
-    createButton('finnair_button_yes', 'kyllä', buttoncontainer, async function() {
-          const finnair_result = await finnair()
-          await player_money(ide)
-          await player_score(ide)
-          await sausage_count(ide)
-          garbagemessage.textContent=`Kiva kuin lahjoitit! Sait harvinaisen Finnair-makkaran.`;
-          // Disables the buttons
-          buttoncontainer.innerHTML = ''
-        });
-
-    createButton('finnair_button_no', 'ei', buttoncontainer, function() {
-      garbagemessage.textContent=`Et lahjoittanut höh! Maapallo tuhoutuu :(`;
-      // Disables the buttons
-      buttoncontainer.innerHTML = ''
-
-    })
-  }
-  return action
 }
 //buttons for opening garbage modal and closing and modal actions
 const open_garbage_button=document.querySelector('#open_garbage');
