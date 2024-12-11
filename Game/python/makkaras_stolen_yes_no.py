@@ -9,4 +9,4 @@ def kolo_stolen_yes_no(game_id):
     else:
         result = {"makkara": "stolen"}
         return result
-print(kolo_stolen_yes_no(12))
+print(kolo_stolen_yes_no(13))

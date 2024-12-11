@@ -142,7 +142,7 @@ document.querySelector("#colslaw").addEventListener("click",async ()=>{
 })
 }
 */
-airport_selection_function(ide)
+airport_selection_function()
 document.querySelector("#airport_selection").addEventListener("click", () =>{
   document.querySelector("#select_airport").showModal()
 })

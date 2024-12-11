@@ -320,7 +320,6 @@ def makkaras_stolen(ide):
 
 
 @app.route('/check_status/<ide>/<section>')
-# return every player unique sausage and sausage count
 def check_satus(ide, section):
     try:
         status_dict = check_player_makkara_game(ide)
@@ -343,8 +342,7 @@ def check_satus(ide, section):
     return Response(response=jsonresponse, status=status_code, mimetype="application/json")
 
 @app.route('/update_status/<ide>/<section>/<done>')
-# return every player unique sausage and sausage count
-def check_section_status(ide, section, done):
+def update_status(ide, section, done):
     """
        Parameters
        ide : int, The ide of the game.
@@ -367,8 +365,7 @@ def check_section_status(ide, section, done):
     return Response(response=jsonresponse, status=status_code, mimetype="application/json")
 
 @app.route('/endgame/<ide>')
-# return every player unique sausage and sausage count
-def check_section_satus(ide):
+def endgame(ide):
     """
     Ends game in sql.
        Parameters ide : int, The ide of the game.
