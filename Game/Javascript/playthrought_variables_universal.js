@@ -1,6 +1,6 @@
 'use strict';
 
-let ide;
+let ide = 1;
 
 function saveIde(id) {
   ide = id

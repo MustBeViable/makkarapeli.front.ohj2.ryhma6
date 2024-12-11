@@ -17,6 +17,8 @@ async function country() {
 
 async function flag_for_html() {
   const country_code = await country(ide);
+  console.log(ide)
+  console.log(`${country_code} countrycode`)
   if (country_code) {
     flag_img.src = `https://flagsapi.com/${country_code}/shiny/64.png`;
     flag_img.style = 'scale: 235%; padding-left: 3.4rem; padding-bottom: 1.6rem; padding-top: 1.5rem;'

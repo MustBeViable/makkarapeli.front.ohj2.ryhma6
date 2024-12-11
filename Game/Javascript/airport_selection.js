@@ -16,9 +16,9 @@ async function getData(url) {
 
 }*/
 
-async function get_money(IDE){
+async function get_money(){
   //add IDE functionality to all functions when it works
-  const url = `http://127.0.0.1:5000/player_money/${IDE}`
+  const url = `http://127.0.0.1:5000/player_money/${ide}`
   try {
     const result = await getData(url)
 
@@ -30,11 +30,11 @@ async function get_money(IDE){
   }
 }
 
-async function airport_fly_to(airport_number,IDE){
+async function airport_fly_to(airport_number){
 
   try{
 
-    const url = `http://127.0.0.1:5000/airport_selected/${IDE}/${airport_number}`
+    const url = `http://127.0.0.1:5000/airport_selected/${ide}/${airport_number}`
     const result = await getData(url)
     return;
 
@@ -46,18 +46,19 @@ async function airport_fly_to(airport_number,IDE){
 }
 
 
-async function airport_selection_function(IDE, airportMarkers, map){
+async function airport_selection_function(){
   try {
-    const url = `http://127.0.0.1:5000/airport/${IDE}`;
+    const url = `http://127.0.0.1:5000/airport/${ide}`;
     const result = await getData(url)
-    
-    const result1 = await get_money(IDE)
+
+    const result1 = await get_money()
     console.log(result)
 
     document.querySelector("#target12").innerHTML = ""
-    airportMarkers.clearLayers();
 
-    const location = await getData(`http://127.0.0.1:5000/player_location/${IDE}`)
+    await flag_for_html()
+    await player_current_airport_info(ide)
+    const location = await getData(`http://127.0.0.1:5000/player_location/${ide}`)
     await console.log(location)
 
     for(let i =0;i <= 19;i++){
@@ -90,9 +91,9 @@ async function airport_selection_function(IDE, airportMarkers, map){
         // needs a function that calls for some kind of flyto api
         // so an async function
         console.log(result[`${i + 1}`]['number'])
-        await airport_fly_to(result[`${i + 1}`]['number'],IDE)
+        await airport_fly_to(result[`${i + 1}`]['number'])
         document.querySelector("#select_airport").close()
-        await airport_selection_function(IDE, airportMarkers)
+        await airport_selection_function()
 
 
 
