@@ -59,7 +59,7 @@ async function airport_fly_to(airport_number){
 async function airport_selection_function(){
   try {
 
-    await waitForValueChange();
+
 
     const url = `http://127.0.0.1:5000/airport/${ide}`;
     const result = await getData(url)
@@ -142,7 +142,7 @@ document.querySelector("#colslaw").addEventListener("click",async ()=>{
 })
 }
 */
-airport_selection_function()
+
 document.querySelector("#airport_selection").addEventListener("click", () =>{
   document.querySelector("#select_airport").showModal()
 })
