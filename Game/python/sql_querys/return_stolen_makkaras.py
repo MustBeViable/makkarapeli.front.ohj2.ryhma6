@@ -11,3 +11,17 @@ def return_player_makkaras(id):
     kursori = yhteys.cursor()
     kursori.execute(sql)
     return
+
+def steal_makkara(makkara):
+    """Takes makkara_reached id, sets it to stolen=true"""
+    sql = (f"UPDATE makkara_reached "
+           f"SET stolen = True "
+           f"WHERE id = {makkara})")
+    kursori = yhteys.cursor()
+    kursori.execute(sql)
+    return
+
+def reduce_score(makkaraa):
+    sql = (f"UPDATE  "
+           f"SET stolen = True "
+           f"WHERE id = {makkara})")

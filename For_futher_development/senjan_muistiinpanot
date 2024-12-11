@@ -1,8 +1,8 @@
-Taxi tai uber ei tarkista rahoja.
-Finnairin edustaja tarkista.
-Peli ei lopu tietokannassa pelin päättyessä.
-Pelissä kertyy liikaa rahaa.
-Siirrä komennot niin, ettei uutta tarvitse lisätä 10 paikkaan.
-Ehkä muuta fetchin nimet.
+Garbage can:
+Painoarvot kaikille muille paitsi rahalle on 0 Pythonissa
+Kovakoodattu id
+Finnairin tekstit on ihan pielessä
+Kolovastaava vie 1000 makkaraa
 
-Kolovastaava ei vie pisteitä.
+Airport selection:
+Ei anna lentää kuin kerran

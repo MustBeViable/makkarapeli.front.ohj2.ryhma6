@@ -6,11 +6,14 @@ from Game.python.Game_ascii_art.finnair_ascii import finnair_ascii
 from Game.python.Game_ascii_art.hole_in_charge_ascii import hole_in_charge_ascii
 from Game.python.Game_ascii_art.money_found_garbage_can import happy_garbage_can
 from Game.python.Game_ascii_art.robber_from_garbage_can import robber_2
+from Game.python.count_makkara_score import count_makkara_score
 from Game.python.game_texts import no, yes, yhteys, finnair_makkara, finnair_donation
 from For_futher_development.secret_black_sausage import secret_black_sausage_chance, amount
 from Game.python.doubling_machine import tuplataanko
 from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras
+from Game.python.sql_querys.makkara_sql_haku import search_any_makkara_score, fetch_makkara_id_from_reached
 from Game.python.sql_querys.money_function import update_player_money, fetch_player_money
+from Game.python.sql_querys.return_stolen_makkaras import steal_makkara
 from Game.python.sql_querys.score_fetch_and_score_update_querys import player_score_fetch, player_score_update
 
 
@@ -47,13 +50,17 @@ def hole_in_charge(game_id):
         lost_makkaras = random.sample(own_makkaras, num_to_lose)
 
         # The selected sausages are removed from original list and added to hole in charge's list
+        minus_score = 0
         for makkara in lost_makkaras:
-            sql = (
-                f"UPDATE makkara_reached SET stolen = True WHERE id IN (SELECT id FROM makkara_reached WHERE id = {makkara})")
-            kursori = yhteys.cursor()
-            kursori.execute(sql)
+            steal_makkara(makkara)
+            makkara_id = fetch_makkara_id_from_reached(makkara)
+            minus_score += count_makkara_score(game_id, makkara_id)
+        new_score = player_score_fetch(game_id) - minus_score
+        player_score_update(game_id, new_score)
         result = {'answer': f'{len(lost_makkaras)}'}
     return result
+
+print(hole_in_charge(1))
 
 
 def finnair_personnel(game_id):

@@ -14,7 +14,7 @@ def count_local_makkara_score(game_id):
 
 def count_makkara_score(game_id, makkara_id):
     """ Checks the score of a makkara given as parameter."""
-    default_score = search_any_makkara_score(game_id, makkara_id)
+    default_score = search_any_makkara_score(makkara_id)
     amount = search_amount_of_any_makkara(game_id, makkara_id)
     score = max(default_score - (amount * (default_score // multiplier)), default_score // multiplier)
     return score

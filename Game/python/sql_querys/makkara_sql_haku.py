@@ -87,14 +87,24 @@ def search_amount_of_any_makkara(game_id, makkara_id):
     return result[0]['COUNT(makkara_id)']
 
 
-def search_any_makkara_score(game_id, makkara_id):
+def search_any_makkara_score(makkara_id):
 
     """Fetches makkaras points from country given as a parameter"""
 
     sql = (f"SELECT score "
            f"FROM makkara "
-           f"WHERE makkara_id = {makkara_id}")
+           f"WHERE id = {makkara_id}")
     kursori = yhteys.cursor(dictionary=True)
     kursori.execute(sql)
     result = kursori.fetchall()
     return result[0]["score"]
+
+def fetch_makkara_id_from_reached(reached_id):
+    """Takes reached makkara's unique id and returns the id of that makakra type"""
+    sql = (f"SELECT makkara_id "
+           f"FROM makkara_reached "
+           f"WHERE id = {reached_id}")
+    kursori = yhteys.cursor(dictionary=True)
+    kursori.execute(sql)
+    result = kursori.fetchall()
+    return result[0]["makkara_id"]
