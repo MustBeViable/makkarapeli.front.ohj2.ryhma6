@@ -5,7 +5,7 @@
 //so once when the page is opened and after that in every event listener in airport selection buttons
 
 
-function waitForValueChange() {
+/*async function waitForValueChange() {
   return new Promise((resolve) => {
     const interval = setInterval(() => {
       if (ide !== undefined) {
@@ -15,6 +15,7 @@ function waitForValueChange() {
     }, 100); // Check every 50ms (adjust interval as needed)
   });
 }
+*/
 
 async function getData(url) {
     try {
@@ -59,7 +60,7 @@ async function airport_fly_to(airport_number){
 async function airport_selection_function(){
   try {
 
-    await waitForValueChange();
+    //await waitForValueChange();
 
     const url = `http://127.0.0.1:5000/airport/${ide}`;
     const result = await getData(url)
@@ -143,6 +144,7 @@ document.querySelector("#colslaw").addEventListener("click",async ()=>{
 }
 */
 airport_selection_function()
+
 document.querySelector("#airport_selection").addEventListener("click", () =>{
   document.querySelector("#select_airport").showModal()
 })
