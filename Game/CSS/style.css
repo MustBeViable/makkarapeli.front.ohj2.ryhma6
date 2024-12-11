@@ -206,3 +206,10 @@ button {
     background-size: 100%;
     width: 40%;
 }
+
+#nameForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
