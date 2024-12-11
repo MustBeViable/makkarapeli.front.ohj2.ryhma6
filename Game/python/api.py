@@ -3,6 +3,7 @@ from Game.python.garbage_can import garbage_can, finnair_personnel, money_from_g
 from Game.python.search_of_kolo import kolo_search
 from Game.python.sql_querys.country_code_for_flag import country_code_for_flag
 from Game.python.sql_querys.fetch_player_makkaras import current_list_of_player_makkaras
+from Game.python.sql_querys.game_logic_table import check_player_makkara_game
 from Game.python.sql_querys.makkara_sql_haku import search_makkara, search_makkara_id
 from Game.python.sql_querys.money_function import update_player_money
 from Game.python.sql_querys.player_current_airport import player_current_airport_sql
@@ -309,6 +310,34 @@ def player_current_airport(ide):
 # return every player unique sausage and sausage count
 def player_current_makkara_list(ide):
     return current_list_of_player_makkaras(ide)
+
+
+@app.route('/check_satus/<ide>/<section>')
+# return every player unique sausage and sausage count
+def check_section_satus(ide, section):
+    try:
+        status_dict = check_player_makkara_game(ide)
+        if not all(section in status_dict for sec in ('game_id', 'garbage', 'taxfree', 'airport', 'hole_in_charge')):
+            status_code = 404
+            response_text = {
+                'status': status_code,
+                'message': 'Error in api call.'
+            }
+        else:
+            status_code = 200
+            response_text = {
+                'status': status_code,
+                'section_status': status_dict[section]
+            }
+    except Exception as e:
+        status_code = 500
+        response_text = {
+            'status': status_code,
+            'message': str(e)
+        }
+    jsonresponse = json.dumps(response_text)
+    return Response(response=jsonresponse, status=status_code, mimetype="application/json")
+
 
 
 CORS(app)
