@@ -6,23 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     <script src="../Javascript/profile.js" defer></script>
     <script src="../Javascript/login_ui.js" defer></script>
     <script src="../Javascript/login.js" defer></script>
-    <script src="/Game/Javascript/playthrought_variables_universal.js" defer></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
-    <script src="/Game/Javascript/map.js" defer></script>
-    <script src="/Game/Javascript/airport_selection.js" defer></script>
-    <script src="/Game/Javascript/hole_search.js" defer></script>
-    <script src="/Game/Javascript/Garpage_dialog_form.js" defer></script>
-    <script src="/Game/Javascript/interval_functions.js" defer></script>
-    <script src="/Game/Javascript/oikea_taxfree.js" defer></script>
-    <script src="/Game/Javascript/game_plays_here.js" defer></script>
-    <script src="/Game/Javascript/top_5_chart.js" defer></script>
-    <script src="/Game/Javascript/player_count_of_all_unique_sausages.js" defer></script>
-    <script src="/Game/Javascript/game_istructions.js" defer></script>
-
+    <script src="../Javascript/playthrought_variables_universal.js" defer></script>
     <style>
         body {
             font-family: "Trirong", serif;
@@ -33,7 +20,7 @@
 <div class="container">
     <div class="navi">
         <header class="pic">
-            <h1>MAKKARAMANIA: Airport Adventure</h1>
+            <h1>MAKKARAMANIA</h1>
         </header>
     </div>
     <main>
@@ -41,11 +28,13 @@
             <dialog id="login">
                 <h2 id="loginheader">Kirjaudu sisään</h2>
                 <div id="login_target">
+
                 </div>
             </dialog>
             <dialog id="profile">
                 <h2>Tervetuloa</h2>
                 <div id="profile_target">
+
                 </div>
             </dialog>
             <div class="div1">
@@ -54,7 +43,7 @@
                 </div>
                 <div class="flagAndSausage">
                     <div class="flag" id="flag">
-                        <p></p>
+                        <p>lippu</p>
                     </div>
                     <div class="playerSausageNum">
                         <p>Makkarat yheensä:</p>
@@ -75,21 +64,14 @@
                         <div class="garbage">
                             <h2>Pengo roskista</h2>
                             <dialog id="garbage_can">
-                                <div id="intro">
-                                    <h3>Tervetuloa roskiksen luo!</h3>
-                                    <form method="dialog" id="garbage_form">
-                                        <p>Haluatko penkoa roskista ja koettaa onneasi?</p>
-                                        <button id="garbage">Kyllä!</button>
-
-                                    </form>
-                                </div>
-                                <p id="garbage_message"></p>
-                                <div id="garbage_button_container"></div>
-                                <p id="garbage_results"></p>
-                                <button type="button" class="close">Sulje</button>
-
+                                <h3>Tervetuloa roskiksen luo!</h3>
+                                <form method="dialog">
+                                    <p>Haluatko penkoa roskista ja koettaa onneasi?</p>
+                                    <button id="garbage">Kyllä!</button>
+                                    <button class="close" autofocus>Sulje</button>
+                                </form>
                             </dialog>
-                            <button id="open_garbage">Penkomaan</button>
+                            <button>Penkomaan</button>
                         </div>
                     </div>
                     <div class="div2_box2">
@@ -148,13 +130,11 @@
                     <div class="instructions_and_high_score">
                         <p id="instructions_btn">Pelin kuvaus ja ojeet</p>
                         <dialog id="instructions">
-                            <button type="button" id="close_instructions">Sulje</button>
+                            <button id="close_instructions" autofocus>Sulje</button>
                         </dialog>
                     </div>
-                    <div class="instructions_and_high_score">
-                        <p>Top 5 pelaajien high score</p>
-                        <div id="high_score">
-                        </div>
+                    <div class="instructions_and_high_score" id="high_score">
+                        <p>Top 5 high score</p>
                     </div>
                 </div>
             </div>
