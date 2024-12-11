@@ -60,8 +60,6 @@ def hole_in_charge(game_id):
         result = {'answer': f'{len(lost_makkaras)}'}
     return result
 
-print(hole_in_charge(1))
-
 
 def finnair_personnel(game_id):
     """Player can donate 500 euros and get rare sausage"""
