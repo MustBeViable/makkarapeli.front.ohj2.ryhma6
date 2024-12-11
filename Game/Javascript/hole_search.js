@@ -78,9 +78,8 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
   });
 }
 
-async function hole_search_buttons(ide) {
-  const dialog_hole_search = document.querySelector('#search_hole');
-  const hole_search_button = document.querySelector('#hole_search');
+const dialog_hole_search = document.querySelector('#search_hole');
+const hole_search_button = document.querySelector('#hole_search');
   hole_search_button.addEventListener('click', async () => {
     const possibility=await makkaras_stolen()
     console.log('juu')
@@ -110,5 +109,3 @@ async function hole_search_buttons(ide) {
         });
     }
   });
-  return hole_search_button
-}
