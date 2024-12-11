@@ -20,7 +20,6 @@ from Game.python.sql_querys.fetch_player_makkaras import fetch_player_makkaras
 from Game.python.sql_querys.money_function import fetch_player_money
 from Game.python.sql_querys.player_location_fetch_and_update_querys import fetch_player_location_name
 from Game.python.sql_querys.score_fetch_and_score_update_querys import player_score_fetch
-from Game.python.makkaras_stolen_yes_no import kolo_stolen_yes_no
 from flask import Flask, Response
 from flask_cors import CORS
 import json
@@ -338,11 +337,6 @@ def check_section_satus(ide, section):
         }
     jsonresponse = json.dumps(response_text)
     return Response(response=jsonresponse, status=status_code, mimetype="application/json")
-
-@app.route('/makkaras_stolen/<ide>')
-def makkaras_stolen(ide):
-    result=kolo_stolen_yes_no(ide)
-    return result
 
 CORS(app)
 
