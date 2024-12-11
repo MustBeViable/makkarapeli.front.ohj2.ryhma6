@@ -52,6 +52,7 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
     const method = 'taxi';
     await hole_searcher(ide, method);
     const result = await hole_searcher(ide, method);
+    await sausage_count(ide)
     console.log(result)
     const parag = document.querySelector('#response');
     parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
@@ -68,6 +69,7 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
     console.log(result);
     if (result.makkara === 'found') {
       parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
+      await sausage_count(ide)
       await removeElements(no_search, taxi, yango, dialog_hole_search, ide);
     } else {
       //const img = document.querySelector('#spurdo')
@@ -81,7 +83,7 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
 const dialog_hole_search = document.querySelector('#search_hole');
 const hole_search_button = document.querySelector('#hole_search');
   hole_search_button.addEventListener('click', async () => {
-    const possibility=await makkaras_stolen()
+    const possibility=await makkaras_stolen(ide)
     console.log('juu')
     console.log(possibility)
     if (possibility==='stolen') {
