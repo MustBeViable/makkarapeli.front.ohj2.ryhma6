@@ -39,7 +39,7 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
     console.log(result)
     const parag = document.querySelector('#response');
     parag.textContent = 'Onnegsi olgoon said maggarasi dagaisin :-DDD';
-    await removeElements(no_search, taxi, yango, ide);
+    await removeElements(no_search, taxi, yango, dialog_hole_search, ide);
   });
   yango.addEventListener('click', async (evt) => {
     console.log('Yoloooo!!! :----DDD Yango on senjan lembi gulguneuvo :--DD');
