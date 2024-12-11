@@ -26,9 +26,9 @@ button_instructions.addEventListener('click',  async(evt) => {
                                     Pelaajan edistyminen tallentuu automaattisesti.</p>
                                     
                                     <p>Saapuessa uuteen maahan, voi pelaaja koettaa onneaan
-                                    roskiksessa. Siellä on mahdollisuus ansaita lisää rahaa, mutta 
-                                    toisaalta riski menettää osan rahoista tai jo kerätyistä makkaroista. 
-                                    Tämän jälkeen pelaajan on mahdollista vierailla kyseisen maan 
+                                    penkomalla roskista. Pelaajalla on mahdollisuus ansaita lisää rahaa, 
+                                    mutta toisaalta riski menettää osan rahoista tai jo kerätyistä 
+                                    makkaroista. Tämän jälkeen pelaajan on mahdollista vierailla kyseisen maan 
                                     taxfree-myymälässä ostaakseen kyseisen maan makkaran. Taxfreen 
                                     jälkeen pelaajan on taas lennettävä seuraavaan maahan
                                     kasvattaakseen edelleen makkarakokoelmaa ja pistesaldoaan.</p>
