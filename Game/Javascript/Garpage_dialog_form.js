@@ -74,14 +74,17 @@ async function garbage_action() {
       //if money won
       if ((parseInt(doubling_result.result) === 0)) {
         garbagemessage.textContent=`Hävisit, parempi tuuri ensikerralla!`
+        await player_money(ide)
         buttoncontainer.innerHTML = ''
       } else {
         garbagemessage.textContent=`Tuplaus onnistui sait nyt${doubling_result.result}€`;
+        await player_money(ide)
       }
     });
     // no button if dont want to double and what if dont double
-    createButton('button_no', 'älä tuplaa', buttoncontainer, function() {
+    createButton('button_no', 'älä tuplaa', buttoncontainer, async function() {
       garbagemessage.textContent= `Säästit rahasi!`;
+      await player_money(ide)
       // Disables the buttons
       buttoncontainer.innerHTML = ''
 
@@ -92,15 +95,20 @@ async function garbage_action() {
   else if (action === 'answer') {
     const kolo_amount = data.answer
     garbagemessage.textContent=`kolovastaava vei sinulta ${kolo_amount} makkaraa`;
+    await player_score(ide)
     //if robber comes from garbage
   } else if (action === 'robber') {
     const robber_amount = data.robber
     garbagemessage.textContent=`Rosvo vei sinulta ${robber_amount}€`;
+    await player_money(ide)
     //if finnair_personel comes from garbage
   } else if (action === 'value') {
     garbagemessage.textContent=`Haluatko lahjoittaa 500€ harvinaiseen makkaraan?`;
     createButton('finnair_button_yes', 'kyllä', buttoncontainer, async function() {
           const finnair_result = await finnair()
+          await player_money(ide)
+          await player_score(ide)
+          await sausage_count(ide)
           garbagemessage.textContent=` ${finnair_result}`;
           // Disables the buttons
           buttoncontainer.innerHTML = ''
