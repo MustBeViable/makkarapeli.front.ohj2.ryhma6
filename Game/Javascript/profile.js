@@ -117,6 +117,7 @@ async function startGame(newGame, screenName) {
     await player_score(ide);
     await player_current_airport_info(ide);
     await sausage_count(ide);
+    await airport_selection_function()
   } catch (error) {
     console.log(error.message);
   }

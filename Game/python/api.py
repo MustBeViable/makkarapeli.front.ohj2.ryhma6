@@ -28,6 +28,15 @@ import json
 
 app = Flask(__name__)
 
+airports = {}
+
+def airport_cleaner(airport_dic):
+    airport_dic = {}
+    return airport_dic
+
+money_to_be_doubled = {}
+
+times_doubled = [0,1]
 
 @app.route('/signin/<screen_name>')
 def signin(screen_name):

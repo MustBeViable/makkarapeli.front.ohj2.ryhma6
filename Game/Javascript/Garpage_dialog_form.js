@@ -134,9 +134,12 @@ open_garbage_button.addEventListener('click',()=>{
 
 //sulje closes
 const closeButton = document.querySelector('.close');
-closeButton.addEventListener('click', () => {
+closeButton.addEventListener('click', async() => {
   garbage_dialog.close();
-  save_money()
+  await save_money()
+  await player_score(ide)
+  await player_money(ide)
+  await sausage_count(ide)
   document.querySelector('#intro').style.display = 'block';
   document.querySelector('#garbage_results').style.display = 'none';
   document.querySelector('#garbage_message').style.display = 'none';
