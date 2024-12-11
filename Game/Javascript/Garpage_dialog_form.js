@@ -132,7 +132,7 @@ open_garbage_button.addEventListener('click',()=>{
   garbage_dialog.showModal();
 });
 
-//sulje closes
+//sulje closes,
 const closeButton = document.querySelector('.close');
 closeButton.addEventListener('click', async() => {
   garbage_dialog.close();
