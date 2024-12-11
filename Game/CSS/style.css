@@ -1,3 +1,28 @@
+.sausage_fly {
+    width: 100px;
+  height: auto;
+  position: absolute;
+  animation: randomMove 10s infinite linear;
+
+}
+@keyframes randomMove {
+  0% {
+    transform: translate(calc(0vw), calc(0vh));
+  }
+  25% {
+    transform: translate(calc(25vw), calc(25vh));
+  }
+  50% {
+    transform: translate(calc(50vw), calc(50vh));
+  }
+  75% {
+    transform: translate(calc(75vw), calc(75vh));
+  }
+  100% {
+    transform: translate(calc(100vw), calc(100vh));
+  }
+}
+
 .container {
 	object-fit: contain;
 	margin:  auto;
@@ -32,7 +57,7 @@ main {
     height: 530px;
 }
 .sausage_cursor {
-    cursor: url('../images_and_other/file3.png'), auto;
+    cursor: url('../images_and_other/file3.png') 4 21, auto;
 }
 
 nav {
@@ -87,6 +112,22 @@ nav {
     width: 100%;
     align-content: center;
     display: flex;
+    border-radius: 30px;
+    border: 1px solid black;
+    background-image: url("../images_and_other/makkaramania_afrikan_tahti.png");
+    animation: moveIt 20s ease-in-out infinite;
+}
+
+@keyframes moveIt {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }
 .div2_box1 {
     width: 50%;
@@ -98,24 +139,18 @@ nav {
 }
 .sausage_hunt {
     height: 50%;
-    background-color: white;
-    border: 1px solid black;
     border-radius: 30px;
     align-content: center;
     text-align: center;
 }
 .garbage {
     height: 50%;
-    background-color: white;
-    border: 1px solid black;
     border-radius: 30px;
     align-content: center;
     text-align: center;
 }
 .tax_free {
     height: 50%;
-    background-color: white;
-    border: 1px solid black;
     border-radius: 30px;
     align-content: center;
     text-align: center;
@@ -130,8 +165,6 @@ nav {
 }
 .airport {
     height: 50%;
-    background-color: white;
-    border: 1px solid black;
     border-radius: 30px;
     align-content: center;
     text-align: center;
@@ -182,6 +215,7 @@ button {
     border-radius: 30px;
     border: 1px solid black;
     width: 10%;
+    height: 100%;
     background-color: floralwhite;
     align-content: center;
 }
