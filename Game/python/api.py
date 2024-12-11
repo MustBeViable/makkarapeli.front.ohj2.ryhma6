@@ -330,19 +330,25 @@ def makkaras_stolen(ide):
 
 @app.route('/check_status/<ide>/<section>')
 def check_satus(ide, section):
+    print("t1")
     try:
+        print("t2")
         status_dict = check_player_makkara_game(ide)
+        print("t10")
         if not all(section in status_dict for sec in ('game_id', 'garbage', 'taxfree', 'airport', 'hole_in_charge')):
+            print("t3")
             status_code = 404
             response_text = {
                 'status': status_code,
                 'message': 'Error in api call.'}
         else:
+            print("t4")
             status_code = 200
             response_text = {
                 'status': status_code,
                 'section_status': status_dict[section]}
     except Exception as e:
+        print("t5")
         status_code = 500
         response_text = {
             'status': status_code,
