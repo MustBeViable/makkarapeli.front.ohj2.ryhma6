@@ -142,32 +142,34 @@ nav {
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    color: white;
 }
 .garbage {
     height: 50%;
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    color: white;
 }
 .tax_free {
     height: 50%;
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    color: white;
+}
 .taxfree_img {
     background-image: url("../images_and_other/taxfree.png");
     background-position: center;
     background-size: 100%;
     opacity: 0.85;
 }
-
-
-}
 .airport {
     height: 50%;
     border-radius: 30px;
     align-content: center;
     text-align: center;
+    color: white;
 }
 dialog {
     border-radius: 10px;
