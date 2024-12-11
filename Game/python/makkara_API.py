@@ -106,6 +106,7 @@ def doubling(ide):
 def save_money(ide):
     player_new_money = int(money_to_be_doubled[ide]) + int(fetch_player_money(ide)['money'])
     update_player_money(player_new_money, ide)
+    money_to_be_doubled[ide] = '0'
     return {'money': 'saved'}
 
 @app.route('/taxfree/<ide>')
