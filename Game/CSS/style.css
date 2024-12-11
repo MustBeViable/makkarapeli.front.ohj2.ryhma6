@@ -196,3 +196,10 @@ button {
     font-weight: bolder;
     background-color: #e0feff;
 }
+
+#nameForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }

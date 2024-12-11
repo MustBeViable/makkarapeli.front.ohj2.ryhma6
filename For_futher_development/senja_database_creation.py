@@ -3,32 +3,12 @@ from Game.python.game_creation_lists.makkaras_dictionary import makkaras_diction
 from Game.python.game_creation_lists.score_value_makkara import score_value_makkara
 from Game.python.game_texts import yhteys, start_location
 
-""""def foreign_keys_makkara_game():
-    sql = (f" ALTER TABLE makkara_game"
-           f" ADD CONSTRAINT FK_game_id"
-           f" FOREIGN KEY (game_id) REFERENCES playthrough(id)")
-    kursori = yhteys.cursor()
-    kursori.execute(sql)
-    return"""
-
-"""def create_table_makkara_game():
-    sql = (f" CREATE TABLE makkara_game (id int NOT NULL auto_increment,"
-           f" game_id int DEFAULT NULL,"
-           f" garbage BOOLEAN DEFAULT FALSE,"
-           f" taxfree BOOLEAN DEFAULT FALSE,"
-           f" airport BOOLEAN DEFAULT FALSE,"
-           f" hole_in_charge BOOLEAN DEFAULT FALSE,"
-           f" primary key (id))")
-    kursori = yhteys.cursor()
-    kursori.execute(sql)
-    return"""
-
 start_score = 0
 start_money = 2000
 start_mustamakkara = 0
 kursori = yhteys.cursor()
 
-tables = ['makkara_reached', 'makkara', 'playthrough']
+tables = ['makkara_reached', 'makkara', 'makkara_game', 'playthrough']
 for table in tables:
     kursori.execute(f"DROP TABLE IF EXISTS {table}")
     print(f"dropped table {table}")
@@ -78,6 +58,18 @@ sql_makkara_reached2 = (f" CREATE TABLE IF NOT EXISTS makkara_reached("
                         f" ON UPDATE CASCADE)"
                         f" ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci")
 
+sql_makkara_game1 = (f"DROP TABLE IF EXISTS makkara_game;")
+sql_makkara_game2 = (f" CREATE TABLE makkara_game ("
+                     f" game_id int,"
+                     f" garbage BOOLEAN DEFAULT FALSE,"
+                     f" taxfree BOOLEAN DEFAULT FALSE,"
+                     f" airport BOOLEAN DEFAULT FALSE,"
+                     f" hole_in_charge BOOLEAN DEFAULT FALSE,"
+                     f" PRIMARY KEY (game_id),"
+                     f" FOREIGN KEY (game_id)"
+                     f" REFERENCES playthrough(id)) "
+                     f" ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci")
+
 
 def add_makkaras_to_table(makkara, country, score):
     sql = (f"INSERT INTO makkara (name, score, country) VALUES ('{makkara}', {score}, '{country}')")
@@ -99,6 +91,10 @@ print("Makkara luotiin.")
 kursori.execute(sql_makkara_reached1)
 kursori.execute(sql_makkara_reached2)
 print("Makkara_reached luotiin.")
+
+kursori.execute(sql_makkara_game1)
+kursori.execute(sql_makkara_game2)
+print("Makkara_game luotiin.")
 
 for i in range(len(iso_country_list)):
     add_makkaras_to_table(list(makkaras_dictionary.values())[i], iso_country_list[i], score_value_makkara[i])
