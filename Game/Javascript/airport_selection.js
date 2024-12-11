@@ -4,7 +4,7 @@
 //airport selection function has to happen before opening modal
 //so once when the page is opened and after that in every event listener in airport selection buttons
 
-
+/*
 async function getData(url) {
     try {
         const response = await fetch(url);
@@ -14,7 +14,7 @@ async function getData(url) {
         return error
     }
 
-}
+}*/
 
 async function get_money(IDE){
   //add IDE functionality to all functions when it works
@@ -50,11 +50,15 @@ async function airport_selection_function(IDE, airportMarkers, map){
   try {
     const url = `http://127.0.0.1:5000/airport/${IDE}`;
     const result = await getData(url)
+    
     const result1 = await get_money(IDE)
     console.log(result)
 
     document.querySelector("#target12").innerHTML = ""
     airportMarkers.clearLayers();
+
+    const location = await getData(`http://127.0.0.1:5000/player_location/${IDE}`)
+    await console.log(location)
 
     for(let i =0;i <= 19;i++){
       const button = document.createElement("button")
@@ -63,10 +67,10 @@ async function airport_selection_function(IDE, airportMarkers, map){
       button.setAttribute("class","airport_selection_button")
       button.setAttribute("id", buttonid)
       button.style.display = "block"
-      //L.marker([result[i+1].latitide , result[i+1].longitude]).addTo(map);
-      const location = await getData(`http://127.0.0.1:5000/player_location/${IDE}`)
-        await console.log(location)
 
+      //L.marker([result[i+1].latitide , result[i+1].longitude]).addTo(map);
+
+      /*
         const locmarker = await L.marker([location.lattitude, location.longitude]).addTo(map);
         map.flyTo([location.lattitude, location.longitude],5,{
             duration: 3,             // 3 seconds duration
@@ -74,7 +78,7 @@ async function airport_selection_function(IDE, airportMarkers, map){
             noMoveStart: true        // Do not trigger the 'movestart' event
         })
         airportMarkers.addLayer(locmarker)
-
+        */
 
       button.addEventListener("click",async() =>{
         //here should be a call to check players money
@@ -96,6 +100,7 @@ async function airport_selection_function(IDE, airportMarkers, map){
 
         console.log(button.id)
       })
+
       document.querySelector("#target12").appendChild(button)
     }
 
