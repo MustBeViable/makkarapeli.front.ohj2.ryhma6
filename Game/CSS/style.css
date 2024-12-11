@@ -2,7 +2,7 @@
     width: 100px;
   height: auto;
   position: absolute;
-  animation: randomMove 10s infinite linear;
+  animation: randomMove 15s infinite linear;
 
 }
 @keyframes randomMove {
