@@ -34,6 +34,17 @@ async function fetchProfile(endpoint, options = {}) {
   return await response.json();
 }
 
+async function displayTop5() {
+  const top_5_all = await top_5_lists();
+  let top5_all_HTML_content = `<h3>Kaikkien aikojen top 5:</h3>`;
+  for (let key in top_5_all) {
+    const entry = top_5_all[key];
+    let number = parseFloat(key)
+    top5_all_HTML_content += `<p>${number}. ${entry.screen_name}: ${entry.score}</p>`;
+  }
+  profileTarget.innerHTML += top5_all_HTML_content;
+}
+
 /**
  * Shows the info of an unfinished game to the user.
  * @param {object} game Game location, makkaras, score and money
@@ -52,6 +63,7 @@ function displayUnfinishedGame(game) {
   profileTarget.innerHTML += gameInfoHtml;
 }
 
+
 /**
  * Opens the user's profile.
  * @param {string} screenName User's name
@@ -65,6 +77,7 @@ async function openProfile(screenName, signIn) {
 
     loginPage.close();
     profilePage.showModal();
+    await displayTop5()
     const game = profile['unfinished_game'];
 
     if (game && Object.keys(game).length) {
@@ -82,9 +95,17 @@ async function openProfile(screenName, signIn) {
       await createFetchButton(newGameText, () => startGame(true, screenName));
     }
   } catch (error) {
-    console.log('täällä');
     if (error.message === 'Failed to fetch') {
       error.message = 'Elias laita api pyörimään';
+    }
+    else if (error.message === 'Unexpected token \'<\', "') {
+      error.message = 'Syötä käyttäjänimi'
+    }
+    else if (error.message === 'Username not found.') {
+      error.message = 'Käyttäjätunnusta ei löytynyt.'
+    }
+    else if (error.message === 'Username is already taken.') {
+      error.message = 'Käyttäjätunnus on jo käytössä.'
     }
     loginBase.innerHTML = `<div>${error.message}</div>`;
     if (signIn) {

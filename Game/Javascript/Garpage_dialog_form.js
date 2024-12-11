@@ -85,7 +85,7 @@ console.log(joku.status)
         await player_money(ide)
         buttoncontainer.innerHTML = ''
       } else {
-        garbagemessage.textContent=`Tuplaus onnistui sait nyt${doubling_result.result}€`;
+        garbagemessage.textContent=`Tuplaus onnistui, sait nyt ${doubling_result.result}€`;
         await player_money(ide)
       }
     });
@@ -113,19 +113,19 @@ console.log(joku.status)
     await player_money(ide)
     //if finnair_personel comes from garbage
   } else if (action === 'value') {
-    garbagemessage.textContent=`Haluatko lahjoittaa 500€ harvinaiseen makkaraan?`;
+    garbagemessage.textContent=`Haluatko lahjoittaa 500€ ympäristön hyvinvointiin? Lahjoittajana voit saada harvinaisen palkinnon`;
     createButton('finnair_button_yes', 'kyllä', buttoncontainer, async function() {
           const finnair_result = await finnair()
           await player_money(ide)
           await player_score(ide)
           await sausage_count(ide)
-          garbagemessage.textContent=` ${finnair_result}`;
+          garbagemessage.textContent=`Kiva kuin lahjoitit! Sait harvinaisen Finnair-makkaran.`;
           // Disables the buttons
           buttoncontainer.innerHTML = ''
         });
 
     createButton('finnair_button_no', 'ei', buttoncontainer, function() {
-      garbagemessage.textContent=`Et ostanut makkaraa`;
+      garbagemessage.textContent=`Et lahjoittanut höh! Maapallo tuhoutuu :(`;
       // Disables the buttons
       buttoncontainer.innerHTML = ''
 
@@ -142,18 +142,23 @@ open_garbage_button.addEventListener('click',()=>{
   garbage_dialog.showModal();
 });
 
-//sulje closes
+//sulje closes,
 const closeButton = document.querySelector('.close');
 closeButton.addEventListener('click', async() => {
   garbage_dialog.close();
-  await save_money()
-  await player_score(ide)
-  await player_money(ide)
-  await sausage_count(ide)
+  await save_money();
+  await player_score(ide);
+  await player_money(ide);
+  await sausage_count(ide);
   document.querySelector('#intro').style.display = 'block';
   document.querySelector('#garbage_results').style.display = 'none';
   document.querySelector('#garbage_message').style.display = 'none';
   document.querySelector('#garbage_button_container').style.display = 'none';
+  const game_check_code = await game_end_check()
+  console.log(game_check_code)
+  if (game_check_code === 1) {
+    console.log('jee')
+  };
 })
 
 //async function save_money_call() {
