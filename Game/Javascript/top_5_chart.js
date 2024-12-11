@@ -37,11 +37,13 @@ high_score_button.addEventListener('click', async (evt) => {
   //for...in iterates keys. Thats why it is that instead of for...of
   for (let key in top_5_all) {
     const entry = top_5_all[key];
-    top5_all_HTML_content += `<p>${key}. ${entry.screen_name}: ${entry.score}</p>`;
+    let number = parseFloat(key)
+    top5_all_HTML_content += `<p>${number+1}. ${entry.screen_name}: ${entry.score}</p>`;
   }
   for (let key in player_top_5) {
     const entry = player_top_5[key];
-    top5_player_HTML_content += `<p>${key}. ${entry.screen_name}: ${entry.score}</p>`;
+    let number = parseFloat(key)
+    top5_player_HTML_content += `<p>${number+1}. ${entry.screen_name}: ${entry.score}</p>`;
   }
   top_5_diag.innerHTML = `${top5_all_HTML_content}
   ${top5_player_HTML_content}
