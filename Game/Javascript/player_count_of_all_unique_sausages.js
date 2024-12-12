@@ -17,9 +17,9 @@ sausage_count_button.addEventListener('click', async () => {
   let sausage_count_dialog_content= `<h3 id="sausages_here">Sinun makkarasi ja niiden määrät</h3>`
   const list_for_makkaras = await player_current_sausages_and_count(ide)
   for (let num = 0; num < list_for_makkaras.length; num++) {
-    sausage_count_dialog_content += `${list_for_makkaras[num].name}: ${list_for_makkaras[num].count}`
+    sausage_count_dialog_content += `<p>${list_for_makkaras[num].name}: ${list_for_makkaras[num].count}</p>`
   }
-  sausage_count_dialog_content += `<button id="sausage_close_button">Sulje tästä</button>"`
+  sausage_count_dialog_content += `<button id="sausage_close_button">Sulje tästä</button>`
   sausage_count_dialog.innerHTML = sausage_count_dialog_content
   const sausage_list_close_button = document.querySelector('#sausage_close_button')
   sausage_count_dialog.showModal()
