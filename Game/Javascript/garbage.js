@@ -98,12 +98,12 @@ async function garbage_action() {
     console.log(data.answer)
     const kolo_amount = data.answer
     document.querySelector(
-        '#tulostus2').innerHTML = `kolovastaava vei sinulta ${kolo_amount} makkaraa`;
+        '#tulostus2').innerHTML = `Törmäsit kolovastaavaan! Kolovastaava vei sinulta ${kolo_amount} makkaraa.`;
     //if robber comes from garbage
   } else if (action === 'robber') {
     const robber_amount = data.robber
     document.querySelector(
-        '#tulostus2').innerHTML = `Rosvo vei sinulta ${robber_amount}€`;
+        '#tulostus2').innerHTML = `Törmäsit rosvoon! Rosvo vei puolet rahoistasi, ${robber_amount}€`;
     //if finnair_personel comes from garbage
   } else if (action === 'value') {
     document.querySelector(
@@ -117,7 +117,7 @@ async function garbage_action() {
         });
 
     createButton('finnair_button_no', 'ei', buttoncontainer, function() {
-      document.querySelector('#tulostus2').innerHTML = ` et ostanut makkaraa`;
+      document.querySelector('#tulostus2').innerHTML = ` Et ostanut makkaraa`;
       // Disables the buttons
       buttoncontainer.innerHTML = ''
 

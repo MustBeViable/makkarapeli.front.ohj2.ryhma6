@@ -79,7 +79,7 @@ async function garbage_action() {
         const doubling_result = await doubling();
         //if money won
         if ((parseInt(doubling_result.result) === 0)) {
-          garbagemessage.textContent = `Hävisit, parempi tuuri ensikerralla!`;
+          garbagemessage.textContent = `Hävisit, menetit kaikki voittosi. Parempi tuuri ensikerralla!`;
           await player_money(ide);
           buttoncontainer.innerHTML = '';
         } else {
@@ -88,7 +88,7 @@ async function garbage_action() {
         }
       });
       // no button if dont want to double and what if dont double
-      createButton('button_no', 'älä tuplaa', buttoncontainer,
+      createButton('button_no', 'Älä tuplaa', buttoncontainer,
           async function() {
             garbagemessage.textContent = `Säästit rahasi!`;
             await player_money(ide);
@@ -101,29 +101,33 @@ async function garbage_action() {
     //if hole_in_charge comes from garbage
     else if (action === 'answer') {
       const kolo_amount = data.answer;
-      garbagemessage.textContent = `kolovastaava vei sinulta ${kolo_amount} makkaraa`;
+      garbagemessage.textContent = `Törmäsit kolovastaavaan! Kolovastaava vei sinulta ${kolo_amount} makkaraa.`;
       await player_score(ide);
       //if robber comes from garbage
     } else if (action === 'robber') {
       const robber_amount = data.robber;
-      garbagemessage.textContent = `Rosvo vei sinulta ${robber_amount}€`;
+      garbagemessage.textContent = `Törmäsit rosvoon! Rosvo vei puolet rahoistasi, yhteensä ${robber_amount}€`;
       await player_money(ide);
-      //if finnair_personel comes from garbage
+      //if finnair_personnel comes from garbage
     } else if (action === 'value') {
-      garbagemessage.textContent = `Haluatko lahjoittaa 500€ ympäristön hyvinvointiin? Lahjoittajana voit saada harvinaisen palkinnon`;
+      garbagemessage.textContent = `Haluatko lahjoittaa 500€ ympäristön hyvinvointiin? Lahjoittajana voit saada harvinaisen palkinnon.`;
       createButton('finnair_button_yes', 'kyllä', buttoncontainer,
           async function() {
             const finnair_result = await finnair();
-            await player_money(ide);
-            await player_score(ide);
-            await sausage_count(ide);
-            garbagemessage.textContent = `Kiva kuin lahjoitit! Sait harvinaisen Finnair-makkaran.`;
+            if (finnair_result === 'ei rahaa') {
+              garbagemessage.textContent = 'Rahasi eivät riitä!'
+            } else {
+              await player_money(ide);
+              await player_score(ide);
+              await sausage_count(ide);
+              garbagemessage.textContent = `Kiitos kuin lahjoitit! Sait harvinaisen Finnair-makkaran.`;
+            }
             // Disables the buttons
             buttoncontainer.innerHTML = '';
           });
 
       createButton('finnair_button_no', 'ei', buttoncontainer, function() {
-        garbagemessage.textContent = `Et lahjoittanut höh! Maapallo tuhoutuu :(`;
+        garbagemessage.textContent = `Et lahjoittanut, höh! Maapallo tuhoutuu :(`;
         // Disables the buttons
         buttoncontainer.innerHTML = '';
 

@@ -188,8 +188,8 @@ def airport_selected(ide, airport_num):
 
 
 @app.route('/garbage/<ide>')
-# when money found works now returns dictionary money as key and value is the random amount
 def garbage(ide):
+    """ when money found works now returns dictionary money as key and value is the random amount"""
     value = garbage_can(ide)
     if value == 'found_money':
         won_money = money_from_garbage()
@@ -216,8 +216,8 @@ def garbage(ide):
 
 @app.route('/finnair/<ide>')
 def finnair(ide):
-    # Javascript need to check the player input.
-    # Returns dictionary like this {'answer': 'Ei rahaa'}
+    """ Javascript need to check the player input.
+    Returns dictionary like this {'answer': 'Ei rahaa'}"""
     result = finnair_personnel(ide)
     return result
 

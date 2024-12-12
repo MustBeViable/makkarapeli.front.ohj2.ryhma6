@@ -85,7 +85,7 @@ async function openProfile(screenName, signIn) {
       await createFetchButton(continueText, () => startGame(false, screenName));
 
       function startNewWithConfirmation() {
-        if (confirm() === true) {
+        if (confirm("Et voi jatkaa edellistä peliäsi enää jos aloitat uuden pelin. Oletko varma, että haluat aloittaa uuden pelin?") === true) {
           startGame(true, screenName);
         }
       }
@@ -98,8 +98,8 @@ async function openProfile(screenName, signIn) {
     if (error.message === 'Failed to fetch') {
       error.message = 'Elias laita api pyörimään';
     }
-    else if (error.message === 'Unexpected token \'<\', "') {
-      error.message = 'Syötä käyttäjänimi'
+    else if (error.message.includes('Unexpected token')) {
+      error.message = 'Syötä käyttäjätunnus.'
     }
     else if (error.message === 'Username not found.') {
       error.message = 'Käyttäjätunnusta ei löytynyt.'
