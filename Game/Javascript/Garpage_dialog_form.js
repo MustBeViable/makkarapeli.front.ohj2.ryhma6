@@ -114,10 +114,14 @@ async function garbage_action() {
       createButton('finnair_button_yes', 'kyllä', buttoncontainer,
           async function() {
             const finnair_result = await finnair();
-            await player_money(ide);
-            await player_score(ide);
-            await sausage_count(ide);
-            garbagemessage.textContent = `Kiitos kuin lahjoitit! Sait harvinaisen Finnair-makkaran.`;
+            if (finnair_result === 'ei rahaa') {
+              garbagemessage.textContent = 'Rahasi eivät riitä!'
+            } else {
+              await player_money(ide);
+              await player_score(ide);
+              await sausage_count(ide);
+              garbagemessage.textContent = `Kiitos kuin lahjoitit! Sait harvinaisen Finnair-makkaran.`;
+            }
             // Disables the buttons
             buttoncontainer.innerHTML = '';
           });

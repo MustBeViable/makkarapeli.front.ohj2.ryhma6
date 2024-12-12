@@ -90,7 +90,7 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
     } else {
       //const img = document.querySelector('#spurdo')
       img.src = `/Game/images_and_other/A_person_waiting_for_a_taxi_in_rainy_weather_resized_600x600.jpg`;
-      h3.textContent = 'Voi harmi, Yango ajoi hitaasti ja saavuit perille myöhään. Jouduit tilaamaan taksin takaisin kentälle.';
+      h3.textContent = 'Voi harmi, Yango ajoi hitaasti ja saavuit perille myöhään, Kolovastaava ehti piiloon. Jouduit tilaamaan taksin takaisin kentälle. Tämä maksoi sinulle huomattavan summan rahaa.';
       await removeElements(no_search, taxi, yango, dialog_hole_search, ide);
       const game_check_code = await game_end_check();
       console.log(game_check_code);

@@ -216,8 +216,8 @@ def garbage(ide):
 
 @app.route('/finnair/<ide>')
 def finnair(ide):
-    # Javascript need to check the player input.
-    # Returns dictionary like this {'answer': 'Ei rahaa'}
+    """ Javascript need to check the player input.
+    Returns dictionary like this {'answer': 'Ei rahaa'}"""
     result = finnair_personnel(ide)
     return result
 
