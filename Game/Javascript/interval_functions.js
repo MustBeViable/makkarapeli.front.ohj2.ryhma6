@@ -58,7 +58,7 @@ async function player_money(ide) {
     const json = await response.json();
     console.log('raha');
     const money = document.querySelector('#player_money');
-    money.textContent = json.money;
+    money.textContent = json.money + '€'
     return json.money
   } catch (error) {
     console.log(error);
