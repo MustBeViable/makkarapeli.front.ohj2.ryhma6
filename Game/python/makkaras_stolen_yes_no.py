@@ -2,11 +2,9 @@ from Game.python.sql_querys.fetch_player_makkaras import fetch_player_stolen_mak
 
 def kolo_stolen_yes_no(game_id):
     stolen_amount=fetch_player_stolen_makkaras(game_id)
-    print(stolen_amount)
     if len(stolen_amount) == 0:
         result={"makkara":"not_stolen"}
         return result
     else:
         result = {"makkara": "stolen"}
         return result
-print(kolo_stolen_yes_no(13))

@@ -28,7 +28,6 @@ def robber(id):
 def hole_in_charge(game_id):
     """This is hole in charge function and uses sql query from another file."""
     own_makkaras = fetch_player_makkaras(game_id)
-    print("Törmäsit kolovastaavaan!")
     if len(own_makkaras) == 0:
         result = {'answer': '0'}
         return result
@@ -57,7 +56,6 @@ def hole_in_charge(game_id):
 
 def finnair_personnel(game_id):
     """Player can donate 500 euros and get rare sausage"""
-    print(f"Finnairin ympäristöedustaja pyytää lahjoitusta. Sen arvo on {finnair_donation}€.")
     current_money = fetch_player_money(game_id)['money']
     if int(current_money) >= 500:
         money = int(fetch_player_money(game_id)['money'])
@@ -83,7 +81,6 @@ def money_from_garbage():
 def garbage_can(game_id):
     """This is the main carbage can function, and it is checkng garbages with its all features (money found, robber,
     hole in charge, finnair personnel"""
-    from Game.python.commands import input_in_section
     outcome = \
     random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[25, 25, 25, 25], k=1)[0]
     return outcome

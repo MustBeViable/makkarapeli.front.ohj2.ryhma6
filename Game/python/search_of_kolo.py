@@ -20,7 +20,6 @@ def kolo_search(game_id, transportation):
         return_player_makkaras(game_id)
         new_money = int(fetch_player_money(game_id)['money']) - taxi_price
         update_player_money(new_money, game_id)
-        print("Löysit Kolovastaavan Kolon ja sait makkarasi takaisin! :)")
         result = {'makkara': 'found'}
         return result
 
@@ -29,8 +28,6 @@ def kolo_search(game_id, transportation):
         if chance == 1:
             new_money= int(fetch_player_money(game_id)['money']) - 150 - yango
             update_player_money(new_money, game_id)
-            print("Uber kuljettaja vei sinulta 100 euroa ja jätti sinut tienvarteen. Joudit tilaamaan taxin takaisin "
-                  "lentokentälle, mikä maksoi 50 euroa.")
             result = {'makkara': 'not found also robbed'}
             return result
 
@@ -39,7 +36,6 @@ def kolo_search(game_id, transportation):
             new_money= int(fetch_player_money(game_id)['money']) -  yango
             update_player_money(new_money, game_id)
             return_player_makkaras(game_id)
-            print("Löysit Kolovastaavan Kolon ja sait makkarasi takaisin! :)")
             result = {'makkara': 'found'}
             return result
 
