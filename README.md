@@ -10,11 +10,12 @@ Peliä pelataan selaimessa.
 
 Aika ei riittänyt aivan kaiken tekemiseksi täydelliseksi ja siksi pelissä on kehitettävää.
 Tiedossa olevat ongelmat/parannusehdotukset:
-1. Kaikkia funktioita ja koodia ei ole kommentoitu.
-2. Lentokentän valinta ei kerro käyttäjälle, että käyttäjällä ei ole varaa lentää valittuun kohteeseen. Taxfree ei kerro, että pelaajalla ei ole varaa makkaraan.
-3. Macille sopiva tietokannan luontiskripti on piilossa.
+
+1. Lentokentän valinta ei kerro käyttäjälle, että käyttäjällä ei ole varaa lentää valittuun kohteeseen. Taxfree ei kerro, että pelaajalla ei ole varaa makkaraan.
+2. Macille sopiva tietokannan luontiskripti on piilossa.
    Korjattaisiin lisäämällä data_base_creationin luontiskriptiin komennot, jotka korjaavat komennot Macille sopiviksi.
    Vaihtoehtoisesti voitaisiin korjata siirtämällä database_creation_senja Game-repoon ja sitä käytettäisiin oletuksena.
+3. JavaScriptissä on testiprinttejä. Ne eivät sinänsä häiritse, mutta koodi olisi siistimpää ilman.
 
 
 Esiprojektin jälkeen ehdimme korjata/toteuttaa seuraavat esiprojektista puuttuneet ominaisuudet:
