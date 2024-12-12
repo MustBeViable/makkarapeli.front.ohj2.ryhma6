@@ -37,11 +37,11 @@ async function removeElements(no_search, taxi, yango, dialog_hole_search, ide) {
   close.id = 'close';
   close.textContent = 'Palaa lentokentälle';
   dialog_hole_search.appendChild(close);
-  close.addEventListener('click', async(evt) => {
+  close.addEventListener('click', async (evt) => {
     dialog_hole_search.close();
-    await player_score(ide)
-    await player_money(ide)
     console.log(evt + ' gliggasid hiirellä :---D midä sinä däällä deed? :-DDD');
+    await sausage_count(ide);
+    await player_money(ide);
   });
 }
 
@@ -58,6 +58,7 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
     await hole_searcher(ide, method);
     const result = await hole_searcher(ide, method);
     await sausage_count(ide);
+    await player_money(ide);
     console.log(result);
     const parag = document.querySelector('#response');
     parag.textContent = '';
@@ -72,7 +73,7 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
   yango.addEventListener('click', async (evt) => {
     console.log('Yoloooo!!! :----DDD Yango on senjan lembi gulguneuvo :--DD');
     const img = document.querySelector('#spurdo');
-    img.src = `/Game/images_and_other/tarkee_kuva.png?random=${Date.now()}`;
+    img.src = `/Game/images_and_other/A_white-skinned_blonde_girl_scout_resized_600x600.jpg`;
     const parag = document.querySelector('#response');
     const h3 = document.querySelector('#kolovastaava');
     parag.textContent = '';
@@ -82,7 +83,6 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
     console.log(result);
     if (result.makkara === 'found') {
       h3.textContent = 'Löysit kolovastaavan ja sait makkarasi takaisin!';
-      await sausage_count(ide);
       const game_check_code = await game_end_check();
       console.log(game_check_code);
       if (game_check_code === 1) {
@@ -94,6 +94,7 @@ function addListeners(no_search, taxi, yango, dialog_hole_search, ide) {
       img.src = `/Game/images_and_other/A_person_waiting_for_a_taxi_in_rainy_weather_resized_600x600.jpg`;
       h3.textContent = 'Voi harmi, Yango ajoi hitaasti ja saavuit perille myöhään, Kolovastaava ehti piiloon. Jouduit tilaamaan taksin takaisin kentälle. Tämä maksoi sinulle huomattavan summan rahaa.';
       await removeElements(no_search, taxi, yango, dialog_hole_search, ide);
+      await player_money(ide);
       const game_check_code = await game_end_check();
       console.log(game_check_code);
       if (game_check_code === 1) {
