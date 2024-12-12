@@ -106,9 +106,9 @@ async function garbage_action() {
       //if robber comes from garbage
     } else if (action === 'robber') {
       const robber_amount = data.robber;
-      garbagemessage.textContent = `Törmäsit rosvoon! Rosvo vei puolet rahoistasi, ${robber_amount}€`;
+      garbagemessage.textContent = `Törmäsit rosvoon! Rosvo vei puolet rahoistasi, yhteensä ${robber_amount}€`;
       await player_money(ide);
-      //if finnair_personel comes from garbage
+      //if finnair_personnel comes from garbage
     } else if (action === 'value') {
       garbagemessage.textContent = `Haluatko lahjoittaa 500€ ympäristön hyvinvointiin? Lahjoittajana voit saada harvinaisen palkinnon.`;
       createButton('finnair_button_yes', 'kyllä', buttoncontainer,
