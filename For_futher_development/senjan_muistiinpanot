@@ -2,7 +2,7 @@ Tekemättä
 Endgame vie 404
 Poista näytä scoret nappi
 Lentokentän valinnassa rahat voivat mennä miinukselle
-Kolon etsiminen ei päivitä tietoja
+"Sinun makkarasi" näyttää myös varastetut makkarat
 
 Tehty
 Peli ei pääty tietokannassa.
@@ -11,3 +11,4 @@ Makkarat eivät ole allekkain.
 Finnairille voi lahjoittaa vaikkei ole rahaa, finnair ei vie tällöin rahaa.
 Kolovastaava ei vie pisteitä.
 Makkaroilla on aina samat pisteet.
+Kolon etsiminen ei päivitä tietoja.

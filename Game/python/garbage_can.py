@@ -85,5 +85,5 @@ def garbage_can(game_id):
     hole in charge, finnair personnel"""
     from Game.python.commands import input_in_section
     outcome = \
-    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[70, 0, 0, 0], k=1)[0]
+    random.choices(['found_money', 'robber', 'hole_in_charge', 'finnair_personnel'], weights=[25, 25, 25, 25], k=1)[0]
     return outcome

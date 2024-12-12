@@ -37,8 +37,10 @@ async function removeElements(no_search, taxi, yango, dialog_hole_search, ide) {
   close.id = 'close';
   close.textContent = 'Palaa lentokentälle';
   dialog_hole_search.appendChild(close);
-  close.addEventListener('click', (evt) => {
+  close.addEventListener('click', async(evt) => {
     dialog_hole_search.close();
+    await player_score(ide)
+    await player_money(ide)
     console.log(evt + ' gliggasid hiirellä :---D midä sinä däällä deed? :-DDD');
   });
 }
@@ -129,6 +131,8 @@ hole_search_button.addEventListener('click', async () => {
     const close_no_kolo = document.querySelector('#close_no_kolo');
     close_no_kolo.addEventListener('click', async () => {
       dialog_hole_search.close();
+      await player_score(ide)
+      await player_money(ide)
       let game_check_code = await game_end_check();
       console.log(game_check_code);
       if (game_check_code === 1) {
