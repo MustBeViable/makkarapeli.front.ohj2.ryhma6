@@ -47,8 +47,6 @@ def kolo_search(game_id, transportation):
 def return_stolen_score(game_id):
     plus_score = 0
     lost_makkaras = fetch_player_stolen_makkaras(game_id)
-    print('lost')
-    print(lost_makkaras)
     for makkara in lost_makkaras:
         makkara_id = fetch_makkara_id_from_reached(makkara)
         plus_score += count_makkara_score(game_id, makkara_id)
